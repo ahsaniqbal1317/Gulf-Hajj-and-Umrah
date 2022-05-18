@@ -17,7 +17,7 @@ namespace Gulf_Hajj_and_Ummrah.Controllers
         {
             var data = db.client_details_tbl.Where(x => x.isDeleted == false).ToList();
             return View(data);
-
+            //asdasdasdasd
         }
 
         [HttpGet]
