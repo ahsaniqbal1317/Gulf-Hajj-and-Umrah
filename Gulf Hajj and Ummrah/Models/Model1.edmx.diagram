@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="3ba9f730248b467fb158f6fe6fe049f8" Name="Diagram1">
+        <EntityTypeShape EntityType="Gulf_HUModel.billing_details_tbl" Width="1.5" PointX="3" PointY="7" />
+        <EntityTypeShape EntityType="Gulf_HUModel.cities_tbl" Width="1.5" PointX="3.75" PointY="3.875" />
+        <EntityTypeShape EntityType="Gulf_HUModel.client_details_tbl" Width="1.5" PointX="0.75" PointY="8.125" />
+        <EntityTypeShape EntityType="Gulf_HUModel.flight_details_tbl" Width="1.5" PointX="3" PointY="11.375" />
+        <EntityTypeShape EntityType="Gulf_HUModel.group_of_people_details_tbl" Width="1.5" PointX="0.75" PointY="2.125" />
+        <EntityTypeShape EntityType="Gulf_HUModel.hotel_details_tbl" Width="1.5" PointX="6" PointY="8.625" />
+        <EntityTypeShape EntityType="Gulf_HUModel.package_details_tbl" Width="1.5" PointX="5.25" PointY="12.875" />
+        <EntityTypeShape EntityType="Gulf_HUModel.roomtype_tbl" Width="1.5" PointX="3.75" PointY="0.75" />
+        <EntityTypeShape EntityType="Gulf_HUModel.transportation_details_tbl" Width="1.5" PointX="3" PointY="19.25" />
+        <AssociationConnector Association="Gulf_HUModel.FK_billing_details_tbl_client_details_tbl" />
+        <AssociationConnector Association="Gulf_HUModel.FK_flight_details_tbl_cities_tbl" />
+        <AssociationConnector Association="Gulf_HUModel.FK_flight_details_tbl_cities_tbl1" />
+        <AssociationConnector Association="Gulf_HUModel.FK_hotel_details_tbl_cities_tbl" />
+        <AssociationConnector Association="Gulf_HUModel.FK_flight_details_tbl_client_details_tbl" />
+        <AssociationConnector Association="Gulf_HUModel.FK_hotel_details_tbl_client_details_tbl" />
+        <AssociationConnector Association="Gulf_HUModel.FK_package_details_tbl_client_details_tbl" />
+        <AssociationConnector Association="Gulf_HUModel.FK_transportation_details_tbl_client_details_tbl" />
+        <AssociationConnector Association="Gulf_HUModel.FK_package_details_tbl_flight_details_tbl" />
+        <AssociationConnector Association="Gulf_HUModel.FK_hotel_details_tbl_roomtype_tbl" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
