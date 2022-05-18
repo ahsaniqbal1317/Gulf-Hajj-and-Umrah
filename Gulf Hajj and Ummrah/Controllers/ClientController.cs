@@ -35,7 +35,7 @@ namespace Gulf_Hajj_and_Ummrah.Controllers
             return PartialView("AddOrEdit_PartialView_Client");
         }
         [HttpPost]
-        public ActionResult AddOrEdit(ClientViewModel model, HttpPostedFileBase scanneddocs)
+        public ActionResult AddOrEdit(ClientViewModel model, HttpPostedFileBase scanneddocPassport, HttpPostedFileBase scanneddocPicture)
         {
             try
             {
@@ -57,17 +57,24 @@ namespace Gulf_Hajj_and_Ummrah.Controllers
                 client.reference_contact_number= model.reference_contact_number;
 
                 //client table passport doc and picture save here
-                string fileName = Path.GetFileNameWithoutExtension(scanneddocs.FileName);
-                string extension = Path.GetExtension(scanneddocs.FileName);
-                fileName = fileName + DateTime.Now.ToString("yymmssfff") + extension;
-                client.passport_doc = model.passport_doc;
-                model.passport_doc = "~/UploadedDocs/" + fileName;
-                client.picture = model.picture;
-                model.picture = "~/UploadedDocs/" + fileName;
-                fileName = Path.Combine(Server.MapPath("~/UploadedDocs/"), fileName);
-               
-                scanneddocs.SaveAs(fileName);
-             
+
+                if (scanneddocPassport != null)
+                {
+                    string comFileName = Path.GetFileNameWithoutExtension(scanneddocPassport.FileName) + DateTime.Now.ToString("yymmssfff") + Path.GetExtension(scanneddocPicture.FileName);
+                    string path = Path.Combine(Server.MapPath("~/UploadedDocs"), comFileName);
+                    scanneddocPassport.SaveAs(path);
+                    client.passport_doc = comFileName;
+
+                }
+                if (scanneddocPicture != null)
+                {
+                    string comFileName = Path.GetFileNameWithoutExtension(scanneddocPicture.FileName) + DateTime.Now.ToString("yymmssfff") + Path.GetExtension(scanneddocPicture.FileName);
+                    string path = Path.Combine(Server.MapPath("~/UploadedDocs"), comFileName);
+                    scanneddocPicture.SaveAs(path);
+                    client.picture = comFileName;
+
+                }
+
 
                 db.client_details_tbl.Add(client);
                 db.SaveChanges();
@@ -114,7 +121,7 @@ namespace Gulf_Hajj_and_Ummrah.Controllers
             {
                 throw ex;
             }
-            return View("/ClientDetails");
+            return PartialView("AddOrEdit_PartialView_Client");
         }
 
     }

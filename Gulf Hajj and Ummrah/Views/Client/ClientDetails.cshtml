@@ -70,12 +70,20 @@
                     <td>
                         @Html.DisplayFor(modelItem => item.date)
                     </td>
-                    @*<td>
-                        <a target="_blank" href="@Url.Content(item.passport_doc)">View Document</a>
-                    </td>*@
-                    @*<td>
-                        <a target="_blank" href="@Url.Content(item.picture)">View Picture</a>
-                    </td>*@
+                    @if (item.passport_doc != null && item.passport_doc.Length > 0)
+                    {
+                        <td>
+                            <a target="_blank" href="@Url.Content("~/uploadedDocs/"+item.passport_doc)">View Document</a>
+                        </td>
+                    }
+                    @if (item.picture!= null && item.picture.Length > 0)
+                    {
+                        <td>
+                            <a target="_blank" href="@Url.Content("~/uploadedDocs/"+item.picture)">View Picture</a>
+                        </td>
+                    }
+
+
                     <td>
                         @Html.DisplayFor(modelItem => item.reference_by)
                     </td>
