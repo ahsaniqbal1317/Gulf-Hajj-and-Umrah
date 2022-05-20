@@ -16,6 +16,18 @@
         </div>
     </div>
     <div class="card-body">
+        <table border="0" cellspacing="5" cellpadding="5">
+            <tbody>
+                <tr>
+                    <td>Minimum date:</td>
+                    <td><input type="text" id="min" name="min"></td>
+                </tr>
+                <tr>
+                    <td>Maximum date:</td>
+                    <td><input type="text" id="max" name="max"></td>
+                </tr>
+            </tbody>
+        </table>
         <table class="table table-bordered" id="myTable">
             <thead>
                 <tr>
@@ -54,47 +66,47 @@
             <tbody>
                 @foreach (var item in Model)
                 {
-                <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.name)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.dispatched_to)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.phone_number)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.address)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.date)
-                    </td>
-                    @if (item.passport_doc != null && item.passport_doc.Length > 0)
-                    {
+                    <tr>
                         <td>
-                            <a target="_blank" href="@Url.Content("~/uploadedDocs/"+item.passport_doc)">View Document</a>
+                            @Html.DisplayFor(modelItem => item.name)
                         </td>
-                    }
-                    @if (item.picture!= null && item.picture.Length > 0)
-                    {
                         <td>
-                            <a target="_blank" href="@Url.Content("~/uploadedDocs/"+item.picture)">View Picture</a>
+                            @Html.DisplayFor(modelItem => item.dispatched_to)
                         </td>
-                    }
+                        <td>
+                            @Html.DisplayFor(modelItem => item.phone_number)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.address)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.date)
+                        </td>
+                        @if (item.passport_doc != null && item.passport_doc.Length > 0)
+                        {
+                            <td>
+                                <a target="_blank" href="@Url.Content("~/uploadedDocs/"+item.passport_doc)">View Document</a>
+                            </td>
+                        }
+                        @if (item.picture != null && item.picture.Length > 0)
+                        {
+                            <td>
+                                <a target="_blank" href="@Url.Content("~/uploadedDocs/"+item.picture)">View Picture</a>
+                            </td>
+                        }
 
 
-                    <td>
-                        @Html.DisplayFor(modelItem => item.reference_by)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.reference_contact_number)
-                    </td>
-                    <td>
-                        <a class='btn btn-success btn-sm' onclick="PopupForm(@item.id)"><i class="fas fa-pen"></i>Edit </a>
-                        <a class='btn btn-danger btn-sm' onclick="Delete(@item.id)"><i class="fas fa-trash"></i>Delete </a>
-                    </td>
-                </tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.reference_by)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.reference_contact_number)
+                        </td>
+                        <td>
+                            <a class='btn btn-success btn-sm' onclick="PopupForm(@item.id)"><i class="fas fa-pen"></i>Edit </a>
+                            <a class='btn btn-danger btn-sm' onclick="Delete(@item.id)"><i class="fas fa-trash"></i>Delete </a>
+                        </td>
+                    </tr>
                 }
             </tbody>
 
@@ -120,56 +132,82 @@
         </div>
     </div>
 </div>
-<link rel="stylesheet" href="https://cdn.datatables.net/1.11.4/css/jquery.dataTables.min.css">
+
 @section scripts{
 
-    @*<script src="~/Scripts/jquery-2.0.1.js"></script>*@
-    <script src="https://cdn.datatables.net/1.11.4/js/jquery.dataTables.min.js"></script>
+
+    <script type="text/javascript" charset="utf8" src="//cdn.datatables.net/1.10.5/js/jquery.dataTables.js"></script>
+    <script type="text/javascript" charset="utf8" src="//cdn.datatables.net/1.10.5/js/jquery.dataTables.js"></script>
+    <script type="text/javascript" charset="utf8" src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.2/moment.min.js"></script>
+    <script type="text/javascript" charset="utf8" src="//cdn.datatables.net/datetime/1.1.2/js/dataTables.dateTime.min.js"></script>
+
     <script>
-$(document).ready(function () {
-    $('#myTable').DataTable();
-});
-    function PopupForm(id) {
-        if (id > 0) {
-            document.getElementById("exampleModalLabel").innerHTML = "Edit Client Details";
-            $("#exampleModalLabel").removeClass("fa fa-plus");
-            $("#exampleModalLabel").addClass("fa fa-pen");
-        }
-        else {
-            document.getElementById("exampleModalLabel").innerHTML = "Add Client Details";
-            $("#exampleModalLabel").removeClass("fa fa-pen");
-            $("#exampleModalLabel").addClass("fa fa-plus");
-        }
-        var url = "/Client/AddOrEdit?id=" + id;
-    var formDiv = $('#modalbody');
-    $.get(url)
-        .done(function (response) {
-            formDiv.html(response);
+        var minDate, maxDate;
 
-            });
-        $("#exampleModal").modal("show");
-}
-function Delete(id) {
+        // Custom filtering function which will search data in column four between two values
+        $.fn.dataTable.ext.search.push(
+            function (settings, data, dataIndex) {
+                var min = minDate.val();
+                var max = maxDate.val();
+                var date = new Date(data[4]);
 
-    if (confirm('Are You Sure to Delete this Complaint ?')) {
-        $.ajax({
-            type: "POST",
-            url: '@Url.Action("Delete", "Complaint")/' + id,
-            success: function (data) {
-                if (data.success) {
-
-                    location.reload(true);
-
-                    $.notify(data.message, {
-                        globalPosition: "top center",
-                        className: "success"
-                    })
-
+                if (
+                    (min === null && max === null) ||
+                    (min === null && date <= max) ||
+                    (min <= date && max === null) ||
+                    (min <= date && date <= max)
+                ) {
+                    return true;
                 }
+                return false;
             }
+        );
+        $(document).ready(function () {
+            // Create date inputs
+            minDate = new DateTime($('#min'), {
+                format: 'MMMM Do YYYY'
+            });
+            maxDate = new DateTime($('#max'), {
+                format: 'MMMM Do YYYY'
+            });
+
+            // DataTables initialisation
+            var table = $('#myTable').DataTable({
+                columnDefs: [{
+                    "defaultContent": "-",
+                    "targets": "_all"
+                }]
+            });
+
+            // Refilter the table
+            $('#min, #max').on('change', function () {
+                table.draw();
+            });
+
+
+
         });
-    }
-}
+        function PopupForm(id) {
+            if (id > 0) {
+                document.getElementById("exampleModalLabel").innerHTML = "Edit Client Details";
+                $("#exampleModalLabel").removeClass("fa fa-plus");
+                $("#exampleModalLabel").addClass("fa fa-pen");
+            }
+            else {
+                document.getElementById("exampleModalLabel").innerHTML = "Add Client Details";
+                $("#exampleModalLabel").removeClass("fa fa-pen");
+                $("#exampleModalLabel").addClass("fa fa-plus");
+            }
+            var url = "/Client/AddOrEdit?id=" + id;
+            var formDiv = $('#modalbody');
+            $.get(url)
+                .done(function (response) {
+                    formDiv.html(response);
+
+                });
+            $("#exampleModal").modal("show");
+        }
+
     </script>
 }
 

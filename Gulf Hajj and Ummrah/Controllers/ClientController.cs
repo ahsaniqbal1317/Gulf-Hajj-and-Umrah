@@ -121,7 +121,7 @@ namespace Gulf_Hajj_and_Ummrah.Controllers
             {
                 throw ex;
             }
-            return PartialView("AddOrEdit_PartialView_Client");
+            return RedirectToAction("ClientDetails","Client");
         }
 
     }
