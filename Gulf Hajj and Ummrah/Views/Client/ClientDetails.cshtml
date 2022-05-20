@@ -66,47 +66,63 @@
             <tbody>
                 @foreach (var item in Model)
                 {
-                    <tr>
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.dispatched_to)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.phone_number)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.address)
+                    </td>
+                   
+                    <td>
+                        @Convert.ToString(string.Format("{0:dd/MM/yyyy}", item.date))
+                    </td>
+                    
+                 
+
+                    @if (item.passport_doc != null && item.passport_doc.Length > 0)
+                    {
                         <td>
-                            @Html.DisplayFor(modelItem => item.name)
+                            <a target="_blank" href="@Url.Content("~/uploadedDocs/"+item.passport_doc)">View Document</a>
                         </td>
+                    }
+                    else
+                    {
                         <td>
-                            @Html.DisplayFor(modelItem => item.dispatched_to)
+                            No File Uploaded
                         </td>
+                    }
+                    @if (item.picture != null && item.picture.Length > 0)
+                    {
                         <td>
-                            @Html.DisplayFor(modelItem => item.phone_number)
+                            <a target="_blank" href="@Url.Content("~/uploadedDocs/"+item.picture)">View Picture</a>
                         </td>
+                    }
+                    else
+                    {
                         <td>
-                            @Html.DisplayFor(modelItem => item.address)
+                            No File Uploaded
                         </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.date)
-                        </td>
-                        @if (item.passport_doc != null && item.passport_doc.Length > 0)
-                        {
-                            <td>
-                                <a target="_blank" href="@Url.Content("~/uploadedDocs/"+item.passport_doc)">View Document</a>
-                            </td>
-                        }
-                        @if (item.picture != null && item.picture.Length > 0)
-                        {
-                            <td>
-                                <a target="_blank" href="@Url.Content("~/uploadedDocs/"+item.picture)">View Picture</a>
-                            </td>
-                        }
+                    }
 
 
-                        <td>
-                            @Html.DisplayFor(modelItem => item.reference_by)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.reference_contact_number)
-                        </td>
-                        <td>
-                            <a class='btn btn-success btn-sm' onclick="PopupForm(@item.id)"><i class="fas fa-pen"></i>Edit </a>
-                            <a class='btn btn-danger btn-sm' onclick="Delete(@item.id)"><i class="fas fa-trash"></i>Delete </a>
-                        </td>
-                    </tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.reference_by)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.reference_contact_number)
+                    </td>
+                    <td>
+                        <a class='btn btn-success btn-sm' onclick="PopupForm(@item.id)"><i class="fas fa-pen"></i>Edit </a>
+                        <a class='btn btn-danger btn-sm' onclick="Delete(@item.id)"><i class="fas fa-trash"></i>Delete </a>
+                    </td>
+                </tr>
                 }
             </tbody>
 
@@ -207,6 +223,10 @@
                 });
             $("#exampleModal").modal("show");
         }
+
+        //function zoom() {
+        //    document.body.style.zoom = "80%"
+        //}
 
     </script>
 }
