@@ -24,8 +24,8 @@ namespace Gulf_Hajj_and_Ummrah.Models
         public string airline_name { get; set; }
         public Nullable<int> departure_from { get; set; }
         public Nullable<int> arrirved_at { get; set; }
-        public Nullable<System.DateTime> departure_time { get; set; }
-        public Nullable<System.DateTime> arrival_time { get; set; }
+        public Nullable<System.TimeSpan> departure_time { get; set; }
+        public Nullable<System.TimeSpan> arrival_time { get; set; }
         public Nullable<System.DateTime> date { get; set; }
         public Nullable<int> client_id { get; set; }
         public Nullable<bool> isDeleted { get; set; }

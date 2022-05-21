@@ -1,0 +1,120 @@
+﻿@model IEnumerable<Gulf_Hajj_and_Ummrah.Models.hotel_details_tbl>
+
+@{
+    ViewBag.Title = "HotelList";
+}
+
+<div class="card">
+    <div class="card-header bg-dark">
+        <div class="col-md-6">
+            <h4>Hotel List</h4>
+        </div>
+    </div>
+    <div class="card-body">
+        <table class="table table-bordered" id="myTable">
+            <thead>
+                <tr>
+
+                    <th>
+                        Hotel Name
+                    </th>
+                    <th>
+                        Check-In Time
+                    </th>
+                    <th>
+                        Check-Out Time
+                    </th>
+                    <th>
+                        Client Info
+                    </th>
+                    <th>
+                        Action
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.hotel_name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.checkin_time)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.checkout_time)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.client_details_tbl.name)
+                    </td>
+                    <td>
+                        <a class='btn btn-success btn-sm' onclick="PopupForm(@item.id)"><i class="fas fa-pen"></i>Edit </a>
+                        <a class='btn btn-danger btn-sm' onclick="Delete(@item.id)"><i class="fas fa-trash"></i>Delete </a>
+                    </td>
+                </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+<div class="modal fade bd-example-modal-lg" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-indigo">
+
+                <h5 class="modal-title" id="exampleModalLabel"><i class="fa fa-plus" -></i>Edit Complaints</h5>
+                <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body" id="modalbody">
+
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+<link rel="stylesheet" href="https://cdn.datatables.net/1.11.4/css/jquery.dataTables.min.css">
+@section scripts{
+
+    @*<script src="~/Scripts/jquery-2.0.1.js"></script>*@
+    <script src="https://cdn.datatables.net/1.11.4/js/jquery.dataTables.min.js"></script>
+    <script>
+$(document).ready(function () {
+    $('#myTable').DataTable();
+});
+    function PopupForm(id) {
+    var url = "/Hotel/AddOrEdit?id=" + id;
+    var formDiv = $('#modalbody');
+    $.get(url)
+        .done(function (response) {
+            formDiv.html(response);
+
+            });
+        $("#exampleModal").modal("show");
+}
+function Delete(id) {
+
+    if (confirm('Delete this Record ?')) {
+        $.ajax({
+            type: "POST",
+            url: '@Url.Action("Delete", "Hotels")/' + id,
+            success: function (data) {
+                if (data.success) {
+
+                    location.reload(true);
+
+                    $.notify(data.message, {
+                        globalPosition: "top center",
+                        className: "success"
+                    })
+
+                }
+            }
+        });
+    }
+}
+    </script>
+}

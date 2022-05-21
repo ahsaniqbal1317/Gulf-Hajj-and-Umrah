@@ -1,0 +1,72 @@
+﻿@model IEnumerable<Gulf_Hajj_and_Ummrah.Models.hotel_details_tbl>
+
+@{
+    ViewBag.Title = "HotelList";
+}
+
+<div class="card">
+    <div class="card-header bg-dark">
+        <div class="row">
+            <div class="col-md-6">
+                <h4>Hotel List</h4>
+            </div>
+
+        </div>
+    </div>
+    <div class="card-body">
+        <table class="table table-bordered" id="myTable">
+            <thead>
+                <tr>
+                    <th>
+                        Hotel Name
+                    </th>
+                    <th>
+                        Check-In Time
+                    </th>
+                    <th>
+                        Check-Out Time
+                    </th>
+                    <th>
+                        Client Name
+                    </th>
+
+
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.hotel_name)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.checkin_time)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.checkout_time)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.client_details_tbl.name)
+                        </td>
+
+
+                    </tr>
+                }
+            </tbody>
+
+        </table>
+    </div>
+</div>
+
+<link rel="stylesheet" href="https://cdn.datatables.net/1.11.4/css/jquery.dataTables.min.css">
+@section scripts{
+
+    @*<script src="~/Scripts/jquery-2.0.1.js"></script>*@
+    <script src="https://cdn.datatables.net/1.11.4/js/jquery.dataTables.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#myTable').DataTable();
+        });
+    </script>
+}

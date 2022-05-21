@@ -29,6 +29,7 @@ namespace Gulf_Hajj_and_Ummrah.Models
         public string dispatched_to { get; set; }
         public string phone_number { get; set; }
         public string address { get; set; }
+        public string shirka { get; set; }
         public Nullable<System.DateTime> date { get; set; }
         public string passport_doc { get; set; }
         public string picture { get; set; }

@@ -42,8 +42,9 @@ namespace Gulf_Hajj_and_Ummrah.Controllers
                 //dropdown list for roomtype and cities
                 List<cities_tbl> citylist = db.cities_tbl.ToList();
                 ViewBag.CityList = new SelectList(citylist, "id", "cityname");
-                List<roomtype_tbl> roomtypelist = db.roomtype_tbl.ToList();
-                ViewBag.CityList = new SelectList(roomtypelist, "id", "type_of_room");
+
+                //List<roomtype_tbl> roomtypelist = db.roomtype_tbl.ToList();
+                //ViewBag.RoomList = new SelectList(roomtypelist, "id", "type_of_room");
                 //client table detail save here
                 client_details_tbl client = new client_details_tbl();
                 client.id = model.clientid;
@@ -55,6 +56,7 @@ namespace Gulf_Hajj_and_Ummrah.Controllers
                 client.date = DateTime.Now;
                 client.reference_by = model.reference_by;
                 client.reference_contact_number= model.reference_contact_number;
+                client.shirka = model.shirka;
 
                 //client table passport doc and picture save here
 
@@ -79,42 +81,43 @@ namespace Gulf_Hajj_and_Ummrah.Controllers
                 db.client_details_tbl.Add(client);
                 db.SaveChanges();
 
-                ////hotel table details save here
-                //hotel_details_tbl hotel = new hotel_details_tbl();
-                //hotel.id = model.h_id;
-                //hotel.hotel_name = model.hotel_name;
-                //hotel.checkin_time = model.checkin_time;
-                //hotel.checkout_time = model.checkout_time;
+                var data = db.client_details_tbl.ToList();
+                //hotel table details save here
+                hotel_details_tbl hotel = new hotel_details_tbl();
+                hotel.id = model.h_id;
+                hotel.hotel_name = model.hotel_name;
+                hotel.checkin_time = model.checkin_time;
+                hotel.checkout_time = model.checkout_time;
 
-                //db.hotel_details_tbl.Add(hotel);
-                //db.SaveChanges();
+                db.hotel_details_tbl.Add(hotel);
+                db.SaveChanges();
 
-                ////package table details save here
-                //package_details_tbl package = new package_details_tbl();
-                //package.id = model.packageid;
-                //package.package_name = model.package_name;
-                //package.no_of_days = model.no_of_days;
-                //package.date_of_departure = model.date_of_departure;
-                //package.date_of_arrival = model.date_of_arrival;
-                //package.pnr = model.pnr;
-                //package.other_details = model.other_details;
+                //package table details save here
+                package_details_tbl package = new package_details_tbl();
+                package.id = model.packageid;
+                package.package_name = model.package_name;
+                package.no_of_days = model.no_of_days;
+                package.date_of_departure = model.date_of_departure;
+                package.date_of_arrival = model.date_of_arrival;
+                package.pnr = model.pnr;
+                package.other_details = model.other_details;
 
-                //db.package_details_tbl.Add(package);
-                //db.SaveChanges();
+                db.package_details_tbl.Add(package);
+                db.SaveChanges();
 
-                ////flight table details save here
-                //flight_details_tbl flight = new flight_details_tbl();
-                //flight.id = model.id;
-                //flight.airline_name = model.airline_name;
-                //flight.departure_from = model.departure_from;
-                //flight.arrirved_at = model.arrirved_at;
-                //flight.departure_time = model.departure_time;
-                //flight.arrival_time = model.arrival_time;
-                //flight.date = model.dateOfFlight;
+                //flight table details save here
+                flight_details_tbl flight = new flight_details_tbl();
+                flight.id = model.id;
+                flight.airline_name = model.airline_name;
+                flight.departure_from = model.departure_from;
+                flight.arrirved_at = model.arrirved_at;
+                flight.departure_time = model.departure_time;
+                flight.arrival_time = model.arrival_time;
+                flight.date = model.dateOfFlight;
 
 
-                //db.flight_details_tbl.Add(flight);
-                //db.SaveChanges();
+                db.flight_details_tbl.Add(flight);
+                db.SaveChanges();
 
             }
             catch(Exception ex)
