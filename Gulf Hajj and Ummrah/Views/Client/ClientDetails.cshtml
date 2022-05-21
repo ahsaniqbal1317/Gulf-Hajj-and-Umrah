@@ -81,7 +81,8 @@
                     </td>
                    
                     <td>
-                        @Convert.ToString(string.Format("{0:dd/MM/yyyy}", item.date))
+                        @*@Convert.ToString(string.Format("{0:dd/MM/yyyy}", item.date))*@
+                        @Html.DisplayFor(modelItem => item.date)
                     </td>
                     
                  

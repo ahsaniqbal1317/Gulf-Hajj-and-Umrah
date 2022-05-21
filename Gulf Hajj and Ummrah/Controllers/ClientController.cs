@@ -27,7 +27,7 @@ namespace Gulf_Hajj_and_Ummrah.Controllers
             List<cities_tbl> citylist = db.cities_tbl.ToList();
             ViewBag.CityList = new SelectList(citylist, "id", "cityname");
             List<roomtype_tbl> roomtypelist = db.roomtype_tbl.ToList();
-            ViewBag.CityList = new SelectList(roomtypelist, "id", "type_of_room");
+            ViewBag.roomTypeList = new SelectList(roomtypelist, "id", "type_of_room");
             if (id > 0)
             {
                 //edit logic
