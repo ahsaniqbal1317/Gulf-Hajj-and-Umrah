@@ -68,7 +68,9 @@
                 {
                 <tr>
                     <td>
-                        @Html.DisplayFor(modelItem => item.name)
+                        <a href="@Url.Action("ClientDetailForm","Client", new { id = item.id })" class="nav-link">
+                            @Html.DisplayFor(modelItem => item.name)
+                            </a>
                     </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.dispatched_to)

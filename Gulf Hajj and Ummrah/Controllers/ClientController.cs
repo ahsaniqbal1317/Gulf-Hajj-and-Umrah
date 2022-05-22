@@ -127,5 +127,13 @@ namespace Gulf_Hajj_and_Ummrah.Controllers
             return RedirectToAction("ClientDetails","Client");
         }
 
+
+        [HttpGet]
+        public ActionResult ClientDetailForm(int id)
+        {
+            //add logic
+           
+            return View();
+        }
     }
 }

@@ -359,6 +359,7 @@
     <Content Include="Views\BillingandExpense\BillingList.cshtml" />
     <Content Include="Views\Client\AddOrEdit_PartialView_Client.cshtml" />
     <Content Include="Views\Hotels\HotelList.cshtml" />
+    <Content Include="Views\Client\ClientDetailForm.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
