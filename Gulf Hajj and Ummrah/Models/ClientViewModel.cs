@@ -36,7 +36,7 @@ namespace Gulf_Hajj_and_Ummrah.Models
         public string other_details { get; set; }
 
         // flight details table
-        public int id { get; set; }
+        public int Fid { get; set; }
         public string airline_name { get; set; }
         public Nullable<int> departure_from { get; set; }
         public Nullable<int> arrirved_at { get; set; }
