@@ -1,0 +1,88 @@
+﻿@model IEnumerable<Gulf_Hajj_and_Ummrah.Models.package_details_tbl>
+
+@{
+    ViewBag.Title = "PackageDetails";
+}
+
+<div class="card">
+    <div class="card-header bg-dark">
+        <div class="row">
+            <div class="col-md-6">
+                <h4>Package Details</h4>
+            </div>
+
+        </div>
+    </div>
+    <div class="card-body">
+        <table class="table table-bordered" id="myTable">
+            <thead>
+                <tr>
+                    <th>
+                        Name of Package
+                    </th>
+                    <th>
+                        No. of days
+                    </th>
+
+                    <th>
+                        Date of Departure
+                    </th>
+                    <th>
+                        Date of Arrival
+                    </th>
+                    <th>
+                        PNR
+                    </th>
+                    <th>
+                        Other Details
+                    </th>
+                    <th>
+                        Client Details
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.package_name)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.no_of_days)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.date_of_departure)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.date_of_arrival)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.pnr)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.other_details)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.client_details_tbl.name)
+                        </td>
+                    </tr>
+                }
+            </tbody>
+
+        </table>
+    </div>
+</div>
+
+<link rel="stylesheet" href="https://cdn.datatables.net/1.11.4/css/jquery.dataTables.min.css">
+@section scripts{
+
+    @*<script src="~/Scripts/jquery-2.0.1.js"></script>*@
+    <script src="https://cdn.datatables.net/1.11.4/js/jquery.dataTables.min.js"></script>
+    <script>
+$(document).ready(function () {
+    $('#myTable').DataTable();
+});
+    </script>
+}
+

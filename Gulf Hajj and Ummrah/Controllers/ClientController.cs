@@ -28,10 +28,13 @@ namespace Gulf_Hajj_and_Ummrah.Controllers
             ViewBag.CityList = new SelectList(citylist, "id", "cityname");
             List<roomtype_tbl> roomtypelist = db.roomtype_tbl.ToList();
             ViewBag.roomTypeList = new SelectList(roomtypelist, "id", "type_of_room");
-            if (id > 0)
+            if(id>0)
             {
-                //edit logic
+                
+                
+                return PartialView("AddOrEdit_PartialView_Client");
             }
+          
             return PartialView("AddOrEdit_PartialView_Client");
         }
         [HttpPost]
@@ -43,8 +46,8 @@ namespace Gulf_Hajj_and_Ummrah.Controllers
                 List<cities_tbl> citylist = db.cities_tbl.ToList();
                 ViewBag.CityList = new SelectList(citylist, "id", "cityname");
 
-                //List<roomtype_tbl> roomtypelist = db.roomtype_tbl.ToList();
-                //ViewBag.RoomList = new SelectList(roomtypelist, "id", "type_of_room");
+                List<roomtype_tbl> roomtypelist = db.roomtype_tbl.ToList();
+                ViewBag.roomTypeList = new SelectList(roomtypelist, "id", "type_of_room");
                 //client table detail save here
                 client_details_tbl client = new client_details_tbl();
                 client.id = model.clientid;

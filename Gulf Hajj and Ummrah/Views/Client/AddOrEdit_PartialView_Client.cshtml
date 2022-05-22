@@ -102,11 +102,16 @@
         </div>
         @Html.HiddenFor(model => model.h_id)
         <div class="row">
-            <div class="col-md-12">
+            <div class="col-md-6">
                 <label>Hotel Name </label>
                 @Html.EditorFor(model => model.hotel_name, new { htmlAttributes = new { @class = "form-control", @autocomplete = "off", @placeholder = "Enter Hotel Name" } })
                 @Html.ValidationMessageFor(model => model.hotel_name, "", new { @class = "text-danger" })
-
+            </div>
+            
+            <div class="col-md-6">
+                <label>Roomtype </label>
+                @Html.DropDownListFor(model => model.roomTypeId, ViewBag.roomTypeList as SelectList, "-----Select Roomtype-----", new { @class = "form-control"})
+                @Html.ValidationMessageFor(model => model.roomTypeId, "", new { @class = "text-danger" })
             </div>
         </div>
         <div class="row">

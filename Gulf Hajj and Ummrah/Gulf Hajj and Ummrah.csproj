@@ -281,8 +281,10 @@
     <Compile Include="Controllers\AdministrationController.cs" />
     <Compile Include="Controllers\BillingandExpenseController.cs" />
     <Compile Include="Controllers\ClientController.cs" />
+    <Compile Include="Controllers\FlightController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\HotelsController.cs" />
+    <Compile Include="Controllers\PackageController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -360,6 +362,8 @@
     <Content Include="Views\Client\AddOrEdit_PartialView_Client.cshtml" />
     <Content Include="Views\Hotels\HotelList.cshtml" />
     <Content Include="Views\Client\ClientDetailForm.cshtml" />
+    <Content Include="Views\Package\PackageDetails.cshtml" />
+    <Content Include="Views\Flight\FlightDetails.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

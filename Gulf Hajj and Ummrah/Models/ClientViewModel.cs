@@ -47,5 +47,9 @@ namespace Gulf_Hajj_and_Ummrah.Models
         //Cities
         public int cityid { get; set; }
         public string cityname { get; set; }
+
+        //Roomtype
+        public int roomTypeId { get; set; }
+        public string type_of_room { get; set; }
     }
 }
