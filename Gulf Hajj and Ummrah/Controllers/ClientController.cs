@@ -205,8 +205,8 @@ namespace Gulf_Hajj_and_Ummrah.Controllers
         public ActionResult ClientDetailForm(int id)
         {
             //add logic
-           
-            return View();
+            var data = db.client_details_tbl.Where(x => x.id == id).FirstOrDefault();
+            return View(data);
         }      
     }
 }

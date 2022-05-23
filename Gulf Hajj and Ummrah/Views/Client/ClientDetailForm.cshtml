@@ -1,97 +1,389 @@
-﻿@model Gulf_Hajj_and_Ummrah.Models.ClientViewModel
+﻿@model Gulf_Hajj_and_Ummrah.Models.client_details_tbl
 @{
     ViewBag.Title = "ClientDetailForm";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+<link href="~/Content/Style.css" rel="stylesheet" />
 <div class="container-fluid">
-    <div class="card-header bg-black">
-    </div>
-        <div class="col-md-2">
-            <div class="logo-xs">
-                <img src="~/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image" style="width: 30px;">
+    <div class="card">
+        <div class="card-header">
+            <div class="row">
+                <div class="col-md-2 logo">
+
+                    <img src="~/img/form-logo.jpg" class="img-circle elevation-2" alt="User Image" style="width: 100px;">
+
+                </div>
+                <div class="col-md-7">
+                    <h1 class="text-center" style="padding-top:30px; font-family:'Segoe UI'">
+                        Gulf Hajj and Umrah Service (Pvt). Ltd
+                    </h1>
+                </div>
+                <div class="col-md-3" style="padding-top:15px; padding-left:60px;">
+                    <div class="picture">
+                        <p class="text-center">Photo</p>
+                    </div>
+                </div>
             </div>
         </div>
-        <div class="col-md-6">
+       <div class="card-body">
+           <div class="row">
+               <div class="col-md-12">
+                       <h4 class="heading">Client Information Form</h4>
+               </div>
+           </div>
+           
+           <div class="row">
+               
+               <div class="col-md-12">
+                   <div class="card-header bg-gray">
+                       <p class="subHeading">Personal Info</p>
+                   </div>
+                       <div class="row ">
+                           <table class="table table-bordered">
+                               <thead class="text-center">
+                                   <tr>
+                                       <th>
+                                           Name
+                                       </th>
+                                       <th>
+                                           Dispatched to
+                                       </th>
+                                       <th>
+                                           Phone Number
+                                       </th>
+                                       <th>
+                                           Address
+                                       </th>
+                                       <th>
+                                           Date
+                                       </th>
 
-        </div>
-        <div class="col-md-4">
+                                       <th>
+                                           Reference By
+                                       </th>
 
-        </div>
-    
+                                   </tr>
+                               </thead>
+                               <tbody class="text-center">
+
+
+                                   <tr>
+                                       <td>
+
+                                           @Html.DisplayFor(model => model.name)
+
+                                       </td>
+                                       <td>
+                                           @Html.DisplayFor(model => model.dispatched_to)
+                                       </td>
+                                       <td>
+                                           @Html.DisplayFor(model => model.phone_number)
+                                       </td>
+                                       <td>
+                                           @Html.DisplayFor(model => model.address)
+                                       </td>
+
+                                       <td>
+
+                                           @Html.DisplayFor(model => model.date)
+                                       </td>
+                                       <td>
+                                           @Html.DisplayFor(model => model.reference_by)
+                                       </td>
+                                   </tr>
+                               </tbody>
+                           </table>
+                       </div>
+                   
+               </div>
+               
+           </div>
+           <div class="row">
+               
+               <div class="col-md-12">
+                   <div class="card-header bg-gray">
+                       <p class="subHeading">Group Info</p>
+                   </div>
+                       <div class="row ">
+                           <table class="table table-bordered">
+                               <thead class="text-center">
+                                   <tr>
+                                       <th>
+                                           Name of Group Members
+                                       </th>
+                                       <th>
+                                           Passport Number
+                                       </th>
+                                   </tr>
+                               </thead>
+                               <tbody class="text-center">
+                                   <tr>
+                                       <td>
+
+                                           @Html.DisplayFor(model => model.name)
+
+                                       </td>
+                                       <td>
+                                           @Html.DisplayFor(model => model.dispatched_to)
+                                       </td>
+                                      
+                                   </tr>
+                               </tbody>
+                           </table>
+                       </div>
+                   
+               </div>
+               
+           </div>
+           <div class="row">
+               
+               <div class="col-md-12">
+                   <div class="card-header bg-gray">
+                       <p class="subHeading">Hotel Information</p>
+                   </div>
+                       <div class="row ">
+                           <table class="table table-bordered">
+                               <thead class="text-center">
+                                   <tr>
+                                       <th>
+                                           City
+                                       </th>
+                                       <th>
+                                           Hotel Name
+                                       </th>
+                                       <th>
+                                           Room Type
+                                       </th>
+
+                                       <th>
+                                           Check-In
+                                       </th>
+                                       <th>
+                                           Check-Out
+                                       </th>
+                                   </tr>
+                               </thead>
+                               <tbody class="text-center">
+                                   <tr>
+                                       <td>
+
+                                           @Html.DisplayFor(model => model.name)
+
+                                       </td>
+                                       <td>
+                                           @Html.DisplayFor(model => model.dispatched_to)
+                                       </td>
+                                       <td>
+
+                                           @Html.DisplayFor(model => model.name)
+
+                                       </td>
+                                       <td>
+                                           @Html.DisplayFor(model => model.dispatched_to)
+                                       </td>
+                                       <td>
+                                           @Html.DisplayFor(model => model.dispatched_to)
+                                       </td>
+                                   </tr>
+                               </tbody>
+                           </table>
+                       </div>
+                   
+               </div>
+               
+           </div>
+           <div class="row">
+               
+               <div class="col-md-12">
+                   <div class="card-header bg-gray">
+                       <p class="subHeading">Flight Details</p>
+                   </div>
+                       <div class="row ">
+                           <table class="table table-bordered">
+                               <thead class="text-center">
+                                   <tr>
+                                       <th>
+                                           Date
+                                       </th>
+                                       <th>
+                                           Airline Name
+                                       </th>
+                                       <th>
+                                           Departure From
+                                       </th>
+
+                                       <th>
+                                           Arrival at
+                                       </th>
+                                       <th>
+                                           Departure Time
+                                       </th> 
+                                       <th>
+                                           Arrival Time
+                                       </th>
+                                       <th>
+                                           PNR
+                                       </th>
+                                   </tr>
+                               </thead>
+                               <tbody class="text-center">
+                                   <tr>
+                                       <td>
+
+                                           @Html.DisplayFor(model => model.date)
+
+                                       </td>
+                                       <td>
+                                           @Html.DisplayFor(model => model.dispatched_to)
+                                       </td>
+                                       <td>
+
+                                           @Html.DisplayFor(model => model.name)
+
+                                       </td>
+                                       <td>
+                                           @Html.DisplayFor(model => model.dispatched_to)
+                                       </td>
+                                       <td>
+                                           @Html.DisplayFor(model => model.dispatched_to)
+                                       </td>
+                                       <td>
+                                           @Html.DisplayFor(model => model.dispatched_to)
+                                       </td>
+                                       <td>
+                                           @Html.DisplayFor(model => model.dispatched_to)
+                                       </td>
+                                   </tr>
+                               </tbody>
+                           </table>
+                       </div>
+                   
+               </div>
+               
+           </div>
+           <div class="row">
+               
+               <div class="col-md-12">
+                   <div class="card-header bg-gray">
+                       <p class="subHeading">Car Rental/ Tranportion</p>
+                   </div>
+                       <div class="row ">
+                           <table class="table table-bordered">
+                               <thead class="text-center">
+                                   <tr>
+                                       <th>
+                                           Date
+                                       </th>
+                                       <th>
+                                           Vechile Type
+                                       </th>
+                                       <th>
+                                          Route
+                                       </th>
+
+                                       
+                                   </tr>
+                               </thead>
+                               <tbody class="text-center">
+                                   <tr>
+                                       <td>
+
+                                           @Html.DisplayFor(model => model.date)
+
+                                       </td>
+                                       <td>
+                                           @Html.DisplayFor(model => model.dispatched_to)
+                                       </td>
+                                       <td>
+
+                                           @Html.DisplayFor(model => model.name)
+
+                                       </td>
+                                      
+                                   </tr>
+                               </tbody>
+                           </table>
+                       </div>
+                   
+               </div>
+               
+           </div>
+       </div>
+    </div>
 </div>
 
 
 
 
-    <table border="0" cellpadding="5" cellspacing="0">
-        <tr>
-            <td style="width: 50%">
-                <label for="First_Name"><b>First name *</b></label><br />
-                <input name="First_Name" type="text" maxlength="50" style="width:100%;max-width: 260px" />
-            </td>
-            <td style="width: 50%">
-                <label for="Last_Name"><b>Last name *</b></label><br />
-                <input name="Last_Name" type="text" maxlength="50" style="width:100%;max-width: 260px" />
-            </td>
-        </tr>
-        <tr>
-            <td colspan="2">
-                <label for="Email_Address"><b>Email *</b></label><br />
-                <input name="Email_Address" type="text" maxlength="100" style="width:100%;max-width: 535px" />
-            </td>
-        </tr>
-        <tr>
-            <td colspan="2">
-                <label for="Portfolio"><b>Portfolio website</b></label><br />
-                <input name="Portfolio" type="text" maxlength="255" value="http://" style="width:100%;max-width: 535px" />
-            </td>
-        </tr>
-        <tr>
-            <td colspan="2">
-                <label for="Position"><b>Position you are applying for *</b></label><br />
-                <input name="Position" type="text" maxlength="100" style="width:100%;max-width: 535px" />
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <label for="Salary"><b>Salary requirements</b></label><br /> <input name="Salary" type="text" maxlength="50" style="width:100%;max-width: 260px" />
-            </td>
-            <td>
-                <label for="StartDate"><b>When can you start?</b></label><br />
-                <input name="StartDate" type="text" maxlength="50" style="width:100%;max-width: 260px" />
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <label for="Phone"><b>Phone *</b></label><br />
-                <input name="Phone" type="text" maxlength="50" style="width:100%;max-width: 260px" />
-            </td>
-            <td>
-                <label for="Fax"><b>Fax</b></label><br />
-                <input name="Fax" type="text" maxlength="50" style="width:100%;max-width: 260px" />
-            </td>
-        </tr>
-        <tr>
-            <td colspan="2">
-                <label for="Relocate"><b>Are you willing to relocate?</b></label><br />
-                <input name="Relocate" type="radio" value="Yes" checked="checked" /> Yes
-                <input name="Relocate" type="radio" value="No" /> No
-                <input name="Relocate" type="radio" value="NotSure" /> Not sure
-            </td>
-        </tr>
-        <tr>
-            <td colspan="2">
-                <label for="Organization"><b>Last company you worked for</b></label><br />
-                <input name="Organization" type="text" maxlength="100" style="width:100%;max-width: 535px" />
-            </td>
-        </tr>
-        <tr>
-            <td colspan="2">
-                <label for="Reference"><b>Reference / Comments / Questions</b></label><br />
-<textarea name="Reference" rows="7" cols="40" style="width:100%;max-width: 535px"></textarea>
-            </td>
-        </tr>
+@*<table border="0" cellpadding="5" cellspacing="0">
+            <tr>
+                <td style="width: 50%">
+                    <label for="First_Name"><b>First name *</b></label><br />
+                    <input name="First_Name" type="text" maxlength="50" style="width:100%;max-width: 260px" />
+                </td>
+                <td style="width: 50%">
+                    <label for="Last_Name"><b>Last name *</b></label><br />
+                    <input name="Last_Name" type="text" maxlength="50" style="width:100%;max-width: 260px" />
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <label for="Email_Address"><b>Email *</b></label><br />
+                    <input name="Email_Address" type="text" maxlength="100" style="width:100%;max-width: 535px" />
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <label for="Portfolio"><b>Portfolio website</b></label><br />
+                    <input name="Portfolio" type="text" maxlength="255" value="http://" style="width:100%;max-width: 535px" />
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <label for="Position"><b>Position you are applying for *</b></label><br />
+                    <input name="Position" type="text" maxlength="100" style="width:100%;max-width: 535px" />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label for="Salary"><b>Salary requirements</b></label><br /> <input name="Salary" type="text" maxlength="50" style="width:100%;max-width: 260px" />
+                </td>
+                <td>
+                    <label for="StartDate"><b>When can you start?</b></label><br />
+                    <input name="StartDate" type="text" maxlength="50" style="width:100%;max-width: 260px" />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label for="Phone"><b>Phone *</b></label><br />
+                    <input name="Phone" type="text" maxlength="50" style="width:100%;max-width: 260px" />
+                </td>
+                <td>
+                    <label for="Fax"><b>Fax</b></label><br />
+                    <input name="Fax" type="text" maxlength="50" style="width:100%;max-width: 260px" />
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <label for="Relocate"><b>Are you willing to relocate?</b></label><br />
+                    <input name="Relocate" type="radio" value="Yes" checked="checked" /> Yes
+                    <input name="Relocate" type="radio" value="No" /> No
+                    <input name="Relocate" type="radio" value="NotSure" /> Not sure
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <label for="Organization"><b>Last company you worked for</b></label><br />
+                    <input name="Organization" type="text" maxlength="100" style="width:100%;max-width: 535px" />
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <label for="Reference"><b>Reference / Comments / Questions</b></label><br />
+    <textarea name="Reference" rows="7" cols="40" style="width:100%;max-width: 535px"></textarea>
+                </td>
+            </tr>
 
-    </table>
+        </table>*@
 
 
