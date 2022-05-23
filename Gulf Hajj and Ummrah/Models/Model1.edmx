@@ -68,6 +68,7 @@
           <Property Name="name" Type="varchar" MaxLength="50" />
           <Property Name="passport_number" Type="varchar" MaxLength="50" />
           <Property Name="isDeleted" Type="bit" />
+          <Property Name="client_id" Type="int" />
         </EntityType>
         <EntityType Name="hotel_details_tbl">
           <Key>
@@ -174,6 +175,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_group_of_people_details_tbl_client_details_tbl">
+          <End Role="client_details_tbl" Type="Self.client_details_tbl" Multiplicity="0..1" />
+          <End Role="group_of_people_details_tbl" Type="Self.group_of_people_details_tbl" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="client_details_tbl">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="group_of_people_details_tbl">
+              <PropertyRef Name="client_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_hotel_details_tbl_cities_tbl">
           <End Role="cities_tbl" Type="Self.cities_tbl" Multiplicity="0..1">
             <OnDelete Action="Cascade" />
@@ -189,9 +202,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_hotel_details_tbl_client_details_tbl">
-          <End Role="client_details_tbl" Type="Self.client_details_tbl" Multiplicity="0..1">
-            <OnDelete Action="Cascade" />
-          </End>
+          <End Role="client_details_tbl" Type="Self.client_details_tbl" Multiplicity="0..1" />
           <End Role="hotel_details_tbl" Type="Self.hotel_details_tbl" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="client_details_tbl">
@@ -279,6 +290,10 @@
             <End Role="client_details_tbl" EntitySet="client_details_tbl" />
             <End Role="flight_details_tbl" EntitySet="flight_details_tbl" />
           </AssociationSet>
+          <AssociationSet Name="FK_group_of_people_details_tbl_client_details_tbl" Association="Self.FK_group_of_people_details_tbl_client_details_tbl">
+            <End Role="client_details_tbl" EntitySet="client_details_tbl" />
+            <End Role="group_of_people_details_tbl" EntitySet="group_of_people_details_tbl" />
+          </AssociationSet>
           <AssociationSet Name="FK_hotel_details_tbl_cities_tbl" Association="Self.FK_hotel_details_tbl_cities_tbl">
             <End Role="cities_tbl" EntitySet="cities_tbl" />
             <End Role="hotel_details_tbl" EntitySet="hotel_details_tbl" />
@@ -359,6 +374,10 @@
             <End Role="roomtype_tbl" EntitySet="roomtype_tbl" />
             <End Role="hotel_details_tbl" EntitySet="hotel_details_tbl" />
           </AssociationSet>
+          <AssociationSet Name="FK_group_of_people_details_tbl_client_details_tbl" Association="Gulf_HUModel.FK_group_of_people_details_tbl_client_details_tbl">
+            <End Role="client_details_tbl" EntitySet="client_details_tbl" />
+            <End Role="group_of_people_details_tbl" EntitySet="group_of_people_details_tbl" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="billing_details_tbl">
           <Key>
@@ -409,6 +428,7 @@
           <NavigationProperty Name="hotel_details_tbl" Relationship="Gulf_HUModel.FK_hotel_details_tbl_client_details_tbl" FromRole="client_details_tbl" ToRole="hotel_details_tbl" />
           <NavigationProperty Name="package_details_tbl" Relationship="Gulf_HUModel.FK_package_details_tbl_client_details_tbl" FromRole="client_details_tbl" ToRole="package_details_tbl" />
           <NavigationProperty Name="transportation_details_tbl" Relationship="Gulf_HUModel.FK_transportation_details_tbl_client_details_tbl" FromRole="client_details_tbl" ToRole="transportation_details_tbl" />
+          <NavigationProperty Name="group_of_people_details_tbl" Relationship="Gulf_HUModel.FK_group_of_people_details_tbl_client_details_tbl" FromRole="client_details_tbl" ToRole="group_of_people_details_tbl" />
         </EntityType>
         <EntityType Name="flight_details_tbl">
           <Key>
@@ -436,6 +456,8 @@
           <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="passport_number" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="isDeleted" Type="Boolean" />
+          <Property Name="client_id" Type="Int32" />
+          <NavigationProperty Name="client_details_tbl" Relationship="Gulf_HUModel.FK_group_of_people_details_tbl_client_details_tbl" FromRole="group_of_people_details_tbl" ToRole="client_details_tbl" />
         </EntityType>
         <EntityType Name="hotel_details_tbl">
           <Key>
@@ -627,6 +649,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_group_of_people_details_tbl_client_details_tbl">
+          <End Type="Gulf_HUModel.client_details_tbl" Role="client_details_tbl" Multiplicity="0..1" />
+          <End Type="Gulf_HUModel.group_of_people_details_tbl" Role="group_of_people_details_tbl" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="client_details_tbl">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="group_of_people_details_tbl">
+              <PropertyRef Name="client_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -695,6 +729,7 @@
           <EntitySetMapping Name="group_of_people_details_tbl">
             <EntityTypeMapping TypeName="Gulf_HUModel.group_of_people_details_tbl">
               <MappingFragment StoreEntitySet="group_of_people_details_tbl">
+                <ScalarProperty Name="client_id" ColumnName="client_id" />
                 <ScalarProperty Name="isDeleted" ColumnName="isDeleted" />
                 <ScalarProperty Name="passport_number" ColumnName="passport_number" />
                 <ScalarProperty Name="name" ColumnName="name" />

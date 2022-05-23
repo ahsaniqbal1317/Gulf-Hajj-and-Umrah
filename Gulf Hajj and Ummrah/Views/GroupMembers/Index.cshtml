@@ -1,0 +1,133 @@
+﻿@model Gulf_Hajj_and_Ummrah.Models.GroupMembersViewModel
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Client Name @Model.client_Details_Tbl.name (Reg: @Model.client_Details_Tbl.id)</h2>
+
+@using (Html.BeginForm("Create", "GroupMembers"))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>Add Member to your group</h4>
+        <hr />
+        @Html.HiddenFor(model => model.client_Details_Tbl.id)
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.addmember.name, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.addmember.name, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.addmember.name, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.addmember.passport_number, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.addmember.passport_number, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.addmember.passport_number, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<table class="table table-bordered" id="myTable">
+    <thead>
+        <tr>
+            <th>
+                Name
+            </th>
+            <th>
+                Passport Number
+            </th>
+            <th>
+                Action
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.members)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.passport_number)
+                </td>
+                <td>
+                    <a class='btn btn-success btn-sm' onclick="PopupForm(@item.id)"><i class="fas fa-pen"></i>Edit </a>
+                    <a class='btn btn-danger btn-sm' onclick="Delete(@item.id)"><i class="fas fa-trash"></i>Delete </a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+
+<div class="modal fade bd-example-modal-lg" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-indigo">
+
+                <h5 class="modal-title" id="exampleModalLabel"><i class="fa fa-pen" -></i>Edit Member Details</h5>
+                <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body" id="modalbody">
+
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section scripts{
+
+
+    <script type="text/javascript" charset="utf8" src="//cdn.datatables.net/1.10.5/js/jquery.dataTables.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            $('#myTable').DataTable();
+
+            $('#myTable_wrapper').css("padding-left", 100);
+            $('#myTable_wrapper').css("padding-right", 100);
+        });
+
+
+        function PopupForm(id) {
+            //if (id > 0) {
+            //    document.getElementById("exampleModalLabel").innerHTML = "Edit Client Details";
+            //    $("#exampleModalLabel").removeClass("fa fa-plus");
+            //    $("#exampleModalLabel").addClass("fa fa-pen");
+            //}
+            //else {
+            //    document.getElementById("exampleModalLabel").innerHTML = "Add Client Details";
+            //    $("#exampleModalLabel").removeClass("fa fa-pen");
+            //    $("#exampleModalLabel").addClass("fa fa-plus");
+            //}
+            var url = "/GroupMembers/Edit?id=" + id;
+            var formDiv = $('#modalbody');
+            $.get(url)
+                .done(function (response) {
+                    formDiv.html(response);
+
+                });
+            $("#exampleModal").modal("show");
+        }
+
+    </script>
+}

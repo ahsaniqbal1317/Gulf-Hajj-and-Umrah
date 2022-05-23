@@ -25,6 +25,7 @@
         <AssociationConnector Association="Gulf_HUModel.FK_transportation_details_tbl_client_details_tbl" />
         <AssociationConnector Association="Gulf_HUModel.FK_package_details_tbl_flight_details_tbl" />
         <AssociationConnector Association="Gulf_HUModel.FK_hotel_details_tbl_roomtype_tbl" />
+        <AssociationConnector Association="Gulf_HUModel.FK_group_of_people_details_tbl_client_details_tbl" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

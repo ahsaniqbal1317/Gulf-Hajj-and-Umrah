@@ -1,0 +1,56 @@
+﻿@model Gulf_Hajj_and_Ummrah.Models.group_of_people_details_tbl
+
+@using (Html.BeginForm("Edit", "GroupMembers", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <div class="card">
+        <div class="card-body">
+            <div class="card-header bg-blue text-white">
+                <h6>
+                    <i class="fa fa-info"></i>
+                    <b>Personal Info</b>
+                </h6>
+
+            </div>
+            @Html.HiddenFor(model => model.client_id)
+            @Html.HiddenFor(model => model.id)
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label>Name</label>
+                        @Html.EditorFor(model => model.name, new { htmlAttributes = new { @class = "form-control", @autocomplete = "off", @placeholder = "Enter Client Name" } })
+                        @Html.ValidationMessageFor(model => model.name, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label>Passport Number</label>
+                        @Html.EditorFor(model => model.passport_number, new { htmlAttributes = new { @class = "form-control", @autocomplete = "off", @placeholder = "Enter Phone Number" } })
+                        @Html.ValidationMessageFor(model => model.passport_number, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+
+            </div>
+
+        </div>
+      
+    </div>
+
+
+
+
+
+
+
+
+
+    <div class="form-group">
+        <input type="submit" value="Submit" class="btn btn-primary" />
+        <input type="reset" value="Reset" class="btn btn-warning" />
+    </div>
+}
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+

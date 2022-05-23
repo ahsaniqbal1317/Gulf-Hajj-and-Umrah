@@ -22,6 +22,7 @@ namespace Gulf_Hajj_and_Ummrah.Models
             this.hotel_details_tbl = new HashSet<hotel_details_tbl>();
             this.package_details_tbl = new HashSet<package_details_tbl>();
             this.transportation_details_tbl = new HashSet<transportation_details_tbl>();
+            this.group_of_people_details_tbl = new HashSet<group_of_people_details_tbl>();
         }
     
         public int id { get; set; }
@@ -47,5 +48,7 @@ namespace Gulf_Hajj_and_Ummrah.Models
         public virtual ICollection<package_details_tbl> package_details_tbl { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<transportation_details_tbl> transportation_details_tbl { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<group_of_people_details_tbl> group_of_people_details_tbl { get; set; }
     }
 }
