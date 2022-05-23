@@ -206,6 +206,12 @@ namespace Gulf_Hajj_and_Ummrah.Controllers
         {
             //add logic
             var data = db.client_details_tbl.Where(x => x.id == id).FirstOrDefault();
+
+            int departure = data.flight_details_tbl.FirstOrDefault().departure_from.GetValueOrDefault();
+            int arrival = data.flight_details_tbl.FirstOrDefault().arrirved_at.GetValueOrDefault();
+
+            ViewBag.DepartureFrom = db.cities_tbl.Where(x => x.id == departure).FirstOrDefault().cityname;
+            ViewBag.ArrivalAt = db.cities_tbl.Where(x => x.id == arrival).FirstOrDefault().cityname;
             return View(data);
         }      
     }

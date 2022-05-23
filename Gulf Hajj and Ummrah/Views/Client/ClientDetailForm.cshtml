@@ -6,7 +6,7 @@
 <link href="~/Content/Style.css" rel="stylesheet" />
 <div class="container-fluid">
     <div class="card">
-        <div class="card-header">
+        <div class="card-header" style="padding-bottom: 61px;">
             <div class="row">
                 <div class="col-md-2 logo">
 
@@ -18,9 +18,10 @@
                         Gulf Hajj and Umrah Service (Pvt). Ltd
                     </h1>
                 </div>
-                <div class="col-md-3" style="padding-top:15px; padding-left:60px;">
+                <div class="col-md-3" style="padding-top:0px; padding-left:150px;">
                     <div class="picture">
-                        <p class="text-center">Photo</p>
+                        @*<p class="text-center">Photo</p>*@
+                        <img src="~/UploadedDocs/@Model.picture" alt="" height=150 width=150 />
                     </div>
                 </div>
             </div>
@@ -85,7 +86,7 @@
 
                                        <td>
 
-                                           @Html.DisplayFor(model => model.date)
+                                           @Model.date.Value.ToString("d")
                                        </td>
                                        <td>
                                            @Html.DisplayFor(model => model.reference_by)
@@ -117,18 +118,21 @@
                                    </tr>
                                </thead>
                                <tbody class="text-center">
-                                   <tr>
-                                       <td>
+                                   @foreach (var item in Model.group_of_people_details_tbl)
+                                   {
+                                       <tr>
+                                           <td>
 
-                                           @Html.DisplayFor(model => model.name)
+                                               @Html.DisplayFor(model => item.name)
 
-                                       </td>
-                                       <td>
-                                           @Html.DisplayFor(model => model.dispatched_to)
-                                       </td>
-                                      
-                                   </tr>
-                               </tbody>
+                                           </td>
+                                           <td>
+                                               @Html.DisplayFor(model => item.passport_number)
+                                           </td>
+
+                                       </tr>
+                                   }
+                                   </tbody>
                            </table>
                        </div>
                    
@@ -166,23 +170,19 @@
                                <tbody class="text-center">
                                    <tr>
                                        <td>
-
-                                           @Html.DisplayFor(model => model.name)
-
+                                           CITY
                                        </td>
                                        <td>
-                                           @Html.DisplayFor(model => model.dispatched_to)
+                                           @Html.DisplayFor(model => model.hotel_details_tbl.FirstOrDefault().hotel_name)
                                        </td>
                                        <td>
-
-                                           @Html.DisplayFor(model => model.name)
-
+                                           RoomTYPE
                                        </td>
                                        <td>
-                                           @Html.DisplayFor(model => model.dispatched_to)
+                                           @Html.DisplayFor(model => model.hotel_details_tbl.FirstOrDefault().checkin_time)
                                        </td>
                                        <td>
-                                           @Html.DisplayFor(model => model.dispatched_to)
+                                           @Html.DisplayFor(model => model.hotel_details_tbl.FirstOrDefault().checkout_time)
                                        </td>
                                    </tr>
                                </tbody>
@@ -221,38 +221,32 @@
                                        <th>
                                            Arrival Time
                                        </th>
-                                       <th>
-                                           PNR
-                                       </th>
+                                     
                                    </tr>
                                </thead>
                                <tbody class="text-center">
                                    <tr>
                                        <td>
 
-                                           @Html.DisplayFor(model => model.date)
+                                           @Model.flight_details_tbl.FirstOrDefault().date.Value.ToString("d")
 
                                        </td>
                                        <td>
-                                           @Html.DisplayFor(model => model.dispatched_to)
+                                           @Html.DisplayFor(model => model.flight_details_tbl.FirstOrDefault().airline_name)
                                        </td>
                                        <td>
-
-                                           @Html.DisplayFor(model => model.name)
-
+                                           @ViewBag.DepartureFrom
                                        </td>
                                        <td>
-                                           @Html.DisplayFor(model => model.dispatched_to)
+                                           @ViewBag.ArrivalAt
                                        </td>
                                        <td>
-                                           @Html.DisplayFor(model => model.dispatched_to)
+                                           @Html.DisplayFor(model => model.flight_details_tbl.FirstOrDefault().departure_time)
                                        </td>
                                        <td>
-                                           @Html.DisplayFor(model => model.dispatched_to)
+                                           @Html.DisplayFor(model => model.flight_details_tbl.FirstOrDefault().arrival_time)
                                        </td>
-                                       <td>
-                                           @Html.DisplayFor(model => model.dispatched_to)
-                                       </td>
+                                      
                                    </tr>
                                </tbody>
                            </table>
@@ -261,6 +255,9 @@
                </div>
                
            </div>
+
+           @*PACKAGE DETAILS MISSING*@
+
            <div class="row">
                
                <div class="col-md-12">
@@ -288,15 +285,15 @@
                                    <tr>
                                        <td>
 
-                                           @Html.DisplayFor(model => model.date)
+                                           DATE
 
                                        </td>
                                        <td>
-                                           @Html.DisplayFor(model => model.dispatched_to)
+                                           VEHICLE TYPE
                                        </td>
                                        <td>
 
-                                           @Html.DisplayFor(model => model.name)
+                                          ROUTE
 
                                        </td>
                                       
