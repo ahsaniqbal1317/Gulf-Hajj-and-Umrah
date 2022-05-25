@@ -21,7 +21,8 @@ namespace Gulf_Hajj_and_Ummrah.Models
         }
     
         public int id { get; set; }
-        public string airline_name { get; set; }
+        public Nullable<int> airline_name { get; set; }
+        public string ticketNo { get; set; }
         public Nullable<int> departure_from { get; set; }
         public Nullable<int> arrirved_at { get; set; }
         public Nullable<System.TimeSpan> departure_time { get; set; }
@@ -30,6 +31,7 @@ namespace Gulf_Hajj_and_Ummrah.Models
         public Nullable<int> client_id { get; set; }
         public Nullable<bool> isDeleted { get; set; }
     
+        public virtual airline_tbl airline_tbl { get; set; }
         public virtual cities_tbl cities_tbl { get; set; }
         public virtual cities_tbl cities_tbl1 { get; set; }
         public virtual client_details_tbl client_details_tbl { get; set; }

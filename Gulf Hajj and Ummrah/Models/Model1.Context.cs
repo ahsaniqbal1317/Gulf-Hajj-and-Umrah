@@ -25,6 +25,7 @@ namespace Gulf_Hajj_and_Ummrah.Models
             throw new UnintentionalCodeFirstException();
         }
     
+        public virtual DbSet<airline_tbl> airline_tbl { get; set; }
         public virtual DbSet<billing_details_tbl> billing_details_tbl { get; set; }
         public virtual DbSet<cities_tbl> cities_tbl { get; set; }
         public virtual DbSet<client_details_tbl> client_details_tbl { get; set; }
@@ -33,7 +34,6 @@ namespace Gulf_Hajj_and_Ummrah.Models
         public virtual DbSet<hotel_details_tbl> hotel_details_tbl { get; set; }
         public virtual DbSet<package_details_tbl> package_details_tbl { get; set; }
         public virtual DbSet<roomtype_tbl> roomtype_tbl { get; set; }
-        public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
         public virtual DbSet<transportation_details_tbl> transportation_details_tbl { get; set; }
     }
 }

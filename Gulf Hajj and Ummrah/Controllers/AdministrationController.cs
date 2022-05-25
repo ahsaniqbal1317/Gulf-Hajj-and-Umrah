@@ -109,6 +109,52 @@ namespace Gulf_Hajj_and_Ummrah.Controllers
             db.SaveChanges();
             return Json(new { success = true, message = "Deleted Successfully" }, JsonRequestBehavior.AllowGet);
         }
+
+        //Airline
+        public ActionResult AirlineList()
+        {
+            var data = db.airline_tbl.Where(x => x.isDeleted == false).ToList();
+            return View(data);
+        }
+        [HttpGet]
+        public ActionResult AddOrEditAirline(int id)
+        {
+            airline_tbl obj = new airline_tbl();
+            if (id > 0)
+            {
+                obj = db.airline_tbl.Find(id);
+            }
+            return PartialView("AddOrEditAirline_PartialView", obj);
+        }
+        [HttpPost]
+        public ActionResult AddOrEditAirline(airline_tbl emp)
+        {
+            if (emp.id == 0)
+            {
+                emp.isDeleted = false;
+                db.airline_tbl.Add(emp);
+                db.SaveChanges();
+                return RedirectToAction("/AirlineList");
+            }
+            else
+            {
+                emp.isDeleted = false;
+                db.Entry(emp).State = EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("/AirlineList");
+            }
+
+        }
+
+        [HttpPost]
+        public ActionResult DeleteAirline(int id)
+        {
+            airline_tbl obj = db.airline_tbl.Where(x => x.id == id).FirstOrDefault<airline_tbl>();
+            obj.isDeleted = true;
+            db.Entry(obj).State = EntityState.Modified;
+            db.SaveChanges();
+            return Json(new { success = true, message = "Deleted Successfully" }, JsonRequestBehavior.AllowGet);
+        }
     }
 }
 

@@ -38,6 +38,12 @@
                         Dispatched to
                     </th>
                     <th>
+                        Passport Number
+                    </th>
+                    <th>
+                        Hotel Voucher Number
+                    </th>
+                    <th>
                         Phone Number
                     </th>
                     <th>
@@ -79,6 +85,12 @@
                         @Html.DisplayFor(modelItem => item.phone_number)
                     </td>
                     <td>
+                        @Html.DisplayFor(modelItem => item.passportNumber)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.hotelVoucherNo)
+                    </td>
+                    <td>
                         @Html.DisplayFor(modelItem => item.address)
                     </td>
                    
@@ -110,7 +122,7 @@
                     else
                     {
                         <td>
-                            No File Uploaded
+                            No Picture Uploaded
                         </td>
                     }
 
@@ -124,7 +136,7 @@
                     <td>
                         <a class='btn btn-success btn-sm' onclick="PopupForm(@item.id)"><i class="fas fa-pen"></i>Edit </a>
                         <a class='btn btn-danger btn-sm' onclick="Delete(@item.id)"><i class="fas fa-trash"></i>Delete </a>
-                        <a class='btn btn-primary btn-sm'  href="@Url.Content("/GroupMembers/Index/" + item.id)"><i class="fas fa-plus"></i>Add Group Member </a>
+                        <a class='btn btn-primary btn-sm'  href="@Url.Content("/GroupMembers/Index/" + item.id)"><i class="fas fa-plus"></i>Add Member </a>
 
                     </td>
                 </tr>

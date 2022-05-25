@@ -7,13 +7,13 @@ using Gulf_Hajj_and_Ummrah.Models;
 
 namespace Gulf_Hajj_and_Ummrah.Controllers
 {
-    public class PackageController : Controller
+    public class TransportationController : Controller
     {
         Gulf_HUEntities db = new Gulf_HUEntities();
-        // GET: Package
-        public ActionResult PackageDetails()
+        // GET: Transportation
+        public ActionResult TranportationList()
         {
-            var data = db.package_details_tbl.Where(x=>x.isDeleted==false).ToList();
+            var data = db.transportation_details_tbl.Where(x => x.isDeleted == false);
             return View(data);
         }
     }

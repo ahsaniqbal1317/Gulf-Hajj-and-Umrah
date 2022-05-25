@@ -31,7 +31,11 @@ namespace Gulf_Hajj_and_Ummrah.Controllers
             ViewBag.CityList = new SelectList(citylist, "id", "cityname");
             List<roomtype_tbl> roomtypelist = db.roomtype_tbl.ToList();
             ViewBag.roomTypeList = new SelectList(roomtypelist, "id", "type_of_room");
+            List<airline_tbl> airlinelist = db.airline_tbl.ToList();
+            ViewBag.AirlineList = new SelectList(airlinelist, "id", "airlineName");
+
             ClientViewModel model = new ClientViewModel();
+
             if (id > 0)
             {
                 //edit logic
@@ -43,6 +47,8 @@ namespace Gulf_Hajj_and_Ummrah.Controllers
                 model.clientid = data.id;
                 model.name = data.name;
                 model.dispatched_to = data.dispatched_to;
+                model.passportNumber = data.passportNumber;
+                model.hotelVoucherNo = data.hotelVoucherNo;
                 model.phone_number = data.phone_number;
                 model.address = data.address;
                 model.reference_by = data.reference_by;
@@ -65,13 +71,16 @@ namespace Gulf_Hajj_and_Ummrah.Controllers
                 model.other_details = data.package_details_tbl.FirstOrDefault().other_details;
 
                 model.Fid = data.flight_details_tbl.FirstOrDefault().id;
-                model.airline_name = data.flight_details_tbl.FirstOrDefault().airline_name;
                 model.departure_from = data.flight_details_tbl.FirstOrDefault().departure_from;
                 model.arrirved_at = data.flight_details_tbl.FirstOrDefault().arrirved_at;
                 model.departure_time = data.flight_details_tbl.FirstOrDefault().departure_time;
                 model.arrival_time = data.flight_details_tbl.FirstOrDefault().arrival_time;
                 model.date = data.flight_details_tbl.FirstOrDefault().date;
 
+                model.transportationid = data.transportation_details_tbl.FirstOrDefault().id;
+                model.vechile_type = data.transportation_details_tbl.FirstOrDefault().vechile_type;
+                model.tranportationdate = data.transportation_details_tbl.FirstOrDefault().date;
+                model.route = data.transportation_details_tbl.FirstOrDefault().route;
             }
 
             return PartialView("AddOrEdit_PartialView_Client", model);
@@ -81,17 +90,22 @@ namespace Gulf_Hajj_and_Ummrah.Controllers
         {
             try
             {
-                //dropdown list for roomtype and cities
+                //dropdown list for roomtype, cities and airlinename
                 List<cities_tbl> citylist = db.cities_tbl.ToList();
                 ViewBag.CityList = new SelectList(citylist, "id", "cityname");
 
                 List<roomtype_tbl> roomtypelist = db.roomtype_tbl.ToList();
                 ViewBag.roomTypeList = new SelectList(roomtypelist, "id", "type_of_room");
+
+                List<airline_tbl> airlinelist = db.airline_tbl.ToList();
+                ViewBag.AirlineList = new SelectList(airlinelist, "id", "airlineName");
                 //client table detail save here
                 client_details_tbl client = new client_details_tbl();
                 client.id = model.clientid;
                 client.name = model.name;
                 client.dispatched_to = model.dispatched_to;
+                client.passportNumber = model.passportNumber;
+                client.hotelVoucherNo = model.hotelVoucherNo;
                 client.phone_number = model.phone_number;
                 client.address = model.address;
                 client.isDeleted = false;
@@ -137,6 +151,7 @@ namespace Gulf_Hajj_and_Ummrah.Controllers
                 hotel.hotel_name = model.hotel_name;
                 hotel.checkin_time = model.checkin_time;
                 hotel.checkout_time = model.checkout_time;
+                hotel.isDeleted = false;
                 hotel.client_id = client.id;
 
                 if (model.clientid != 0)
@@ -158,6 +173,7 @@ namespace Gulf_Hajj_and_Ummrah.Controllers
                 package.date_of_arrival = model.date_of_arrival;
                 package.pnr = model.pnr;
                 package.other_details = model.other_details;
+                package.isDeleted = false;
                 package.client_id = client.id;
 
                 if (model.clientid != 0)
@@ -174,12 +190,13 @@ namespace Gulf_Hajj_and_Ummrah.Controllers
                 //flight table details save here
                 flight_details_tbl flight = new flight_details_tbl();
                 flight.id = model.Fid;
-                flight.airline_name = model.airline_name;
+
                 flight.departure_from = model.departure_from;
                 flight.arrirved_at = model.arrirved_at;
                 flight.departure_time = model.departure_time;
                 flight.arrival_time = model.arrival_time;
                 flight.date = model.dateOfFlight;
+                flight.isDeleted = false;
                 flight.client_id = client.id;
 
                 if (model.clientid != 0)
@@ -192,6 +209,22 @@ namespace Gulf_Hajj_and_Ummrah.Controllers
                 }
                 db.SaveChanges();
 
+                //transportation table details save here
+                transportation_details_tbl transport = new transportation_details_tbl();
+                transport.id = model.transportationid;
+                transport.vechile_type = model.vechile_type;
+                transport.date = model.tranportationdate;
+                transport.isDeleted = false;
+                transport.route = model.route;
+                if (model.clientid != 0)
+                {
+                    db.Entry(flight).State = EntityState.Modified;
+                }
+                else
+                {
+                    db.transportation_details_tbl.Add(transport);
+                }
+                db.SaveChanges();
             }
             catch(Exception ex)
             {

@@ -19,15 +19,17 @@ namespace Gulf_Hajj_and_Ummrah.Models
         {
             this.billing_details_tbl = new HashSet<billing_details_tbl>();
             this.flight_details_tbl = new HashSet<flight_details_tbl>();
+            this.group_of_people_details_tbl = new HashSet<group_of_people_details_tbl>();
             this.hotel_details_tbl = new HashSet<hotel_details_tbl>();
             this.package_details_tbl = new HashSet<package_details_tbl>();
             this.transportation_details_tbl = new HashSet<transportation_details_tbl>();
-            this.group_of_people_details_tbl = new HashSet<group_of_people_details_tbl>();
         }
     
         public int id { get; set; }
         public string name { get; set; }
         public string dispatched_to { get; set; }
+        public string passportNumber { get; set; }
+        public string hotelVoucherNo { get; set; }
         public string phone_number { get; set; }
         public string address { get; set; }
         public string shirka { get; set; }
@@ -43,12 +45,12 @@ namespace Gulf_Hajj_and_Ummrah.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<flight_details_tbl> flight_details_tbl { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<group_of_people_details_tbl> group_of_people_details_tbl { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<hotel_details_tbl> hotel_details_tbl { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<package_details_tbl> package_details_tbl { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<transportation_details_tbl> transportation_details_tbl { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<group_of_people_details_tbl> group_of_people_details_tbl { get; set; }
     }
 }

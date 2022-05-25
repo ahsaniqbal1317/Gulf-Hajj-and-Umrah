@@ -7,10 +7,18 @@ namespace Gulf_Hajj_and_Ummrah.Models
 {
     public class ClientViewModel
     {
+        //transportation Details
+        public int transportationid { get; set; }
+        public string vechile_type { get; set; }
+        public string route { get; set; }
+        public Nullable<System.DateTime> tranportationdate { get; set; }
+
         //client table details
         public int clientid { get; set; }
         public string name { get; set; }
         public string dispatched_to { get; set; }
+        public string passportNumber { get; set; }
+        public string hotelVoucherNo { get; set; }
         public string phone_number { get; set; }
         public string address { get; set; }
         public Nullable<System.DateTime> date { get; set; }
@@ -23,6 +31,7 @@ namespace Gulf_Hajj_and_Ummrah.Models
         // hotel table details
         public int h_id { get; set; }
         public string hotel_name { get; set; }
+        public string hotelNameMadina { get; set; }
         public Nullable<System.TimeSpan> checkin_time { get; set; }
         public Nullable<System.TimeSpan> checkout_time { get; set; }
 
@@ -51,5 +60,9 @@ namespace Gulf_Hajj_and_Ummrah.Models
         //Roomtype
         public int roomTypeId { get; set; }
         public string type_of_room { get; set; }
+
+        //Airline
+        public int id { get; set; }
+        public string airlineName { get; set; }
     }
 }

@@ -288,8 +288,12 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\HotelsController.cs" />
     <Compile Include="Controllers\PackageController.cs" />
+    <Compile Include="Controllers\TransportationController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Models\airline_tbl.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\billing_details_tbl.cs">
       <DependentUpon>Model1.tt</DependentUpon>
@@ -332,9 +336,6 @@
     <Compile Include="Models\roomtype_tbl.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\sysdiagrams.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\transportation_details_tbl.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -370,6 +371,9 @@
     <Content Include="Views\Flight\FlightDetails.cshtml" />
     <Content Include="Views\GroupMembers\Index.cshtml" />
     <Content Include="Views\GroupMembers\EditPartialView.cshtml" />
+    <Content Include="Views\Administration\AirlineList.cshtml" />
+    <Content Include="Views\Administration\AddOrEditAirline_PartialView.cshtml" />
+    <Content Include="Views\Transportation\TranportationList.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

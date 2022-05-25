@@ -16,6 +16,7 @@ namespace Gulf_Hajj_and_Ummrah.Models
     {
         public int id { get; set; }
         public string hotel_name { get; set; }
+        public string hotelNameMadina { get; set; }
         public Nullable<System.TimeSpan> checkin_time { get; set; }
         public Nullable<System.TimeSpan> checkout_time { get; set; }
         public Nullable<int> city_id { get; set; }
