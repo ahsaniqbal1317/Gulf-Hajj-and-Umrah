@@ -14,12 +14,6 @@ namespace Gulf_Hajj_and_Ummrah.Models
     
     public partial class flight_details_tbl
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public flight_details_tbl()
-        {
-            this.package_details_tbl = new HashSet<package_details_tbl>();
-        }
-    
         public int id { get; set; }
         public Nullable<int> airline_name { get; set; }
         public string ticketNo { get; set; }
@@ -35,7 +29,5 @@ namespace Gulf_Hajj_and_Ummrah.Models
         public virtual cities_tbl cities_tbl { get; set; }
         public virtual cities_tbl cities_tbl1 { get; set; }
         public virtual client_details_tbl client_details_tbl { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<package_details_tbl> package_details_tbl { get; set; }
     }
 }

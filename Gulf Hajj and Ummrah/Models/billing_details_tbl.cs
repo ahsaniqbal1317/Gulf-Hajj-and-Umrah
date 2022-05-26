@@ -16,13 +16,14 @@ namespace Gulf_Hajj_and_Ummrah.Models
     {
         public int id { get; set; }
         public string detail_of_payment { get; set; }
-        public string total_amount { get; set; }
+        public Nullable<double> total_amount { get; set; }
         public string payment_type { get; set; }
-        public string amount_recieved { get; set; }
-        public string amount_pending { get; set; }
-        public string expense { get; set; }
-        public string profit_loss { get; set; }
-        public Nullable<System.DateTime> date { get; set; }
+        public Nullable<double> amount_recieved { get; set; }
+        public Nullable<double> amount_pending { get; set; }
+        public Nullable<double> expense { get; set; }
+        public Nullable<double> profit_loss { get; set; }
+        public Nullable<System.DateTime> dateRegistered { get; set; }
+        public Nullable<System.DateTime> datePayment { get; set; }
         public Nullable<int> client_id { get; set; }
         public Nullable<bool> isDeleted { get; set; }
     

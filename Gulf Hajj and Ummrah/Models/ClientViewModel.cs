@@ -32,6 +32,7 @@ namespace Gulf_Hajj_and_Ummrah.Models
         public int h_id { get; set; }
         public string hotel_name { get; set; }
         public string hotelNameMadina { get; set; }
+        public Nullable<int> roomtype_id { get; set; }
         public Nullable<System.TimeSpan> checkin_time { get; set; }
         public Nullable<System.TimeSpan> checkout_time { get; set; }
 
@@ -46,12 +47,18 @@ namespace Gulf_Hajj_and_Ummrah.Models
 
         // flight details table
         public int Fid { get; set; }
-        public string airline_name { get; set; }
+        public Nullable<int> airline_name { get; set; }
+        public string ticketNo { get; set; }
         public Nullable<int> departure_from { get; set; }
         public Nullable<int> arrirved_at { get; set; }
         public Nullable<System.TimeSpan> departure_time { get; set; }
         public Nullable<System.TimeSpan> arrival_time { get; set; }
         public Nullable<System.DateTime> dateOfFlight { get; set; }
+
+        //Billing Details Table
+        
+        public billing_details_tbl Billing_Details_Tbl { get; set; }
+
 
         //Cities
         public int cityid { get; set; }

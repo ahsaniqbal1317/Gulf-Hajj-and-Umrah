@@ -19,13 +19,14 @@
           </Key>
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="detail_of_payment" Type="varchar" MaxLength="300" />
-          <Property Name="total_amount" Type="varchar" MaxLength="10" />
+          <Property Name="total_amount" Type="float" />
           <Property Name="payment_type" Type="varchar" MaxLength="50" />
-          <Property Name="amount_recieved" Type="varchar" MaxLength="50" />
-          <Property Name="amount_pending" Type="varchar" MaxLength="50" />
-          <Property Name="expense" Type="varchar" MaxLength="10" />
-          <Property Name="profit_loss" Type="varchar" MaxLength="10" />
-          <Property Name="date" Type="datetime" />
+          <Property Name="amount_recieved" Type="float" />
+          <Property Name="amount_pending" Type="float" />
+          <Property Name="expense" Type="float" />
+          <Property Name="profit_loss" Type="float" />
+          <Property Name="dateRegistered" Type="datetime" />
+          <Property Name="datePayment" Type="datetime" />
           <Property Name="client_id" Type="int" />
           <Property Name="isDeleted" Type="bit" />
         </EntityType>
@@ -117,6 +118,16 @@
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="type_of_room" Type="varchar" MaxLength="50" />
           <Property Name="isDeleted" Type="bit" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
         </EntityType>
         <EntityType Name="transportation_details_tbl">
           <Key>
@@ -253,18 +264,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_package_details_tbl_flight_details_tbl">
-          <End Role="flight_details_tbl" Type="Self.flight_details_tbl" Multiplicity="0..1" />
-          <End Role="package_details_tbl" Type="Self.package_details_tbl" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="flight_details_tbl">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="package_details_tbl">
-              <PropertyRef Name="airline_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_transportation_details_tbl_client_details_tbl">
           <End Role="client_details_tbl" Type="Self.client_details_tbl" Multiplicity="0..1" />
           <End Role="transportation_details_tbl" Type="Self.transportation_details_tbl" Multiplicity="*" />
@@ -287,6 +286,7 @@
           <EntitySet Name="hotel_details_tbl" EntityType="Self.hotel_details_tbl" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="package_details_tbl" EntityType="Self.package_details_tbl" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="roomtype_tbl" EntityType="Self.roomtype_tbl" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="transportation_details_tbl" EntityType="Self.transportation_details_tbl" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_billing_details_tbl_client_details_tbl" Association="Self.FK_billing_details_tbl_client_details_tbl">
             <End Role="client_details_tbl" EntitySet="client_details_tbl" />
@@ -328,10 +328,6 @@
             <End Role="client_details_tbl" EntitySet="client_details_tbl" />
             <End Role="package_details_tbl" EntitySet="package_details_tbl" />
           </AssociationSet>
-          <AssociationSet Name="FK_package_details_tbl_flight_details_tbl" Association="Self.FK_package_details_tbl_flight_details_tbl">
-            <End Role="flight_details_tbl" EntitySet="flight_details_tbl" />
-            <End Role="package_details_tbl" EntitySet="package_details_tbl" />
-          </AssociationSet>
           <AssociationSet Name="FK_transportation_details_tbl_client_details_tbl" Association="Self.FK_transportation_details_tbl_client_details_tbl">
             <End Role="client_details_tbl" EntitySet="client_details_tbl" />
             <End Role="transportation_details_tbl" EntitySet="transportation_details_tbl" />
@@ -351,6 +347,7 @@
           <EntitySet Name="hotel_details_tbl" EntityType="Gulf_HUModel.hotel_details_tbl" />
           <EntitySet Name="package_details_tbl" EntityType="Gulf_HUModel.package_details_tbl" />
           <EntitySet Name="roomtype_tbl" EntityType="Gulf_HUModel.roomtype_tbl" />
+          <EntitySet Name="sysdiagrams" EntityType="Gulf_HUModel.sysdiagrams" />
           <EntitySet Name="transportation_details_tbl" EntityType="Gulf_HUModel.transportation_details_tbl" />
           <AssociationSet Name="FK_flight_details_tbl_airline_tbl" Association="Gulf_HUModel.FK_flight_details_tbl_airline_tbl">
             <End Role="airline_tbl" EntitySet="airline_tbl" />
@@ -392,10 +389,6 @@
             <End Role="client_details_tbl" EntitySet="client_details_tbl" />
             <End Role="transportation_details_tbl" EntitySet="transportation_details_tbl" />
           </AssociationSet>
-          <AssociationSet Name="FK_package_details_tbl_flight_details_tbl" Association="Gulf_HUModel.FK_package_details_tbl_flight_details_tbl">
-            <End Role="flight_details_tbl" EntitySet="flight_details_tbl" />
-            <End Role="package_details_tbl" EntitySet="package_details_tbl" />
-          </AssociationSet>
           <AssociationSet Name="FK_hotel_details_tbl_roomtype_tbl" Association="Gulf_HUModel.FK_hotel_details_tbl_roomtype_tbl">
             <End Role="roomtype_tbl" EntitySet="roomtype_tbl" />
             <End Role="hotel_details_tbl" EntitySet="hotel_details_tbl" />
@@ -416,13 +409,14 @@
           </Key>
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="detail_of_payment" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
-          <Property Name="total_amount" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="total_amount" Type="Double" />
           <Property Name="payment_type" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="amount_recieved" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="amount_pending" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="expense" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Name="profit_loss" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Name="date" Type="DateTime" Precision="3" />
+          <Property Name="amount_recieved" Type="Double" />
+          <Property Name="amount_pending" Type="Double" />
+          <Property Name="expense" Type="Double" />
+          <Property Name="profit_loss" Type="Double" />
+          <Property Name="dateRegistered" Type="DateTime" Precision="3" />
+          <Property Name="datePayment" Type="DateTime" Precision="3" />
           <Property Name="client_id" Type="Int32" />
           <Property Name="isDeleted" Type="Boolean" />
           <NavigationProperty Name="client_details_tbl" Relationship="Gulf_HUModel.FK_billing_details_tbl_client_details_tbl" FromRole="billing_details_tbl" ToRole="client_details_tbl" />
@@ -481,7 +475,6 @@
           <NavigationProperty Name="cities_tbl" Relationship="Gulf_HUModel.FK_flight_details_tbl_cities_tbl" FromRole="flight_details_tbl" ToRole="cities_tbl" />
           <NavigationProperty Name="cities_tbl1" Relationship="Gulf_HUModel.FK_flight_details_tbl_cities_tbl1" FromRole="flight_details_tbl" ToRole="cities_tbl" />
           <NavigationProperty Name="client_details_tbl" Relationship="Gulf_HUModel.FK_flight_details_tbl_client_details_tbl" FromRole="flight_details_tbl" ToRole="client_details_tbl" />
-          <NavigationProperty Name="package_details_tbl" Relationship="Gulf_HUModel.FK_package_details_tbl_flight_details_tbl" FromRole="flight_details_tbl" ToRole="package_details_tbl" />
         </EntityType>
         <EntityType Name="group_of_people_details_tbl">
           <Key>
@@ -526,7 +519,6 @@
           <Property Name="client_id" Type="Int32" />
           <Property Name="isDeleted" Type="Boolean" />
           <NavigationProperty Name="client_details_tbl" Relationship="Gulf_HUModel.FK_package_details_tbl_client_details_tbl" FromRole="package_details_tbl" ToRole="client_details_tbl" />
-          <NavigationProperty Name="flight_details_tbl" Relationship="Gulf_HUModel.FK_package_details_tbl_flight_details_tbl" FromRole="package_details_tbl" ToRole="flight_details_tbl" />
         </EntityType>
         <EntityType Name="roomtype_tbl">
           <Key>
@@ -536,6 +528,16 @@
           <Property Name="type_of_room" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="isDeleted" Type="Boolean" />
           <NavigationProperty Name="hotel_details_tbl" Relationship="Gulf_HUModel.FK_hotel_details_tbl_roomtype_tbl" FromRole="roomtype_tbl" ToRole="hotel_details_tbl" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
         </EntityType>
         <EntityType Name="transportation_details_tbl">
           <Key>
@@ -671,18 +673,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_package_details_tbl_flight_details_tbl">
-          <End Type="Gulf_HUModel.flight_details_tbl" Role="flight_details_tbl" Multiplicity="0..1" />
-          <End Type="Gulf_HUModel.package_details_tbl" Role="package_details_tbl" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="flight_details_tbl">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="package_details_tbl">
-              <PropertyRef Name="airline_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_hotel_details_tbl_roomtype_tbl">
           <End Type="Gulf_HUModel.roomtype_tbl" Role="roomtype_tbl" Multiplicity="0..1">
             <OnDelete Action="Cascade" />
@@ -717,7 +707,8 @@
               <MappingFragment StoreEntitySet="billing_details_tbl">
                 <ScalarProperty Name="isDeleted" ColumnName="isDeleted" />
                 <ScalarProperty Name="client_id" ColumnName="client_id" />
-                <ScalarProperty Name="date" ColumnName="date" />
+                <ScalarProperty Name="datePayment" ColumnName="datePayment" />
+                <ScalarProperty Name="dateRegistered" ColumnName="dateRegistered" />
                 <ScalarProperty Name="profit_loss" ColumnName="profit_loss" />
                 <ScalarProperty Name="expense" ColumnName="expense" />
                 <ScalarProperty Name="amount_pending" ColumnName="amount_pending" />
@@ -822,6 +813,17 @@
                 <ScalarProperty Name="isDeleted" ColumnName="isDeleted" />
                 <ScalarProperty Name="type_of_room" ColumnName="type_of_room" />
                 <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="Gulf_HUModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="definition" ColumnName="definition" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="name" ColumnName="name" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

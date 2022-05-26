@@ -35,11 +35,13 @@ namespace Gulf_Hajj_and_Ummrah.Controllers
             ViewBag.AirlineList = new SelectList(airlinelist, "id", "airlineName");
 
             ClientViewModel model = new ClientViewModel();
+            model.Billing_Details_Tbl = new billing_details_tbl();
+
 
             if (id > 0)
             {
                 //edit logic
-                var data = db.client_details_tbl.Include("hotel_details_tbl").Include("package_details_tbl").Include("flight_details_tbl").Where(x => x.id == id).FirstOrDefault();
+                var data = db.client_details_tbl.Include("hotel_details_tbl").Include("package_details_tbl").Include("flight_details_tbl").Include("billing_details_tbl").Where(x => x.id == id).FirstOrDefault();
 
                 //ViewBag.departure_from = new SelectList(citylist, "id", "cityname", data.flight_details_tbl.FirstOrDefault().departure_from);
                 //ViewBag.arrival_at = new SelectList(citylist, "id", "cityname", data.flight_details_tbl.FirstOrDefault().arrirved_at);
@@ -59,6 +61,8 @@ namespace Gulf_Hajj_and_Ummrah.Controllers
 
                 model.h_id = data.hotel_details_tbl.FirstOrDefault().id;
                 model.hotel_name = data.hotel_details_tbl.FirstOrDefault().hotel_name;
+                model.hotelNameMadina = data.hotel_details_tbl.FirstOrDefault().hotelNameMadina;
+                model.roomtype_id = data.hotel_details_tbl.FirstOrDefault().roomtype_id;
                 model.checkin_time = data.hotel_details_tbl.FirstOrDefault().checkin_time;
                 model.checkout_time = data.hotel_details_tbl.FirstOrDefault().checkout_time;
 
@@ -71,6 +75,8 @@ namespace Gulf_Hajj_and_Ummrah.Controllers
                 model.other_details = data.package_details_tbl.FirstOrDefault().other_details;
 
                 model.Fid = data.flight_details_tbl.FirstOrDefault().id;
+                model.ticketNo = data.flight_details_tbl.FirstOrDefault().ticketNo;
+                model.airline_name = data.flight_details_tbl.FirstOrDefault().airline_name;
                 model.departure_from = data.flight_details_tbl.FirstOrDefault().departure_from;
                 model.arrirved_at = data.flight_details_tbl.FirstOrDefault().arrirved_at;
                 model.departure_time = data.flight_details_tbl.FirstOrDefault().departure_time;
@@ -81,6 +87,10 @@ namespace Gulf_Hajj_and_Ummrah.Controllers
                 model.vechile_type = data.transportation_details_tbl.FirstOrDefault().vechile_type;
                 model.tranportationdate = data.transportation_details_tbl.FirstOrDefault().date;
                 model.route = data.transportation_details_tbl.FirstOrDefault().route;
+
+              
+                model.Billing_Details_Tbl.id = data.billing_details_tbl.FirstOrDefault().id;
+                model.Billing_Details_Tbl.total_amount = 2000.3;
             }
 
             return PartialView("AddOrEdit_PartialView_Client", model);
@@ -133,9 +143,20 @@ namespace Gulf_Hajj_and_Ummrah.Controllers
 
                 }
 
-
+                Gulf_HUEntities db2 = new Gulf_HUEntities();
                 if (model.clientid != 0)
                 {
+                    
+                    if (scanneddocPassport == null)
+                    {
+                        var a = db2.client_details_tbl.Where(x => x.id == client.id).FirstOrDefault().passport_doc;
+                        client.passport_doc = a;
+                    }
+                    if (scanneddocPicture == null)
+                    {
+                        var a = db2.client_details_tbl.Where(x => x.id == client.id).FirstOrDefault().picture;
+                        client.picture = a;
+                    }
                     db.Entry(client).State = EntityState.Modified;
                 }
                 else
@@ -149,6 +170,8 @@ namespace Gulf_Hajj_and_Ummrah.Controllers
                 hotel_details_tbl hotel = new hotel_details_tbl();
                 hotel.id = model.h_id;
                 hotel.hotel_name = model.hotel_name;
+                hotel.hotelNameMadina = model.hotelNameMadina;
+                hotel.roomtype_id = model.roomtype_id;
                 hotel.checkin_time = model.checkin_time;
                 hotel.checkout_time = model.checkout_time;
                 hotel.isDeleted = false;
@@ -175,6 +198,7 @@ namespace Gulf_Hajj_and_Ummrah.Controllers
                 package.other_details = model.other_details;
                 package.isDeleted = false;
                 package.client_id = client.id;
+                package.airline_id = model.airline_name;
 
                 if (model.clientid != 0)
                 {
@@ -190,7 +214,8 @@ namespace Gulf_Hajj_and_Ummrah.Controllers
                 //flight table details save here
                 flight_details_tbl flight = new flight_details_tbl();
                 flight.id = model.Fid;
-
+                flight.airline_name = model.airline_name;
+                flight.ticketNo = model.ticketNo;
                 flight.departure_from = model.departure_from;
                 flight.arrirved_at = model.arrirved_at;
                 flight.departure_time = model.departure_time;
@@ -215,16 +240,34 @@ namespace Gulf_Hajj_and_Ummrah.Controllers
                 transport.vechile_type = model.vechile_type;
                 transport.date = model.tranportationdate;
                 transport.isDeleted = false;
+                transport.client_id = client.id;
                 transport.route = model.route;
                 if (model.clientid != 0)
                 {
-                    db.Entry(flight).State = EntityState.Modified;
+                    db.Entry(transport).State = EntityState.Modified;
                 }
                 else
                 {
                     db.transportation_details_tbl.Add(transport);
                 }
                 db.SaveChanges();
+
+                billing_details_tbl billing = new billing_details_tbl();
+                billing.id = model.Billing_Details_Tbl.id;
+                billing.total_amount = model.Billing_Details_Tbl.total_amount;
+                billing.client_id = client.id;
+                if (model.clientid != 0)
+                {
+                    billing.dateRegistered = db2.billing_details_tbl.Where(x => x.client_id == client.id).FirstOrDefault().dateRegistered;
+                    db.Entry(billing).State = EntityState.Modified;
+                }
+                else
+                {
+                    billing.dateRegistered = DateTime.Now;
+                    db.billing_details_tbl.Add(billing);
+                }
+                db.SaveChanges();
+
             }
             catch(Exception ex)
             {

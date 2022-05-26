@@ -26,6 +26,5 @@ namespace Gulf_Hajj_and_Ummrah.Models
         public Nullable<bool> isDeleted { get; set; }
     
         public virtual client_details_tbl client_details_tbl { get; set; }
-        public virtual flight_details_tbl flight_details_tbl { get; set; }
     }
 }

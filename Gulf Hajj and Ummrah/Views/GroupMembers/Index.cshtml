@@ -93,6 +93,11 @@
     </div>
 </div>
 
+<div class="col-md-6">
+    <label>Total Amount </label>
+    @Html.EditorFor(model => model.totalAmount, new { htmlAttributes = new { @class = "form-control", @autocomplete = "off"} })
+    @Html.ValidationMessageFor(model => model.totalAmount, "", new { @class = "text-danger" })
+</div>
 
 @section scripts{
 

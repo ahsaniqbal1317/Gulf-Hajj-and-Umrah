@@ -19,12 +19,13 @@ namespace Gulf_Hajj_and_Ummrah.Controllers
             ViewBag.clientID = db.client_details_tbl.Where(x => x.id == id).FirstOrDefault().id;
             var client = db.client_details_tbl.Where(x => x.id == id).FirstOrDefault();
             var members = db.group_of_people_details_tbl.Where(x => x.client_id == id).ToList();
-
+            double? totalAmount = client.billing_details_tbl.LastOrDefault().total_amount * (client.group_of_people_details_tbl.Count()+1);
             GroupMembersViewModel groupMembers = new GroupMembersViewModel
             {
                 addmember = null,
                 members = members,
-                client_Details_Tbl = client
+                client_Details_Tbl = client,
+                totalAmount = totalAmount
             };
 
             return View(groupMembers);
