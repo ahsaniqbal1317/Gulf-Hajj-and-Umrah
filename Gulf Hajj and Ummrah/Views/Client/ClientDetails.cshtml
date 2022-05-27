@@ -3,7 +3,7 @@
 @{
     ViewBag.Title = "ClientDetails";
 }
-<h1>@ViewBag.id</h1>
+
 <div class="card">
     <div class="card-header bg-dark">
         <div class="row">
@@ -135,9 +135,9 @@
                             @Html.DisplayFor(modelItem => item.reference_contact_number)
                         </td>
                         <td>
-                            <a class='btn btn-success btn-sm' onclick="PopupForm(@item.id)"><i class="fas fa-pen"></i>Edit </a>
-                            <a class='btn btn-danger btn-sm' onclick="Delete(@item.id)"><i class="fas fa-trash"></i>Delete </a>
-                            <a class='btn btn-primary btn-sm' href="@Url.Content("/GroupMembers/Index/" + item.id)"><i class="fas fa-plus"></i>Add Member </a>
+                            <a class='btn btn-success btn-sm' onclick="PopupForm(@item.id)"><i class="fas fa-pen"></i> Edit </a>
+                            <a class='btn btn-danger btn-sm' onclick="Delete(@item.id)"><i class="fas fa-trash"></i> Delete </a>
+                            <a class='btn btn-primary btn-sm' href="@Url.Content("/GroupMembers/Index/" + item.id)"><i class="fas fa-plus"></i> Member </a>
 
                         </td>
                     </tr>
@@ -176,9 +176,15 @@
 
     <script type="text/javascript">
         $(document).ready(function () {
-            var v = window.location.pathname;
-            console.log(v)
-
+            var v = window.location.href;
+            if (v.indexOf("#") >= 0) {
+                var id = v.substring(v.indexOf("#") + 1)
+                var strId = "#" + id.toString();
+                console.log(strId)
+                $(strId).css({ backgroundColor: ' #b3bbc3' });
+            }
+            
+           
     });
 
     </script>

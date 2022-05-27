@@ -47,7 +47,9 @@
 
 
                     <td>
-                        @Html.DisplayFor(modelItem => item.client_details_tbl.name)
+                        <a href="@Url.Action("ClientDetails","Client")/#@item.client_details_tbl.id" class="nav-link">
+                            @Html.DisplayFor(modelItem => item.client_details_tbl.name)
+                        </a>
                     </td>
                 </tr>
                 }

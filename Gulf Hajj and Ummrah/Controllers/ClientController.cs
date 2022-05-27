@@ -16,12 +16,11 @@ namespace Gulf_Hajj_and_Ummrah.Controllers
     {
         Gulf_HUEntities db = new Gulf_HUEntities();
         // GET: Client
-        public ActionResult ClientDetails(int id=0)
+        public ActionResult ClientDetails()
         {
             var data = db.client_details_tbl.Where(x => x.isDeleted == false).ToList();
-            ViewBag.id = id;
             return View(data);
-            //asdasdasdasd
+           
         }
 
         [HttpGet]
