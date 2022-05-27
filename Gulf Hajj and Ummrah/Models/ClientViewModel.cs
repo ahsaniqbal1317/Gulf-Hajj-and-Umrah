@@ -13,6 +13,8 @@ namespace Gulf_Hajj_and_Ummrah.Models
         public string route { get; set; }
         public Nullable<System.DateTime> tranportationdate { get; set; }
 
+        public Nullable<bool> isDeletedTransport { get; set; }
+
         //client table details
         public int clientid { get; set; }
         public string name { get; set; }
@@ -28,6 +30,8 @@ namespace Gulf_Hajj_and_Ummrah.Models
         public string reference_by { get; set; }
         public string reference_contact_number { get; set; }
 
+        public Nullable<bool> isDeletedClient { get; set; }
+
         // hotel table details
         public int h_id { get; set; }
         public string hotel_name { get; set; }
@@ -35,6 +39,7 @@ namespace Gulf_Hajj_and_Ummrah.Models
         public Nullable<int> roomtype_id { get; set; }
         public Nullable<System.TimeSpan> checkin_time { get; set; }
         public Nullable<System.TimeSpan> checkout_time { get; set; }
+        public Nullable<bool> isDeletedHotel { get; set; }
 
         // package details table
         public int packageid { get; set; }
@@ -44,6 +49,7 @@ namespace Gulf_Hajj_and_Ummrah.Models
         public Nullable<System.DateTime> date_of_arrival { get; set; }
         public string pnr { get; set; }
         public string other_details { get; set; }
+        public Nullable<bool> isDeletedPackage { get; set; }
 
         // flight details table
         public int Fid { get; set; }
@@ -55,8 +61,10 @@ namespace Gulf_Hajj_and_Ummrah.Models
         public Nullable<System.TimeSpan> arrival_time { get; set; }
         public Nullable<System.DateTime> dateOfFlight { get; set; }
 
+        public Nullable<bool> isDeletedFlight { get; set; }
+
         //Billing Details Table
-        
+
         public billing_details_tbl Billing_Details_Tbl { get; set; }
 
 

@@ -289,6 +289,44 @@ namespace Gulf_Hajj_and_Ummrah.Controllers
             ViewBag.DepartureFrom = db.cities_tbl.Where(x => x.id == departure).FirstOrDefault().cityname;
             ViewBag.ArrivalAt = db.cities_tbl.Where(x => x.id == arrival).FirstOrDefault().cityname;
             return View(data);
-        }      
+        }   
+        
+        [HttpPost]
+        public ActionResult Delete (int id)
+        {
+            ClientViewModel model = new ClientViewModel();
+            model.Billing_Details_Tbl = new billing_details_tbl();
+            var data = db.client_details_tbl.Include("hotel_details_tbl").Include("package_details_tbl").Include("flight_details_tbl").Include("billing_details_tbl").Where(x => x.id == id).FirstOrDefault();
+
+            
+            model.id = data.id;
+            model.isDeletedClient = true;
+            db.SaveChanges();
+
+            model.h_id = data.hotel_details_tbl.FirstOrDefault().id;
+            model.isDeletedHotel = true;
+            db.SaveChanges();
+
+            model.packageid = data.package_details_tbl.FirstOrDefault().id;
+            model.isDeletedPackage = true;
+            db.SaveChanges();
+
+            model.Fid = data.flight_details_tbl.FirstOrDefault().id;
+            model.isDeletedFlight = true;
+            db.SaveChanges();
+
+            transportation_details_tbl T1 = new transportation_details_tbl();
+            T1.id = data.transportationid;
+            T1.isDeleted = true;
+            db.SaveChanges();
+
+            billing_details_tbl B1 = new billing_details_tbl();
+            B1.id = data.Billing_Details_Tbl.id;
+            B1.isDeleted = true;
+            db.SaveChanges();
+
+
+            return RedirectToAction("/ClientDetails");
+        }
     }
 }

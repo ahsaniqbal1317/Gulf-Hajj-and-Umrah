@@ -243,7 +243,27 @@
         //function zoom() {
         //    document.body.style.zoom = "80%"
         //}
+        function Delete(id) {
 
+    if (confirm('Are You Sure to Delete this Record ?')) {
+        $.ajax({
+            type: "POST",
+            url: '@Url.Action("Delete", "Client")/' + id,
+            success: function (data) {
+                if (data.success) {
+
+                    location.reload(true);
+
+                    $.notify(data.message, {
+                        globalPosition: "top center",
+                        className: "success"
+                    })
+
+                }
+            }
+        });
+    }
+}
     </script>
 }
 

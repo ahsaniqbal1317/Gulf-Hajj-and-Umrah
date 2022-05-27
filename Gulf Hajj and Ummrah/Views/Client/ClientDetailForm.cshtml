@@ -26,286 +26,346 @@
                 </div>
             </div>
         </div>
-       <div class="card-body">
-           <div class="row">
-               <div class="col-md-12">
-                       <h4 class="heading">Client Information Form</h4>
-               </div>
-           </div>
-           
-           <div class="row">
-               
-               <div class="col-md-12">
-                   <div class="card-header bg-gray">
-                       <p class="subHeading">Personal Info</p>
-                   </div>
-                       <div class="row ">
-                           <table class="table table-bordered">
-                               <thead class="text-center">
-                                   <tr>
-                                       <th>
-                                           Name
-                                       </th>
-                                       <th>
-                                           Dispatched to
-                                       </th>
-                                       <th>
-                                           Phone Number
-                                       </th>
-                                       <th>
-                                           Address
-                                       </th>
-                                       <th>
-                                           Date
-                                       </th>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-12">
+                    <h4 class="heading">Client Information Form</h4>
+                </div>
+            </div>
 
-                                       <th>
-                                           Reference By
-                                       </th>
+            <div class="row">
 
-                                   </tr>
-                               </thead>
-                               <tbody class="text-center">
+                <div class="col-md-12">
+                    <div class="card-header bg-gray">
+                        <p class="subHeading">Personal Info</p>
+                    </div>
+                    <div class="row ">
+                        <table class="table table-bordered">
+                            <thead class="text-center">
+                                <tr>
+                                    <th>
+                                        Name
+                                    </th>
+                                    <th>
+                                        Dispatched to
+                                    </th>
+                                    <th>
+                                        Phone Number
+                                    </th>
+                                    <th>
+                                        Address
+                                    </th>
+                                    <th>
+                                        Date
+                                    </th>
+
+                                    <th>
+                                        Reference By
+                                    </th>
+
+                                </tr>
+                            </thead>
+                            <tbody class="text-center">
 
 
-                                   <tr>
-                                       <td>
+                                <tr>
+                                    <td>
 
-                                           @Html.DisplayFor(model => model.name)
+                                        @Html.DisplayFor(model => model.name)
 
-                                       </td>
-                                       <td>
-                                           @Html.DisplayFor(model => model.dispatched_to)
-                                       </td>
-                                       <td>
-                                           @Html.DisplayFor(model => model.phone_number)
-                                       </td>
-                                       <td>
-                                           @Html.DisplayFor(model => model.address)
-                                       </td>
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(model => model.dispatched_to)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(model => model.phone_number)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(model => model.address)
+                                    </td>
 
-                                       <td>
+                                    <td>
 
-                                           @Model.date.Value.ToString("d")
-                                       </td>
-                                       <td>
-                                           @Html.DisplayFor(model => model.reference_by)
-                                       </td>
-                                   </tr>
-                               </tbody>
-                           </table>
-                       </div>
-                   
-               </div>
-               
-           </div>
-           <div class="row">
-               
-               <div class="col-md-12">
-                   <div class="card-header bg-gray">
-                       <p class="subHeading">Group Info</p>
-                   </div>
-                       <div class="row ">
-                           <table class="table table-bordered">
-                               <thead class="text-center">
-                                   <tr>
-                                       <th>
-                                           Name of Group Members
-                                       </th>
-                                       <th>
-                                           Passport Number
-                                       </th>
-                                   </tr>
-                               </thead>
-                               <tbody class="text-center">
-                                   @foreach (var item in Model.group_of_people_details_tbl)
-                                   {
-                                       <tr>
-                                           <td>
+                                        @Model.date.Value.ToString("d")
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(model => model.reference_by)
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
 
-                                               @Html.DisplayFor(model => item.name)
+                </div>
 
-                                           </td>
-                                           <td>
-                                               @Html.DisplayFor(model => item.passport_number)
-                                           </td>
+            </div>
+            <div class="row">
 
-                                       </tr>
-                                   }
-                                   </tbody>
-                           </table>
-                       </div>
-                   
-               </div>
-               
-           </div>
-           <div class="row">
-               
-               <div class="col-md-12">
-                   <div class="card-header bg-gray">
-                       <p class="subHeading">Hotel Information</p>
-                   </div>
-                       <div class="row ">
-                           <table class="table table-bordered">
-                               <thead class="text-center">
-                                   <tr>
-                                       <th>
-                                           City
-                                       </th>
-                                       <th>
-                                           Hotel Name
-                                       </th>
-                                       <th>
-                                           Room Type
-                                       </th>
+                <div class="col-md-12">
+                    <div class="card-header bg-gray">
+                        <p class="subHeading">Group Info</p>
+                    </div>
+                    <div class="row ">
+                        <table class="table table-bordered">
+                            <thead class="text-center">
+                                <tr>
+                                    <th>
+                                        Name of Group Members
+                                    </th>
+                                    <th>
+                                        Passport Number
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody class="text-center">
+                                @foreach (var item in Model.group_of_people_details_tbl)
+                                {
+                                    <tr>
+                                        <td>
 
-                                       <th>
-                                           Check-In
-                                       </th>
-                                       <th>
-                                           Check-Out
-                                       </th>
-                                   </tr>
-                               </thead>
-                               <tbody class="text-center">
-                                   <tr>
-                                       <td>
-                                           CITY
-                                       </td>
-                                       <td>
-                                           @Html.DisplayFor(model => model.hotel_details_tbl.FirstOrDefault().hotel_name)
-                                       </td>
-                                       <td>
-                                           RoomTYPE
-                                       </td>
-                                       <td>
-                                           @Html.DisplayFor(model => model.hotel_details_tbl.FirstOrDefault().checkin_time)
-                                       </td>
-                                       <td>
-                                           @Html.DisplayFor(model => model.hotel_details_tbl.FirstOrDefault().checkout_time)
-                                       </td>
-                                   </tr>
-                               </tbody>
-                           </table>
-                       </div>
-                   
-               </div>
-               
-           </div>
-           <div class="row">
-               
-               <div class="col-md-12">
-                   <div class="card-header bg-gray">
-                       <p class="subHeading">Flight Details</p>
-                   </div>
-                       <div class="row ">
-                           <table class="table table-bordered">
-                               <thead class="text-center">
-                                   <tr>
-                                       <th>
-                                           Date
-                                       </th>
-                                       <th>
-                                           Airline Name
-                                       </th>
-                                       <th>
-                                           Departure From
-                                       </th>
+                                            @Html.DisplayFor(model => item.name)
 
-                                       <th>
-                                           Arrival at
-                                       </th>
-                                       <th>
-                                           Departure Time
-                                       </th> 
-                                       <th>
-                                           Arrival Time
-                                       </th>
-                                     
-                                   </tr>
-                               </thead>
-                               <tbody class="text-center">
-                                   <tr>
-                                       <td>
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(model => item.passport_number)
+                                        </td>
 
-                                           @Model.flight_details_tbl.FirstOrDefault().date.Value.ToString("d")
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
 
-                                       </td>
-                                       <td>
-                                           @Html.DisplayFor(model => model.flight_details_tbl.FirstOrDefault().airline_name)
-                                       </td>
-                                       <td>
-                                           @ViewBag.DepartureFrom
-                                       </td>
-                                       <td>
-                                           @ViewBag.ArrivalAt
-                                       </td>
-                                       <td>
-                                           @Html.DisplayFor(model => model.flight_details_tbl.FirstOrDefault().departure_time)
-                                       </td>
-                                       <td>
-                                           @Html.DisplayFor(model => model.flight_details_tbl.FirstOrDefault().arrival_time)
-                                       </td>
-                                      
-                                   </tr>
-                               </tbody>
-                           </table>
-                       </div>
-                   
-               </div>
-               
-           </div>
+                </div>
 
-           @*PACKAGE DETAILS MISSING*@
+            </div>
+            <div class="row">
 
-           <div class="row">
-               
-               <div class="col-md-12">
-                   <div class="card-header bg-gray">
-                       <p class="subHeading">Car Rental/ Tranportion</p>
-                   </div>
-                       <div class="row ">
-                           <table class="table table-bordered">
-                               <thead class="text-center">
-                                   <tr>
-                                       <th>
-                                           Date
-                                       </th>
-                                       <th>
-                                           Vechile Type
-                                       </th>
-                                       <th>
-                                          Route
-                                       </th>
+                <div class="col-md-12">
+                    <div class="card-header bg-gray">
+                        <p class="subHeading">Package Details</p>
+                    </div>
+                    <div class="row ">
+                        <table class="table table-bordered">
+                            <thead class="text-center">
+                                <tr>
+                                    <th>
+                                        Package Name
+                                    </th>
+                                    <th>
+                                        No. of Days
+                                    </th>
+                                    <th>
+                                        Date of Departure
+                                    </th>
+                                    <th>
+                                        Date of Arrival
+                                    </th>
+                                    <th>
+                                        PNR
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody class="text-center">
+                                @foreach (var item in Model.package_details_tbl)
+                                {
+                                <tr>
+                                    <td>
 
-                                       
-                                   </tr>
-                               </thead>
-                               <tbody class="text-center">
-                                   <tr>
-                                       <td>
+                                        @Html.DisplayFor(model => item.package_name)
 
-                                           DATE
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(model => item.no_of_days)
+                                    </td>
 
-                                       </td>
-                                       <td>
-                                           VEHICLE TYPE
-                                       </td>
-                                       <td>
+                                    <td>
+                                        @Html.DisplayFor(model => item.date_of_departure)
+                                    </td>
 
-                                          ROUTE
+                                    <td>
+                                        @Html.DisplayFor(model => item.date_of_arrival)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(model => item.pnr)
+                                    </td>
 
-                                       </td>
-                                      
-                                   </tr>
-                               </tbody>
-                           </table>
-                       </div>
-                   
-               </div>
-               
-           </div>
-       </div>
+                                </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
+
+            </div>
+            <div class="row">
+
+                <div class="col-md-12">
+                    <div class="card-header bg-gray">
+                        <p class="subHeading">Hotel Information</p>
+                    </div>
+                    <div class="row ">
+                        <table class="table table-bordered">
+                            <thead class="text-center">
+                                <tr>
+                                    <th>
+                                        City
+                                    </th>
+                                    <th>
+                                        Hotel Name
+                                    </th>
+                                    <th>
+                                        Room Type
+                                    </th>
+
+                                    <th>
+                                        Check-In
+                                    </th>
+                                    <th>
+                                        Check-Out
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody class="text-center">
+                                <tr>
+                                    <td>
+                                        CITY
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(model => model.hotel_details_tbl.FirstOrDefault().hotel_name)
+                                    </td>
+                                    <td>
+                                        RoomTYPE
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(model => model.hotel_details_tbl.FirstOrDefault().checkin_time)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(model => model.hotel_details_tbl.FirstOrDefault().checkout_time)
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
+
+            </div>
+            <div class="row">
+
+                <div class="col-md-12">
+                    <div class="card-header bg-gray">
+                        <p class="subHeading">Flight Details</p>
+                    </div>
+                    <div class="row ">
+                        <table class="table table-bordered">
+                            <thead class="text-center">
+                                <tr>
+                                    <th>
+                                        Date
+                                    </th>
+                                    <th>
+                                        Airline Name
+                                    </th>
+                                    <th>
+                                        Departure From
+                                    </th>
+
+                                    <th>
+                                        Arrival at
+                                    </th>
+                                    <th>
+                                        Departure Time
+                                    </th>
+                                    <th>
+                                        Arrival Time
+                                    </th>
+
+                                </tr>
+                            </thead>
+                            <tbody class="text-center">
+                                <tr>
+                                    <td>
+
+                                        @Model.flight_details_tbl.FirstOrDefault().date.Value.ToString("d")
+
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(model => model.flight_details_tbl.FirstOrDefault().airline_name)
+                                    </td>
+                                    <td>
+                                        @ViewBag.DepartureFrom
+                                    </td>
+                                    <td>
+                                        @ViewBag.ArrivalAt
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(model => model.flight_details_tbl.FirstOrDefault().departure_time)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(model => model.flight_details_tbl.FirstOrDefault().arrival_time)
+                                    </td>
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
+
+            </div>
+
+            @*PACKAGE DETAILS MISSING*@
+
+            <div class="row">
+
+                <div class="col-md-12">
+                    <div class="card-header bg-gray">
+                        <p class="subHeading">Car Rental/ Tranportion</p>
+                    </div>
+                    <div class="row ">
+                        <table class="table table-bordered">
+                            <thead class="text-center">
+                                <tr>
+                                    <th>
+                                        Date
+                                    </th>
+                                    <th>
+                                        Vechile Type
+                                    </th>
+                                    <th>
+                                        Route
+                                    </th>
+
+
+                                </tr>
+                            </thead>
+                            <tbody class="text-center">
+                                <tr>
+                                    <td>
+
+                                        DATE
+
+                                    </td>
+                                    <td>
+                                        VEHICLE TYPE
+                                    </td>
+                                    <td>
+
+                                        ROUTE
+
+                                    </td>
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
     </div>
 </div>
 
