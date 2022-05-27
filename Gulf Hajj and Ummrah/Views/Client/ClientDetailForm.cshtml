@@ -18,12 +18,16 @@
                         Gulf Hajj and Umrah Service (Pvt). Ltd
                     </h1>
                 </div>
-                <div class="col-md-3" style="padding-top:0px; padding-left:150px;">
-                    <div class="picture">
-                        @*<p class="text-center">Photo</p>*@
-                        <img src="~/UploadedDocs/@Model.picture" alt="" height=150 width=150 />
+                @if(@Model.picture != null)
+                {
+                    <div class="col-md-3" style="padding-top:0px; padding-left:150px;">
+                        <div class="picture">
+                            @*<p class="text-center">Photo</p>*@
+                            <img src="~/UploadedDocs/@Model.picture" alt="" height=150 width=150 />
+                        </div>
                     </div>
-                </div>
+                }
+                
             </div>
         </div>
         <div class="card-body">
@@ -99,46 +103,50 @@
                 </div>
 
             </div>
-            <div class="row">
+            @if(Model.group_of_people_details_tbl.Count >0)
+            {
+                <div class="row">
 
-                <div class="col-md-12">
-                    <div class="card-header bg-gray">
-                        <p class="subHeading">Group Info</p>
-                    </div>
-                    <div class="row ">
-                        <table class="table table-bordered">
-                            <thead class="text-center">
-                                <tr>
-                                    <th>
-                                        Name of Group Members
-                                    </th>
-                                    <th>
-                                        Passport Number
-                                    </th>
-                                </tr>
-                            </thead>
-                            <tbody class="text-center">
-                                @foreach (var item in Model.group_of_people_details_tbl)
-                                {
+                    <div class="col-md-12">
+                        <div class="card-header bg-gray">
+                            <p class="subHeading">Group Info</p>
+                        </div>
+                        <div class="row ">
+                            <table class="table table-bordered">
+                                <thead class="text-center">
                                     <tr>
-                                        <td>
-
-                                            @Html.DisplayFor(model => item.name)
-
-                                        </td>
-                                        <td>
-                                            @Html.DisplayFor(model => item.passport_number)
-                                        </td>
-
+                                        <th>
+                                            Name of Group Members
+                                        </th>
+                                        <th>
+                                            Passport Number
+                                        </th>
                                     </tr>
-                                }
-                            </tbody>
-                        </table>
+                                </thead>
+                                <tbody class="text-center">
+                                    @foreach (var item in Model.group_of_people_details_tbl)
+                                    {
+                                        <tr>
+                                            <td>
+
+                                                @Html.DisplayFor(model => item.name)
+
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(model => item.passport_number)
+                                            </td>
+
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+
                     </div>
 
                 </div>
-
-            </div>
+            }
+            
             <div class="row">
 
                 <div class="col-md-12">

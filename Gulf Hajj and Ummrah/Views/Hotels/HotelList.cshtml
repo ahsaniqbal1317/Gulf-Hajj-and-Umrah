@@ -58,7 +58,9 @@
                         @Html.DisplayFor(modelItem => item.checkout_time)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.client_details_tbl.name)
+                        <a href="@Url.Action("ClientDetails","Client")/#@item.client_details_tbl.id" class="nav-link">
+                            @Html.DisplayFor(modelItem => item.client_details_tbl.name)
+                        </a>
                     </td>
                     <td>
                         <a class='btn btn-success btn-sm' onclick="PopupForm(@item.id)"><i class="fas fa-pen"></i>Edit </a>

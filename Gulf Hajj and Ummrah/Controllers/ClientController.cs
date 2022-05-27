@@ -16,9 +16,10 @@ namespace Gulf_Hajj_and_Ummrah.Controllers
     {
         Gulf_HUEntities db = new Gulf_HUEntities();
         // GET: Client
-        public ActionResult ClientDetails()
+        public ActionResult ClientDetails(int id=0)
         {
             var data = db.client_details_tbl.Where(x => x.isDeleted == false).ToList();
+            ViewBag.id = id;
             return View(data);
             //asdasdasdasd
         }
@@ -298,35 +299,22 @@ namespace Gulf_Hajj_and_Ummrah.Controllers
             model.Billing_Details_Tbl = new billing_details_tbl();
             var data = db.client_details_tbl.Include("hotel_details_tbl").Include("package_details_tbl").Include("flight_details_tbl").Include("billing_details_tbl").Where(x => x.id == id).FirstOrDefault();
 
+            data.isDeleted = true;
             
-            model.id = data.id;
-            model.isDeletedClient = true;
+            data.flight_details_tbl.LastOrDefault().isDeleted = true;
+            data.billing_details_tbl.LastOrDefault().isDeleted = true;
+            foreach(var item in data.group_of_people_details_tbl.ToList())
+            {
+                item.isDeleted = true;
+            }
+            data.hotel_details_tbl.LastOrDefault().isDeleted = true;
+            data.package_details_tbl.LastOrDefault().isDeleted = true;
+            data.transportation_details_tbl.LastOrDefault().isDeleted = true;
+            db.Entry(data).State = EntityState.Modified;
             db.SaveChanges();
 
-            model.h_id = data.hotel_details_tbl.FirstOrDefault().id;
-            model.isDeletedHotel = true;
-            db.SaveChanges();
-
-            model.packageid = data.package_details_tbl.FirstOrDefault().id;
-            model.isDeletedPackage = true;
-            db.SaveChanges();
-
-            model.Fid = data.flight_details_tbl.FirstOrDefault().id;
-            model.isDeletedFlight = true;
-            db.SaveChanges();
-
-            transportation_details_tbl T1 = new transportation_details_tbl();
-            T1.id = data.transportationid;
-            T1.isDeleted = true;
-            db.SaveChanges();
-
-            billing_details_tbl B1 = new billing_details_tbl();
-            B1.id = data.Billing_Details_Tbl.id;
-            B1.isDeleted = true;
-            db.SaveChanges();
-
-
-            return RedirectToAction("/ClientDetails");
+            //return RedirectToAction("ClientDetails", "Client");
+            return View();
         }
     }
 }
