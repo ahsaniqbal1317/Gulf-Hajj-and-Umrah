@@ -21,15 +21,29 @@ namespace Gulf_Hajj_and_Ummrah.Controllers
         public ActionResult EditBillingDetails(int id)
         {
             billing_details_tbl data = db.billing_details_tbl.Where(x => x.id == id).FirstOrDefault();
+            data.amount_recieved = data.amount_pending;
             return PartialView("Edit_PartialView_Billing", data);
 
         }
         [HttpPost]
         public ActionResult EditBillingDetails(billing_details_tbl emp)
         {
-            db.Entry(emp).State = EntityState.Modified;
-            emp.datePayment = DateTime.Now;
-            db.SaveChanges();
+            var data = db.billing_details_tbl.Where(x => x.id == emp.id).FirstOrDefault();
+            emp.id = data.id;
+            emp.total_amount = data.total_amount;
+            emp.amount_pending = emp.total_amount - emp.amount_recieved;
+            emp.client_id = data.client_id;
+            emp.clientPaymentForOne = data.clientPaymentForOne;
+            emp.dateRegistered = data.dateRegistered;
+            if(emp.amount_pending <= 1 && emp.amount_pending>-1)
+            {
+                emp.datePayment = DateTime.Now;
+            }
+            emp.profit_loss = emp.amount_recieved - emp.expense;
+            Gulf_HUEntities db2 = new Gulf_HUEntities();
+            db2.Entry(emp).State = EntityState.Modified;
+            
+            db2.SaveChanges();
             return RedirectToAction("/BillingList");
         }
     }

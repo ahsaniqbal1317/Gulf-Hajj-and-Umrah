@@ -4,6 +4,19 @@
     ViewBag.Title = "BillingList";
 }
 
+<style>
+    .my_class {
+        background-color: white;
+        
+    }
+
+    #myTable {
+        font-size: 18px;
+        font-weight: bold;
+    }
+ 
+</style>
+
 <div class="card">
     <div class="card-header bg-dark">
         <div class="row">
@@ -27,10 +40,16 @@
                         Total Amount
                     </th>
                     <th>
+                        Payment Date
+                    </th>
+                    <th>
                         Payment Recieved
                     </th>
                     <th>
                         Pending Amount
+                    </th>
+                    <th>
+                        Customer Registration Date
                     </th>
                     <th>
                         Total Expense
@@ -49,38 +68,44 @@
             <tbody>
                 @foreach (var item in Model)
                 {
-                    <tr>
-                        <td>
-                            <a href="@Url.Action("ClientDetails","Client")/#@item.client_details_tbl.id" class="nav-link">
-                                @Html.DisplayFor(modelItem => item.client_details_tbl.name)
-                            </a>
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.payment_type)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.total_amount)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.amount_recieved)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.amount_pending)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.expense)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.profit_loss)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.detail_of_payment)
-                        </td>
-                       
-                        <td>
-                            <a class='btn btn-success btn-sm' onclick="PopupForm(@item.id)"><i class="fas fa-pen"></i>Edit </a>
-                        </td>
-                    </tr>
+                <tr id="@item.id">
+                    <td>
+                        <a href="@Url.Action("ClientDetails","Client")/#@item.client_details_tbl.id" class="nav-link">
+                            @Html.DisplayFor(modelItem => item.client_details_tbl.name)
+                        </a>
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.payment_type)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.total_amount)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.datePayment)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.amount_recieved)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.amount_pending)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.dateRegistered)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.expense)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.profit_loss)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.detail_of_payment)
+                    </td>
+
+                    <td>
+                        <a class='btn btn-success btn-sm' onclick="PopupForm(@item.id)"><i class="fas fa-pen"></i>Edit </a>
+                    </td>
+                </tr>
                 }
             </tbody>
 
@@ -113,7 +138,28 @@
     <script src="https://cdn.datatables.net/1.11.4/js/jquery.dataTables.min.js"></script>
     <script>
 $(document).ready(function () {
-    $('#myTable').DataTable();
+
+    $('#myTable').DataTable({
+
+        "createdRow": function (row, data, dataIndex, column) {
+            console.log(data[1])
+            if (data[5] == `0`) {
+                $(row).css({ backgroundColor: '#63d53d' });
+            }
+            else {
+                $(row).css({ backgroundColor: 'red' });
+            }
+            $(row).css({ color: 'white' });
+        },
+
+        "columnDefs": [
+            { className: "my_class", "targets": [0] }
+        ]
+
+    });
+
+    //$("td:contains(Cash)").css("color", "green");
+    //$("td:contains(-)").css("color", "red");
 });
     function PopupForm(id) {
         if (id > 0) {

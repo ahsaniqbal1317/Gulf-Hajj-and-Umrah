@@ -19,7 +19,7 @@ namespace Gulf_Hajj_and_Ummrah.Controllers
             ViewBag.clientID = db.client_details_tbl.Where(x => x.id == id).FirstOrDefault().id;
             var client = db.client_details_tbl.Where(x => x.id == id).FirstOrDefault();
             var members = db.group_of_people_details_tbl.Where(x => x.client_id == id).ToList();
-            double? totalAmount = client.billing_details_tbl.LastOrDefault().total_amount * (client.group_of_people_details_tbl.Count()+1);
+            double? totalAmount = client.billing_details_tbl.LastOrDefault().total_amount;
             GroupMembersViewModel groupMembers = new GroupMembersViewModel
             {
                 addmember = null,
@@ -63,18 +63,36 @@ namespace Gulf_Hajj_and_Ummrah.Controllers
         [HttpPost]
         public ActionResult Create(GroupMembersViewModel obj)
         {
-            try
-            {
-                // TODO: Add insert logic here
-                obj.addmember.client_id = obj.client_Details_Tbl.id;
-                db.group_of_people_details_tbl.Add(obj.addmember);
-                db.SaveChanges();
-                return RedirectToAction("Index", new { id = obj.client_Details_Tbl.id });
-            }
-            catch
-            {
-                return View();
-            }
+            
+            // TODO: Add insert logic here
+            obj.addmember.client_id = obj.client_Details_Tbl.id;
+            db.group_of_people_details_tbl.Add(obj.addmember);
+            db.SaveChanges();
+
+            var client = db.client_details_tbl.Where(x => x.id == obj.client_Details_Tbl.id).FirstOrDefault();
+            double? totalAmount = client.billing_details_tbl.LastOrDefault().clientPaymentForOne * (client.group_of_people_details_tbl.Count() + 1);
+
+            ;
+
+            billing_details_tbl billing = new billing_details_tbl();
+
+
+            billing.id = client.billing_details_tbl.FirstOrDefault().id;
+            billing.clientPaymentForOne = client.billing_details_tbl.FirstOrDefault().clientPaymentForOne;
+            billing.total_amount = totalAmount;
+            billing.amount_recieved = 0;
+            billing.amount_pending = billing.total_amount - billing.amount_recieved;
+            billing.client_id = client.billing_details_tbl.FirstOrDefault().client_id;
+            billing.dateRegistered = client.billing_details_tbl.FirstOrDefault().dateRegistered;
+
+            Gulf_HUEntities db2 = new Gulf_HUEntities();
+            db2.Entry(billing).State = EntityState.Modified;
+
+            db2.SaveChanges();
+            return RedirectToAction("Index", new { id = obj.client_Details_Tbl.id });
+            
+
+            
         }
 
         // GET: GroupMembers/Edit/5

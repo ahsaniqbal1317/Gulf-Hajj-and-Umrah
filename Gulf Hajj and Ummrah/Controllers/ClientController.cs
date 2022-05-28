@@ -90,7 +90,6 @@ namespace Gulf_Hajj_and_Ummrah.Controllers
 
               
                 model.Billing_Details_Tbl.id = data.billing_details_tbl.FirstOrDefault().id;
-                model.Billing_Details_Tbl.total_amount = model.Billing_Details_Tbl.amountOnePerson* model.Billing_Details_Tbl.noOfPerson;
             }
 
             return PartialView("AddOrEdit_PartialView_Client", model);
@@ -254,14 +253,13 @@ namespace Gulf_Hajj_and_Ummrah.Controllers
 
                 billing_details_tbl billing = new billing_details_tbl();
                 billing.id = model.Billing_Details_Tbl.id;
-                model.Billing_Details_Tbl.total_amount = model.Billing_Details_Tbl.noOfPerson * model.Billing_Details_Tbl.amountOnePerson;
-                billing.total_amount = model.Billing_Details_Tbl.total_amount;
-                model.Billing_Details_Tbl.profit_loss = model.Billing_Details_Tbl.total_amount - model.Billing_Details_Tbl.expense;
-                billing.profit_loss = model.Billing_Details_Tbl.profit_loss;
-                model.Billing_Details_Tbl.amount_pending = model.Billing_Details_Tbl.total_amount - model.Billing_Details_Tbl.amount_recieved;
-                billing.amount_pending = model.Billing_Details_Tbl.amount_pending;
-                
+                billing.clientPaymentForOne = model.Billing_Details_Tbl.clientPaymentForOne;
                 billing.client_id = client.id;
+                billing.amount_recieved = 0;
+                double? totalAmount = billing.clientPaymentForOne;
+                billing.total_amount = totalAmount;
+                billing.amount_pending = billing.total_amount - billing.amount_recieved;
+
                 if (model.clientid != 0)
                 {
                     billing.dateRegistered = db2.billing_details_tbl.Where(x => x.client_id == client.id).FirstOrDefault().dateRegistered;

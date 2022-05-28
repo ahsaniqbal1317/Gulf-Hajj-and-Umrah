@@ -16,8 +16,7 @@ namespace Gulf_Hajj_and_Ummrah.Models
     {
         public int id { get; set; }
         public string detail_of_payment { get; set; }
-        public Nullable<double> amountOnePerson { get; set; }
-        public Nullable<int> noOfPerson { get; set; }
+        public Nullable<double> clientPaymentForOne { get; set; }
         public Nullable<double> total_amount { get; set; }
         public string payment_type { get; set; }
         public Nullable<double> amount_recieved { get; set; }

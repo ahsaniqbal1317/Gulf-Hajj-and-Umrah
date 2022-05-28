@@ -9,31 +9,22 @@
                 <div class="col-md-6">
                     <label>Type of Payment</label>
                     @Html.DropDownListFor(model =>model.payment_type , new[]{
-                                new SelectListItem(){ Text = "Cheque", Value = "1"},
-                                new SelectListItem(){ Text = "Cash", Value = "2"},
-                                new SelectListItem(){ Text = "Online Payment", Value = "3"},
-                                new SelectListItem(){ Text = "Others", Value = "4"}
+                                new SelectListItem(){ Text = "Cheque", Value = "Cheque"},
+                                new SelectListItem(){ Text = "Cash", Value = "Cash"},
+                                new SelectListItem(){ Text = "Online Payment", Value = "Online Payment"},
+                                new SelectListItem(){ Text = "Others", Value = "Others"}
                                 }, "Select Payment Type", new { @class = "form-control" })
                 </div>
-                <div class="col-md-6">
-                    <label>Total Amount</label>
-                    @Html.EditorFor(model => model.total_amount, new { htmlAttributes = new { @class = "form-control", @autocomplete = "off", @placeholder = "Enter amount in rupees" } })
-                    @Html.ValidationMessageFor(model => model.total_amount, "", new { @class = "text-danger" })
-                </div>
-            </div>
-            <div class="row">
+
                 <div class="col-md-6">
                     <label>Amount Recieved</label>
                     @Html.EditorFor(model => model.amount_recieved, new { htmlAttributes = new { @class = "form-control", @autocomplete = "off", @placeholder = "Enter amount in rupees" } })
                     @Html.ValidationMessageFor(model => model.amount_recieved, "", new { @class = "text-danger" })
 
                 </div>
-                <div class="col-md-6">
-                    <label>Amount Pending</label>
-                    @Html.EditorFor(model => model.amount_pending, new { htmlAttributes = new { @class = "form-control", @autocomplete = "off", @placeholder = "Enter amount in rupees" } })
-                    @Html.ValidationMessageFor(model => model.amount_pending, "", new { @class = "text-danger" })
-                </div>
+
             </div>
+            
             <div class="row">
                 <div class="col-md-6">
                     <label>Total Expense</label>
