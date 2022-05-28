@@ -19,6 +19,8 @@
           </Key>
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="detail_of_payment" Type="varchar" MaxLength="300" />
+          <Property Name="amountOnePerson" Type="float" />
+          <Property Name="noOfPerson" Type="int" />
           <Property Name="total_amount" Type="float" />
           <Property Name="payment_type" Type="varchar" MaxLength="50" />
           <Property Name="amount_recieved" Type="float" />
@@ -409,6 +411,8 @@
           </Key>
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="detail_of_payment" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
+          <Property Name="amountOnePerson" Type="Double" />
+          <Property Name="noOfPerson" Type="Int32" />
           <Property Name="total_amount" Type="Double" />
           <Property Name="payment_type" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="amount_recieved" Type="Double" />
@@ -715,6 +719,8 @@
                 <ScalarProperty Name="amount_recieved" ColumnName="amount_recieved" />
                 <ScalarProperty Name="payment_type" ColumnName="payment_type" />
                 <ScalarProperty Name="total_amount" ColumnName="total_amount" />
+                <ScalarProperty Name="noOfPerson" ColumnName="noOfPerson" />
+                <ScalarProperty Name="amountOnePerson" ColumnName="amountOnePerson" />
                 <ScalarProperty Name="detail_of_payment" ColumnName="detail_of_payment" />
                 <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>

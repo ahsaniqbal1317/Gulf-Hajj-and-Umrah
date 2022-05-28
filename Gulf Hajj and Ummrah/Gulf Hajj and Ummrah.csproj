@@ -377,6 +377,7 @@
     <Content Include="Views\Administration\AirlineList.cshtml" />
     <Content Include="Views\Administration\AddOrEditAirline_PartialView.cshtml" />
     <Content Include="Views\Transportation\TranportationList.cshtml" />
+    <Content Include="Views\BillingandExpense\Edit_PartialView_Billing.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

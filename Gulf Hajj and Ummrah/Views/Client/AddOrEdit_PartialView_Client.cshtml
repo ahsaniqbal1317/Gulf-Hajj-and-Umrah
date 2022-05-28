@@ -287,14 +287,32 @@
 
         <div class="row">
             <div class="col-md-6">
-                
+                <label>Type of Payment</label>
+                @Html.DropDownListFor(model =>model.Billing_Details_Tbl.payment_type , new[]{
+                            new SelectListItem(){ Text = "Cheque", Value = "1"},
+                            new SelectListItem(){ Text = "Cash", Value = "2"},
+                            new SelectListItem(){ Text = "Online Payment", Value = "3"},
+                            new SelectListItem(){ Text = "Others", Value = "4"}
+                            }, "Select Payment Type", new { @class = "form-control" })
             </div>
             <div class="col-md-6">
                 <label>Amount in PKR (This will be for one Person)</label>
-                @Html.EditorFor(model => model.Billing_Details_Tbl.total_amount, new { htmlAttributes = new { @class = "form-control", @autocomplete = "off", @placeholder = "Enter amount in rupees"} })
-                @Html.ValidationMessageFor(model => model.Billing_Details_Tbl.total_amount, "", new { @class = "text-danger" })
+                @Html.EditorFor(model => model.Billing_Details_Tbl.amountOnePerson, new { htmlAttributes = new { @class = "form-control", @autocomplete = "off", @placeholder = "Enter amount in rupees" } })
+                @Html.ValidationMessageFor(model => model.Billing_Details_Tbl.amountOnePerson, "", new { @class = "text-danger" })
             </div>
         </div>
+        <div class="row">
+            <div class="col-md-6">
+                <label>No. of Persons</label>
+                @Html.EditorFor(model => model.Billing_Details_Tbl.noOfPerson, new { htmlAttributes = new { @class = "form-control", @autocomplete = "off" } })
+                @Html.ValidationMessageFor(model => model.Billing_Details_Tbl.noOfPerson, "", new { @class = "text-danger" })
+            </div>
+                <div class="col-md-6">
+                    <label>Total Amount</label>
+                    @Html.EditorFor(model => model.Billing_Details_Tbl.total_amount, new { htmlAttributes = new { @class = "form-control", @readonly="true"} })
+                    @Html.ValidationMessageFor(model => model.Billing_Details_Tbl.total_amount, "", new { @class = "text-danger" })
+                </div>
+            </div>
     </div>
 </div>
 

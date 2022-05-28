@@ -126,7 +126,7 @@ $(document).ready(function () {
             $("#exampleModalLabel").removeClass("fa fa-pen");
             $("#exampleModalLabel").addClass("fa fa-plus");
         }
-    var url = "/Complaint/AddOrEdit?id=" + id;
+        var url = "/BillingandExpense/EditBillingDetails?id=" + id;
     var formDiv = $('#modalbody');
     $.get(url)
         .done(function (response) {

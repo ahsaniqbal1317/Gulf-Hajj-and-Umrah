@@ -36,7 +36,7 @@ namespace Gulf_Hajj_and_Ummrah.Controllers
 
             ClientViewModel model = new ClientViewModel();
             model.Billing_Details_Tbl = new billing_details_tbl();
-
+           
 
             if (id > 0)
             {
@@ -90,7 +90,7 @@ namespace Gulf_Hajj_and_Ummrah.Controllers
 
               
                 model.Billing_Details_Tbl.id = data.billing_details_tbl.FirstOrDefault().id;
-                model.Billing_Details_Tbl.total_amount = 2000.3;
+                model.Billing_Details_Tbl.total_amount = model.Billing_Details_Tbl.amountOnePerson* model.Billing_Details_Tbl.noOfPerson;
             }
 
             return PartialView("AddOrEdit_PartialView_Client", model);
@@ -254,7 +254,13 @@ namespace Gulf_Hajj_and_Ummrah.Controllers
 
                 billing_details_tbl billing = new billing_details_tbl();
                 billing.id = model.Billing_Details_Tbl.id;
+                model.Billing_Details_Tbl.total_amount = model.Billing_Details_Tbl.noOfPerson * model.Billing_Details_Tbl.amountOnePerson;
                 billing.total_amount = model.Billing_Details_Tbl.total_amount;
+                model.Billing_Details_Tbl.profit_loss = model.Billing_Details_Tbl.total_amount - model.Billing_Details_Tbl.expense;
+                billing.profit_loss = model.Billing_Details_Tbl.profit_loss;
+                model.Billing_Details_Tbl.amount_pending = model.Billing_Details_Tbl.total_amount - model.Billing_Details_Tbl.amount_recieved;
+                billing.amount_pending = model.Billing_Details_Tbl.amount_pending;
+                
                 billing.client_id = client.id;
                 if (model.clientid != 0)
                 {

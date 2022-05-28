@@ -1,0 +1,57 @@
+﻿@model Gulf_Hajj_and_Ummrah.Models.billing_details_tbl
+
+@using (Html.BeginForm("EditBillingDetails", "BillingandExpense", FormMethod.Post))
+{
+    @Html.HiddenFor(model => model.id)
+    <div class="card">
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-6">
+                    <label>Type of Payment</label>
+                    @Html.DropDownListFor(model =>model.payment_type , new[]{
+                                new SelectListItem(){ Text = "Cheque", Value = "1"},
+                                new SelectListItem(){ Text = "Cash", Value = "2"},
+                                new SelectListItem(){ Text = "Online Payment", Value = "3"},
+                                new SelectListItem(){ Text = "Others", Value = "4"}
+                                }, "Select Payment Type", new { @class = "form-control" })
+                </div>
+                <div class="col-md-6">
+                    <label>Total Amount</label>
+                    @Html.EditorFor(model => model.total_amount, new { htmlAttributes = new { @class = "form-control", @autocomplete = "off", @placeholder = "Enter amount in rupees" } })
+                    @Html.ValidationMessageFor(model => model.total_amount, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <label>Amount Recieved</label>
+                    @Html.EditorFor(model => model.amount_recieved, new { htmlAttributes = new { @class = "form-control", @autocomplete = "off", @placeholder = "Enter amount in rupees" } })
+                    @Html.ValidationMessageFor(model => model.amount_recieved, "", new { @class = "text-danger" })
+
+                </div>
+                <div class="col-md-6">
+                    <label>Amount Pending</label>
+                    @Html.EditorFor(model => model.amount_pending, new { htmlAttributes = new { @class = "form-control", @autocomplete = "off", @placeholder = "Enter amount in rupees" } })
+                    @Html.ValidationMessageFor(model => model.amount_pending, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <label>Total Expense</label>
+                    @Html.EditorFor(model => model.expense, new { htmlAttributes = new { @class = "form-control", @autocomplete = "off", @placeholder = "Enter amount in rupees" } })
+                    @Html.ValidationMessageFor(model => model.expense, "", new { @class = "text-danger" })
+
+                </div>
+                <div class="col-md-6">
+                    <label>Detail of Payment</label>
+                    @Html.EditorFor(model => model.detail_of_payment, new { htmlAttributes = new { @class = "form-control", @autocomplete = "off", @placeholder = "Enter amount in rupees" } })
+                    @Html.ValidationMessageFor(model => model.detail_of_payment, "", new { @class = "text-danger" })
+
+                </div>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Submit" class="btn btn-primary" />
+                <input type="reset" value="Reset" class="btn btn-warning" />
+            </div>
+        </div>
+    </div>
+}
