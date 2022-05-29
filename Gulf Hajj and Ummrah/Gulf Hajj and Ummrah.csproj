@@ -110,6 +110,36 @@
     <Content Include="Content\assets\images\bg-01.jpg" />
     <Content Include="Content\assets\images\icons\favicon.ico" />
     <Content Include="Content\assets\js\main.js" />
+    <Content Include="Content\assets\LoginFormStyle\css\main.css" />
+    <Content Include="Content\assets\LoginFormStyle\css\util.css" />
+    <Content Include="Content\assets\LoginFormStyle\fonts\font-awesome-4.7.0\css\font-awesome.css" />
+    <Content Include="Content\assets\LoginFormStyle\fonts\font-awesome-4.7.0\css\font-awesome.min.css" />
+    <Content Include="Content\assets\LoginFormStyle\fonts\font-awesome-4.7.0\fonts\fontawesome-webfont.svg" />
+    <Content Include="Content\assets\LoginFormStyle\fonts\font-awesome-4.7.0\HELP-US-OUT.txt" />
+    <Content Include="Content\assets\LoginFormStyle\fonts\montserrat\OFL.txt" />
+    <Content Include="Content\assets\LoginFormStyle\images\icons\favicon.ico" />
+    <Content Include="Content\assets\LoginFormStyle\images\img-01.png" />
+    <Content Include="Content\assets\LoginFormStyle\js\main.js" />
+    <Content Include="Content\assets\LoginFormStyle\vendor\animate\animate.css" />
+    <Content Include="Content\assets\LoginFormStyle\vendor\bootstrap\css\bootstrap-grid.css" />
+    <Content Include="Content\assets\LoginFormStyle\vendor\bootstrap\css\bootstrap-grid.min.css" />
+    <Content Include="Content\assets\LoginFormStyle\vendor\bootstrap\css\bootstrap-reboot.css" />
+    <Content Include="Content\assets\LoginFormStyle\vendor\bootstrap\css\bootstrap-reboot.min.css" />
+    <Content Include="Content\assets\LoginFormStyle\vendor\bootstrap\css\bootstrap.css" />
+    <Content Include="Content\assets\LoginFormStyle\vendor\bootstrap\css\bootstrap.min.css" />
+    <Content Include="Content\assets\LoginFormStyle\vendor\bootstrap\js\bootstrap.js" />
+    <Content Include="Content\assets\LoginFormStyle\vendor\bootstrap\js\bootstrap.min.js" />
+    <Content Include="Content\assets\LoginFormStyle\vendor\bootstrap\js\popper.js" />
+    <Content Include="Content\assets\LoginFormStyle\vendor\bootstrap\js\popper.min.js" />
+    <Content Include="Content\assets\LoginFormStyle\vendor\bootstrap\js\tooltip.js" />
+    <Content Include="Content\assets\LoginFormStyle\vendor\css-hamburgers\hamburgers.css" />
+    <Content Include="Content\assets\LoginFormStyle\vendor\css-hamburgers\hamburgers.min.css" />
+    <Content Include="Content\assets\LoginFormStyle\vendor\jquery\jquery-3.2.1.min.js" />
+    <Content Include="Content\assets\LoginFormStyle\vendor\select2\select2.css" />
+    <Content Include="Content\assets\LoginFormStyle\vendor\select2\select2.js" />
+    <Content Include="Content\assets\LoginFormStyle\vendor\select2\select2.min.css" />
+    <Content Include="Content\assets\LoginFormStyle\vendor\select2\select2.min.js" />
+    <Content Include="Content\assets\LoginFormStyle\vendor\tilt\tilt.jquery.min.js" />
     <Content Include="Content\assets\vendor\animate\animate.css" />
     <Content Include="Content\assets\vendor\animsition\css\animsition.css" />
     <Content Include="Content\assets\vendor\animsition\css\animsition.min.css" />
@@ -268,6 +298,81 @@
     <Content Include="plugins\fontawesome-free\webfonts\fa-solid-900.woff2" />
     <Content Include="plugins\jquery\jquery.min.map" />
     <Content Include="plugins\jquery\jquery.slim.min.map" />
+    <Content Include="Content\assets\LoginFormStyle\fonts\font-awesome-4.7.0\fonts\fontawesome-webfont.eot" />
+    <Content Include="Content\assets\LoginFormStyle\fonts\font-awesome-4.7.0\fonts\fontawesome-webfont.ttf" />
+    <Content Include="Content\assets\LoginFormStyle\fonts\font-awesome-4.7.0\fonts\fontawesome-webfont.woff" />
+    <Content Include="Content\assets\LoginFormStyle\fonts\font-awesome-4.7.0\fonts\fontawesome-webfont.woff2" />
+    <Content Include="Content\assets\LoginFormStyle\fonts\font-awesome-4.7.0\fonts\FontAwesome.otf" />
+    <Content Include="Content\assets\LoginFormStyle\fonts\font-awesome-4.7.0\less\animated.less" />
+    <Content Include="Content\assets\LoginFormStyle\fonts\font-awesome-4.7.0\less\bordered-pulled.less" />
+    <Content Include="Content\assets\LoginFormStyle\fonts\font-awesome-4.7.0\less\core.less" />
+    <Content Include="Content\assets\LoginFormStyle\fonts\font-awesome-4.7.0\less\fixed-width.less" />
+    <Content Include="Content\assets\LoginFormStyle\fonts\font-awesome-4.7.0\less\font-awesome.less" />
+    <Content Include="Content\assets\LoginFormStyle\fonts\font-awesome-4.7.0\less\icons.less" />
+    <Content Include="Content\assets\LoginFormStyle\fonts\font-awesome-4.7.0\less\larger.less" />
+    <Content Include="Content\assets\LoginFormStyle\fonts\font-awesome-4.7.0\less\list.less" />
+    <Content Include="Content\assets\LoginFormStyle\fonts\font-awesome-4.7.0\less\mixins.less" />
+    <Content Include="Content\assets\LoginFormStyle\fonts\font-awesome-4.7.0\less\path.less" />
+    <Content Include="Content\assets\LoginFormStyle\fonts\font-awesome-4.7.0\less\rotated-flipped.less" />
+    <Content Include="Content\assets\LoginFormStyle\fonts\font-awesome-4.7.0\less\screen-reader.less" />
+    <Content Include="Content\assets\LoginFormStyle\fonts\font-awesome-4.7.0\less\stacked.less" />
+    <Content Include="Content\assets\LoginFormStyle\fonts\font-awesome-4.7.0\less\variables.less" />
+    <Content Include="Content\assets\LoginFormStyle\fonts\font-awesome-4.7.0\scss\font-awesome.scss" />
+    <Content Include="Content\assets\LoginFormStyle\fonts\font-awesome-4.7.0\scss\_animated.scss" />
+    <Content Include="Content\assets\LoginFormStyle\fonts\font-awesome-4.7.0\scss\_bordered-pulled.scss" />
+    <Content Include="Content\assets\LoginFormStyle\fonts\font-awesome-4.7.0\scss\_core.scss" />
+    <Content Include="Content\assets\LoginFormStyle\fonts\font-awesome-4.7.0\scss\_fixed-width.scss" />
+    <Content Include="Content\assets\LoginFormStyle\fonts\font-awesome-4.7.0\scss\_icons.scss" />
+    <Content Include="Content\assets\LoginFormStyle\fonts\font-awesome-4.7.0\scss\_larger.scss" />
+    <Content Include="Content\assets\LoginFormStyle\fonts\font-awesome-4.7.0\scss\_list.scss" />
+    <Content Include="Content\assets\LoginFormStyle\fonts\font-awesome-4.7.0\scss\_mixins.scss" />
+    <Content Include="Content\assets\LoginFormStyle\fonts\font-awesome-4.7.0\scss\_path.scss" />
+    <Content Include="Content\assets\LoginFormStyle\fonts\font-awesome-4.7.0\scss\_rotated-flipped.scss" />
+    <Content Include="Content\assets\LoginFormStyle\fonts\font-awesome-4.7.0\scss\_screen-reader.scss" />
+    <Content Include="Content\assets\LoginFormStyle\fonts\font-awesome-4.7.0\scss\_stacked.scss" />
+    <Content Include="Content\assets\LoginFormStyle\fonts\font-awesome-4.7.0\scss\_variables.scss" />
+    <Content Include="Content\assets\LoginFormStyle\fonts\montserrat\Montserrat-Black.ttf" />
+    <Content Include="Content\assets\LoginFormStyle\fonts\montserrat\Montserrat-BlackItalic.ttf" />
+    <Content Include="Content\assets\LoginFormStyle\fonts\montserrat\Montserrat-Bold.ttf" />
+    <Content Include="Content\assets\LoginFormStyle\fonts\montserrat\Montserrat-BoldItalic.ttf" />
+    <Content Include="Content\assets\LoginFormStyle\fonts\montserrat\Montserrat-ExtraBold.ttf" />
+    <Content Include="Content\assets\LoginFormStyle\fonts\montserrat\Montserrat-ExtraBoldItalic.ttf" />
+    <Content Include="Content\assets\LoginFormStyle\fonts\montserrat\Montserrat-ExtraLight.ttf" />
+    <Content Include="Content\assets\LoginFormStyle\fonts\montserrat\Montserrat-ExtraLightItalic.ttf" />
+    <Content Include="Content\assets\LoginFormStyle\fonts\montserrat\Montserrat-Italic.ttf" />
+    <Content Include="Content\assets\LoginFormStyle\fonts\montserrat\Montserrat-Light.ttf" />
+    <Content Include="Content\assets\LoginFormStyle\fonts\montserrat\Montserrat-LightItalic.ttf" />
+    <Content Include="Content\assets\LoginFormStyle\fonts\montserrat\Montserrat-Medium.ttf" />
+    <Content Include="Content\assets\LoginFormStyle\fonts\montserrat\Montserrat-MediumItalic.ttf" />
+    <Content Include="Content\assets\LoginFormStyle\fonts\montserrat\Montserrat-Regular.ttf" />
+    <Content Include="Content\assets\LoginFormStyle\fonts\montserrat\Montserrat-SemiBold.ttf" />
+    <Content Include="Content\assets\LoginFormStyle\fonts\montserrat\Montserrat-SemiBoldItalic.ttf" />
+    <Content Include="Content\assets\LoginFormStyle\fonts\montserrat\Montserrat-Thin.ttf" />
+    <Content Include="Content\assets\LoginFormStyle\fonts\montserrat\Montserrat-ThinItalic.ttf" />
+    <Content Include="Content\assets\LoginFormStyle\fonts\poppins\Poppins-Black.ttf" />
+    <Content Include="Content\assets\LoginFormStyle\fonts\poppins\Poppins-BlackItalic.ttf" />
+    <Content Include="Content\assets\LoginFormStyle\fonts\poppins\Poppins-Bold.ttf" />
+    <Content Include="Content\assets\LoginFormStyle\fonts\poppins\Poppins-BoldItalic.ttf" />
+    <Content Include="Content\assets\LoginFormStyle\fonts\poppins\Poppins-ExtraBold.ttf" />
+    <Content Include="Content\assets\LoginFormStyle\fonts\poppins\Poppins-ExtraBoldItalic.ttf" />
+    <Content Include="Content\assets\LoginFormStyle\fonts\poppins\Poppins-ExtraLight.ttf" />
+    <Content Include="Content\assets\LoginFormStyle\fonts\poppins\Poppins-ExtraLightItalic.ttf" />
+    <Content Include="Content\assets\LoginFormStyle\fonts\poppins\Poppins-Italic.ttf" />
+    <Content Include="Content\assets\LoginFormStyle\fonts\poppins\Poppins-Light.ttf" />
+    <Content Include="Content\assets\LoginFormStyle\fonts\poppins\Poppins-LightItalic.ttf" />
+    <Content Include="Content\assets\LoginFormStyle\fonts\poppins\Poppins-Medium.ttf" />
+    <Content Include="Content\assets\LoginFormStyle\fonts\poppins\Poppins-MediumItalic.ttf" />
+    <Content Include="Content\assets\LoginFormStyle\fonts\poppins\Poppins-Regular.ttf" />
+    <Content Include="Content\assets\LoginFormStyle\fonts\poppins\Poppins-SemiBold.ttf" />
+    <Content Include="Content\assets\LoginFormStyle\fonts\poppins\Poppins-SemiBoldItalic.ttf" />
+    <Content Include="Content\assets\LoginFormStyle\fonts\poppins\Poppins-Thin.ttf" />
+    <Content Include="Content\assets\LoginFormStyle\fonts\poppins\Poppins-ThinItalic.ttf" />
+    <Content Include="Content\assets\LoginFormStyle\vendor\bootstrap\css\bootstrap-grid.css.map" />
+    <Content Include="Content\assets\LoginFormStyle\vendor\bootstrap\css\bootstrap-grid.min.css.map" />
+    <Content Include="Content\assets\LoginFormStyle\vendor\bootstrap\css\bootstrap-reboot.css.map" />
+    <Content Include="Content\assets\LoginFormStyle\vendor\bootstrap\css\bootstrap-reboot.min.css.map" />
+    <Content Include="Content\assets\LoginFormStyle\vendor\bootstrap\css\bootstrap.css.map" />
+    <Content Include="Content\assets\LoginFormStyle\vendor\bootstrap\css\bootstrap.min.css.map" />
     <None Include="Scripts\jquery-2.0.1.intellisense.js" />
     <Content Include="Scripts\jquery-2.0.1.js" />
     <Content Include="Scripts\jquery-2.0.1.min.js" />
@@ -315,6 +420,7 @@
     <Compile Include="Models\hotel_details_tbl.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\LoginModel.cs" />
     <Compile Include="Models\Model1.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -336,12 +442,13 @@
     <Compile Include="Models\roomtype_tbl.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\sysdiagrams.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\transportation_details_tbl.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\user_tbl.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Validation Class.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -359,7 +466,6 @@
     <None Include="packages.config" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Scripts\jquery-2.0.1.min.map" />
     <Content Include="Views\Client\ClientDetails.cshtml" />
     <Content Include="Views\Administration\CitiesList.cshtml" />
@@ -378,6 +484,7 @@
     <Content Include="Views\Administration\AddOrEditAirline_PartialView.cshtml" />
     <Content Include="Views\Transportation\TranportationList.cshtml" />
     <Content Include="Views\BillingandExpense\Edit_PartialView_Billing.cshtml" />
+    <Content Include="Views\Home\Login.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

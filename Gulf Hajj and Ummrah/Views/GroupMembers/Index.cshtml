@@ -5,73 +5,127 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Client Name @Model.client_Details_Tbl.name (Reg: @Model.client_Details_Tbl.id)</h2>
+
 
 @using (Html.BeginForm("Create", "GroupMembers"))
 {
     @Html.AntiForgeryToken()
 
-<div class="form-horizontal">
-    <h4>Add Member to your group</h4>
-    <hr />
-    @Html.HiddenFor(model => model.client_Details_Tbl.id)
-    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-    <div class="form-group">
-        @Html.LabelFor(model => model.addmember.name, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.addmember.name, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.addmember.name, "", new { @class = "text-danger" })
+<div class="card">
+    <div class="card-header bg-blue">
+        <div class="row">
+            <div class="col-md-6">
+                <h4>Add Group Member</h4>
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                @Html.HiddenFor(model => model.client_Details_Tbl.id)
+            </div>
         </div>
     </div>
-    @Html.HiddenFor(model => model.client_Details_Tbl.billing_details_tbl.FirstOrDefault().id)
-    <div class="form-group">
-        @Html.LabelFor(model => model.addmember.passport_number, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.addmember.passport_number, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.addmember.passport_number, "", new { @class = "text-danger" })
-        </div>
-    </div>
+    <div class="card-body">
+        <h6>Group Leader Name  @Model.client_Details_Tbl.name</h6><h6> (Reg: @Model.client_Details_Tbl.id)</h6>
+        <div class="form-horizontal">
+            <div class="row">
 
-    <div class="form-group">
-        <div class="col-md-offset-2 col-md-10">
-            <input type="submit" value="Create" class="btn btn-default" />
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>Name of Group Member</label>
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.addmember.name, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.addmember.name, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    @Html.HiddenFor(model => model.client_Details_Tbl.billing_details_tbl.FirstOrDefault().id)
+                    <div class="form-group">
+                        <label>Passport Number</label>
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.addmember.passport_number, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.addmember.passport_number, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Add Member" class="btn btn-primary" />
+                    <input type="reset" value="Reset" class="btn btn-danger" />
+                </div>
+            </div>
         </div>
     </div>
 </div>
-}
 
-<table class="table table-bordered" id="myTable">
-    <thead>
-        <tr>
-            <th>
-                Name
-            </th>
-            <th>
-                Passport Number
-            </th>
-            <th>
-                Action
-            </th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model.members)
-        {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.name)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.passport_number)
-                </td>
-                <td>
-                    <a class='btn btn-success btn-sm' onclick="PopupForm(@item.id)"><i class="fas fa-pen"></i>Edit </a>
-                    <a class='btn btn-danger btn-sm' onclick="Delete(@item.id)"><i class="fas fa-trash"></i>Delete </a>
-                </td>
-            </tr>
-        }
-    </tbody>
-</table>
+}
+<div class="card">
+    <div class="card-header bg-blue">
+        <div class="row">
+            <div class="col-md-6">
+                <h4>List of Group Members and Payment Info</h4>
+            </div>
+        </div>
+    </div>
+    <div class="card-body">
+        <table class="table table-bordered" id="myTable">
+            <thead>
+                <tr>
+                    <th>
+                        Name
+                    </th>
+                    <th>
+                        Passport Number
+                    </th>
+                    <th>
+                        Action
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.members)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.name)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.passport_number)
+                        </td>
+                        <td>
+                            <a class='btn btn-success btn-sm' onclick="PopupForm(@item.id)"><i class="fas fa-pen"></i>Edit </a>
+                            <a class='btn btn-danger btn-sm' onclick="Delete(@item.id)"><i class="fas fa-trash"></i>Delete </a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+        <div class="col-md-6">
+            <label>Total Amount (Leader and @Model.members.Count Group Members) </label>
+            @Html.EditorFor(model => model.totalAmount, new { htmlAttributes = new { @class = "form-control", @autocomplete = "off", disabled = "disabled" } })
+            @Html.ValidationMessageFor(model => model.totalAmount, "", new { @class = "text-danger" })
+        </div>
+    </div>
+</div>
+@*<div class="card">
+    <div class="card-header bg-blue">
+        <div class="col-md-6">
+            <h4>Details of Payment</h4>
+        </div>
+    </div>
+    <div class="card-body">
+        <div class="row">
+            <div class="col-md-6">
+                <label>Amount Per Person</label>
+                @Html.EditorFor(model => model.clientPaymentForOne, new { htmlAttributes = new { @class = "form-control", @autocomplete = "off", disabled = "disabled" } })
+                @Html.ValidationMessageFor(model => model.clientPaymentForOne, "", new { @class = "text-danger" })
+            </div>
+           
+        </div>
+    </div>
+</div>*@
+<br/>
+
+
+
 
 
 <div class="modal fade bd-example-modal-lg" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
@@ -93,11 +147,7 @@
     </div>
 </div>
 
-<div class="col-md-6">
-    <label>Total Amount (Leader and @Model.members.Count Group Members) </label>
-    @Html.EditorFor(model => model.totalAmount, new { htmlAttributes = new { @class = "form-control", @autocomplete = "off", disabled = "disabled" } })
-    @Html.ValidationMessageFor(model => model.totalAmount, "", new { @class = "text-danger" })
-</div>
+
 
 @section scripts{
 
@@ -133,6 +183,27 @@
                 });
             $("#exampleModal").modal("show");
         }
+        function Delete(id) {
+
+    if (confirm('Are You Sure You want Delete this Record ?')) {
+        $.ajax({
+            type: "POST",
+            url: '@Url.Action("Delete", "GroupMembers")/' + id,
+            success: function (data) {
+                if (data.success) {
+
+                    location.reload(true);
+
+                    $.notify(data.message, {
+                        globalPosition: "top center",
+                        className: "success"
+                    })
+
+                }
+            }
+        });
+    }
+}
 
     </script>
 }

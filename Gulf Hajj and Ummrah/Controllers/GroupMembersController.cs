@@ -18,7 +18,7 @@ namespace Gulf_Hajj_and_Ummrah.Controllers
             ViewBag.clientName = db.client_details_tbl.Where(x => x.id == id).FirstOrDefault().name;
             ViewBag.clientID = db.client_details_tbl.Where(x => x.id == id).FirstOrDefault().id;
             var client = db.client_details_tbl.Where(x => x.id == id).FirstOrDefault();
-            var members = db.group_of_people_details_tbl.Where(x => x.client_id == id).ToList();
+            var members = db.group_of_people_details_tbl.Where(x => x.client_id == id && x.isDeleted != true).ToList();
             double? totalAmount = client.billing_details_tbl.LastOrDefault().total_amount;
             GroupMembersViewModel groupMembers = new GroupMembersViewModel
             {
@@ -66,12 +66,14 @@ namespace Gulf_Hajj_and_Ummrah.Controllers
             
             // TODO: Add insert logic here
             obj.addmember.client_id = obj.client_Details_Tbl.id;
+            
+            
             db.group_of_people_details_tbl.Add(obj.addmember);
             db.SaveChanges();
 
             var client = db.client_details_tbl.Where(x => x.id == obj.client_Details_Tbl.id).FirstOrDefault();
             double? totalAmount = client.billing_details_tbl.LastOrDefault().clientPaymentForOne * (client.group_of_people_details_tbl.Count() + 1);
-
+            
             ;
 
             billing_details_tbl billing = new billing_details_tbl();
@@ -81,6 +83,7 @@ namespace Gulf_Hajj_and_Ummrah.Controllers
             billing.clientPaymentForOne = client.billing_details_tbl.FirstOrDefault().clientPaymentForOne;
             billing.total_amount = totalAmount;
             billing.amount_recieved = 0;
+           
             billing.amount_pending = billing.total_amount - billing.amount_recieved;
             billing.client_id = client.billing_details_tbl.FirstOrDefault().client_id;
             billing.dateRegistered = client.billing_details_tbl.FirstOrDefault().dateRegistered;
@@ -120,21 +123,21 @@ namespace Gulf_Hajj_and_Ummrah.Controllers
             }
         }
 
-        // GET: GroupMembers/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
+       
 
         // POST: GroupMembers/Delete/5
         [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
+        public ActionResult Delete(int id, GroupMembersViewModel obj)
         {
             try
             {
-                // TODO: Add delete logic here
-
-                return RedirectToAction("Index");
+                //var client = db.group_of_people_details_tbl.Where(x => x.id == obj.client_Details_Tbl.id).FirstOrDefault();
+                //double? totalAmount = client..LastOrDefault().clientPaymentForOne / (client.group_of_people_details_tbl.Count() - 1);
+                var emp = db.group_of_people_details_tbl.Find(id);
+                emp.isDeleted = true;
+                db.Entry(emp).State = EntityState.Modified;
+                db.SaveChanges();
+                return Json(new { success = true, message = "Deleted Successfully" }, JsonRequestBehavior.AllowGet);
             }
             catch
             {

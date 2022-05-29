@@ -181,27 +181,7 @@ $(document).ready(function () {
             });
         $("#exampleModal").modal("show");
 }
-function Delete(id) {
 
-    if (confirm('Are You Sure you want to Delete this Bill/Expense ?')) {
-        $.ajax({
-            type: "POST",
-            url: '@Url.Action("Delete", "Complaint")/' + id,
-            success: function (data) {
-                if (data.success) {
-
-                    location.reload(true);
-
-                    $.notify(data.message, {
-                        globalPosition: "top center",
-                        className: "success"
-                    })
-
-                }
-            }
-        });
-    }
-}
     </script>
 }
 
