@@ -7,14 +7,12 @@
 <style>
     .my_class {
         background-color: white;
-        
     }
 
     #myTable {
         font-size: 18px;
         font-weight: bold;
     }
- 
 </style>
 
 <div class="card">
@@ -23,13 +21,31 @@
             <div class="col-md-6">
                 <h4>Billing Details</h4>
             </div>
-            
+
         </div>
     </div>
     <div class="card-body">
+        <table border="0" cellspacing="5" cellpadding="5">
+            <tbody>
+                <tr>
+                    <td>Start Date:</td>
+                    <td><input type="text" id="min" name="min"></td>
+                </tr>
+                <tr>
+                    <td>End Date:</td>
+                    <td><input type="text" id="max" name="max"></td>
+                </tr>
+            </tbody>
+        </table>
         <table class="table table-bordered" id="myTable">
             <thead>
                 <tr>
+                    <th>
+                        Client Reg No
+                    </th>
+                    <th>
+                        Voucher No
+                    </th>
                     <th>
                         Client Name
                     </th>
@@ -69,6 +85,12 @@
                 @foreach (var item in Model)
                 {
                 <tr id="@item.id">
+                    <td>
+                        @Html.DisplayFor(modelItem => item.client_details_tbl.id)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.client_details_tbl.hotelVoucherNo)
+                    </td>
                     <td>
                         <a href="@Url.Action("ClientDetails","Client")/#@item.client_details_tbl.id" class="nav-link">
                             @Html.DisplayFor(modelItem => item.client_details_tbl.name)
@@ -135,52 +157,94 @@
 @section scripts{
 
     @*<script src="~/Scripts/jquery-2.0.1.js"></script>*@
+
     <script src="https://cdn.datatables.net/1.11.4/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" charset="utf8" src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.2/moment.min.js"></script>
+    <script type="text/javascript" charset="utf8" src="//cdn.datatables.net/datetime/1.1.2/js/dataTables.dateTime.min.js"></script>
+
+
     <script>
-$(document).ready(function () {
 
-    $('#myTable').DataTable({
+        var minDate, maxDate;
 
-        "createdRow": function (row, data, dataIndex, column) {
-            console.log(data[1])
-            if (data[5] == `0`) {
-                $(row).css({ backgroundColor: '#63d53d' });
+        // Custom filtering function which will search data in column four between two values
+        $.fn.dataTable.ext.search.push(
+            function (settings, data, dataIndex) {
+                var min = minDate.val();
+                var max = maxDate.val();
+                var date = new Date(data[8]);
+
+                if (
+                    (min === null && max === null) ||
+                    (min === null && date <= max) ||
+                    (min <= date && max === null) ||
+                    (min <= date && date <= max)
+                ) {
+                    return true;
+                }
+                return false;
             }
-            else {
-                $(row).css({ backgroundColor: 'red' });
-            }
-            $(row).css({ color: 'white' });
-        },
+        );
 
-        "columnDefs": [
-            { className: "my_class", "targets": [0] }
-        ]
 
-    });
+        $(document).ready(function () {
 
-    //$("td:contains(Cash)").css("color", "green");
-    //$("td:contains(-)").css("color", "red");
-});
-    function PopupForm(id) {
-        if (id > 0) {
-            document.getElementById("exampleModalLabel").innerHTML = "Edit Billing Details";
-            $("#exampleModalLabel").removeClass("fa fa-plus");
-            $("#exampleModalLabel").addClass("fa fa-pen");
-        }
-        else {
-            document.getElementById("exampleModalLabel").innerHTML = "Edit Billing Details";
-            $("#exampleModalLabel").removeClass("fa fa-pen");
-            $("#exampleModalLabel").addClass("fa fa-plus");
-        }
-        var url = "/BillingandExpense/EditBillingDetails?id=" + id;
-    var formDiv = $('#modalbody');
-    $.get(url)
-        .done(function (response) {
-            formDiv.html(response);
+            minDate = new DateTime($('#min'), {
+                format: 'MMMM Do YYYY'
+            });
+            maxDate = new DateTime($('#max'), {
+                format: 'MMMM Do YYYY'
+            });
+
+            var table = $('#myTable').DataTable({
+
+                "createdRow": function (row, data, dataIndex, column) {
+                    //console.log(data[3])
+                    if (data[7] <= `0`) {
+                        $(row).css({ backgroundColor: '#63d53d' });
+                    }
+                    else {
+                        $(row).css({ backgroundColor: 'red' });
+                    }
+                    $(row).css({ color: 'white' });
+                },
+
+
+                columnDefs: [{
+                    "defaultContent": "-",
+                    "targets": "_all",
+                    className: "my_class", "targets": [2]
+                }]
 
             });
-        $("#exampleModal").modal("show");
-}
+
+            $('#min, #max').on('change', function () {
+                table.draw();
+            });
+
+            //$("td:contains(Cash)").css("color", "green");
+            //$("td:contains(-)").css("color", "red");
+        });
+        function PopupForm(id) {
+            if (id > 0) {
+                document.getElementById("exampleModalLabel").innerHTML = "Edit Billing Details";
+                $("#exampleModalLabel").removeClass("fa fa-plus");
+                $("#exampleModalLabel").addClass("fa fa-pen");
+            }
+            else {
+                document.getElementById("exampleModalLabel").innerHTML = "Edit Billing Details";
+                $("#exampleModalLabel").removeClass("fa fa-pen");
+                $("#exampleModalLabel").addClass("fa fa-plus");
+            }
+            var url = "/BillingandExpense/EditBillingDetails?id=" + id;
+            var formDiv = $('#modalbody');
+            $.get(url)
+                .done(function (response) {
+                    formDiv.html(response);
+
+                });
+            $("#exampleModal").modal("show");
+        }
 
     </script>
 }

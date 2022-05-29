@@ -18,6 +18,12 @@
             <thead>
                 <tr>
                     <th>
+                        Client Reg No
+                    </th>
+                    <th>
+                        Voucher No
+                    </th>
+                    <th>
                         Date
                     </th>
                     <th>
@@ -35,6 +41,12 @@
                 @foreach (var item in Model)
                 {
                 <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.client_details_tbl.id)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.client_details_tbl.hotelVoucherNo)
+                    </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.date)
                     </td>

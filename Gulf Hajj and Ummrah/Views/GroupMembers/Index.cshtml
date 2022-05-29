@@ -22,7 +22,7 @@
         </div>
     </div>
     <div class="card-body">
-        <h6>Group Leader Name  @Model.client_Details_Tbl.name</h6><h6> (Reg: @Model.client_Details_Tbl.id)</h6>
+        <h6>Group Leader Name: <strong> @Model.client_Details_Tbl.name</strong></h6><h6> (Reg: @Model.client_Details_Tbl.id)</h6>
         <div class="form-horizontal">
             <div class="row">
 
@@ -99,7 +99,7 @@
             </tbody>
         </table>
         <div class="col-md-6">
-            <label>Total Amount (Leader and @Model.members.Count Group Members) </label>
+            <label>Total Amount (Leader and @Model.members.Where(x=>x.isDeleted!=true).Count() Group Members) </label>
             @Html.EditorFor(model => model.totalAmount, new { htmlAttributes = new { @class = "form-control", @autocomplete = "off", disabled = "disabled" } })
             @Html.ValidationMessageFor(model => model.totalAmount, "", new { @class = "text-danger" })
         </div>

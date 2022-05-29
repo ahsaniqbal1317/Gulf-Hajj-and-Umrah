@@ -72,9 +72,8 @@ namespace Gulf_Hajj_and_Ummrah.Controllers
             db.SaveChanges();
 
             var client = db.client_details_tbl.Where(x => x.id == obj.client_Details_Tbl.id).FirstOrDefault();
-            double? totalAmount = client.billing_details_tbl.LastOrDefault().clientPaymentForOne * (client.group_of_people_details_tbl.Count() + 1);
+            double? totalAmount = client.billing_details_tbl.LastOrDefault().clientPaymentForOne * (client.group_of_people_details_tbl.Where(x=>x.isDeleted!=true).Count() + 1);
             
-            ;
 
             billing_details_tbl billing = new billing_details_tbl();
 
@@ -82,7 +81,7 @@ namespace Gulf_Hajj_and_Ummrah.Controllers
             billing.id = client.billing_details_tbl.FirstOrDefault().id;
             billing.clientPaymentForOne = client.billing_details_tbl.FirstOrDefault().clientPaymentForOne;
             billing.total_amount = totalAmount;
-            billing.amount_recieved = 0;
+            billing.amount_recieved = client.billing_details_tbl.FirstOrDefault().amount_recieved;
            
             billing.amount_pending = billing.total_amount - billing.amount_recieved;
             billing.client_id = client.billing_details_tbl.FirstOrDefault().client_id;
@@ -137,6 +136,28 @@ namespace Gulf_Hajj_and_Ummrah.Controllers
                 emp.isDeleted = true;
                 db.Entry(emp).State = EntityState.Modified;
                 db.SaveChanges();
+                var client = db.client_details_tbl.Where(x => x.id == emp.client_id).FirstOrDefault();
+                double? totalAmount = client.billing_details_tbl.LastOrDefault().clientPaymentForOne * (client.group_of_people_details_tbl.Where(x => x.isDeleted != true).Count() + 1);
+
+
+
+                billing_details_tbl billing = new billing_details_tbl();
+
+
+                billing.id = client.billing_details_tbl.FirstOrDefault().id;
+                billing.clientPaymentForOne = client.billing_details_tbl.FirstOrDefault().clientPaymentForOne;
+                billing.total_amount = totalAmount;
+                billing.amount_recieved = client.billing_details_tbl.FirstOrDefault().amount_recieved;
+
+                billing.amount_pending = billing.total_amount - billing.amount_recieved;
+                billing.client_id = client.billing_details_tbl.FirstOrDefault().client_id;
+                billing.dateRegistered = client.billing_details_tbl.FirstOrDefault().dateRegistered;
+
+                Gulf_HUEntities db2 = new Gulf_HUEntities();
+                db2.Entry(billing).State = EntityState.Modified;
+
+                db2.SaveChanges();
+
                 return Json(new { success = true, message = "Deleted Successfully" }, JsonRequestBehavior.AllowGet);
             }
             catch

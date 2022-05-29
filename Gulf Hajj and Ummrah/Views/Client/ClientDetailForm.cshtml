@@ -6,7 +6,7 @@
 <link href="~/Content/Style.css" rel="stylesheet" />
 <div class="container-fluid">
     <div class="card">
-        <div class="card-header" style="padding-bottom: 61px;">
+        <div class="card-header" style="padding-bottom: 0px;">
             <div class="row">
                 <div class="col-md-2 logo">
 
@@ -14,20 +14,37 @@
 
                 </div>
                 <div class="col-md-7">
-                    <h1 class="text-center" style="padding-top:30px; font-family:'Segoe UI'">
+                    <h1 class="text-center" style="padding-top:30px; padding-left: 47px; font-family:'Segoe UI'">
                         Gulf Hajj and Umrah Service (Pvt). Ltd
                     </h1>
                 </div>
-                @if(@Model.picture != null)
+                @if (@Model.picture != null)
                 {
-                    <div class="col-md-3" style="padding-top:0px; padding-left:150px;">
-                        <div class="picture">
+                    <div class="col-md-3" style="padding-top:0px; padding-left:120px;">
+                        <div class="">
                             @*<p class="text-center">Photo</p>*@
                             <img src="~/UploadedDocs/@Model.picture" alt="" height=150 width=150 />
                         </div>
                     </div>
                 }
-                
+                else
+                {
+                    <div class="col-md-3" style="padding-top:20px; padding-left:120px;">
+                        <div class="picture">
+                            <p class="text-center">Photo</p>
+                        </div>
+                    </div>
+                }
+
+                <div class="row">
+                    <h6 class="text-center" style="padding-top:30px; font-family:'Segoe UI';padding-left: 50px;">
+                        Reg No: 1076
+                    </h6>
+                    <h6 class="text-center" style="padding-top:30px; font-family:'Segoe UI';padding-left: 700px;">
+                        Voucher No: 1213112
+                    </h6>
+                </div>
+
             </div>
         </div>
         <div class="card-body">
@@ -54,10 +71,16 @@
                                         Dispatched to
                                     </th>
                                     <th>
+                                        Passport Number
+                                    </th>
+                                    <th>
                                         Phone Number
                                     </th>
                                     <th>
                                         Address
+                                    </th>
+                                    <th>
+                                        Shirka
                                     </th>
                                     <th>
                                         Date
@@ -82,14 +105,18 @@
                                         @Html.DisplayFor(model => model.dispatched_to)
                                     </td>
                                     <td>
+                                        @Html.DisplayFor(model => model.passportNumber)
+                                    </td>
+                                    <td>
                                         @Html.DisplayFor(model => model.phone_number)
                                     </td>
                                     <td>
                                         @Html.DisplayFor(model => model.address)
                                     </td>
-
                                     <td>
-
+                                        @Html.DisplayFor(model => model.shirka)
+                                    </td>
+                                    <td>
                                         @Model.date.Value.ToString("d")
                                     </td>
                                     <td>
@@ -103,7 +130,7 @@
                 </div>
 
             </div>
-            @if(Model.group_of_people_details_tbl.Count >0)
+            @if(Model.group_of_people_details_tbl.Where(x=>x.isDeleted!=true).Count() >0)
             {
                 <div class="row">
 
@@ -124,7 +151,7 @@
                                     </tr>
                                 </thead>
                                 <tbody class="text-center">
-                                    @foreach (var item in Model.group_of_people_details_tbl)
+                                    @foreach (var item in Model.group_of_people_details_tbl.Where(x=>x.isDeleted != true))
                                     {
                                         <tr>
                                             <td>
@@ -218,10 +245,10 @@
                             <thead class="text-center">
                                 <tr>
                                     <th>
-                                        City
+                                        Hotel Name (Makkah)
                                     </th>
                                     <th>
-                                        Hotel Name
+                                        Hotel Name (Maddinah)
                                     </th>
                                     <th>
                                         Room Type
@@ -238,13 +265,13 @@
                             <tbody class="text-center">
                                 <tr>
                                     <td>
-                                        CITY
-                                    </td>
-                                    <td>
                                         @Html.DisplayFor(model => model.hotel_details_tbl.FirstOrDefault().hotel_name)
                                     </td>
                                     <td>
-                                        RoomTYPE
+                                        @Html.DisplayFor(model => model.hotel_details_tbl.FirstOrDefault().hotelNameMadina)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(model => model.hotel_details_tbl.FirstOrDefault().roomtype_tbl.type_of_room)
                                     </td>
                                     <td>
                                         @Html.DisplayFor(model => model.hotel_details_tbl.FirstOrDefault().checkin_time)
@@ -300,7 +327,7 @@
 
                                     </td>
                                     <td>
-                                        @Html.DisplayFor(model => model.flight_details_tbl.FirstOrDefault().airline_name)
+                                        @Html.DisplayFor(model => model.flight_details_tbl.FirstOrDefault().airline_tbl.airlineName)
                                     </td>
                                     <td>
                                         @ViewBag.DepartureFrom
@@ -353,15 +380,16 @@
                                 <tr>
                                     <td>
 
-                                        DATE
+                                        @Model.transportation_details_tbl.FirstOrDefault().date.Value.ToString("d")
+
 
                                     </td>
                                     <td>
-                                        VEHICLE TYPE
+                                        @Html.DisplayFor(model => model.transportation_details_tbl.FirstOrDefault().vechile_type)
                                     </td>
                                     <td>
 
-                                        ROUTE
+                                        @Html.DisplayFor(model => model.transportation_details_tbl.FirstOrDefault().route)
 
                                     </td>
 

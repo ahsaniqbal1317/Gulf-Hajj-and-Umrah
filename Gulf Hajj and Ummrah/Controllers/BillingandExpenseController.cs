@@ -31,11 +31,13 @@ namespace Gulf_Hajj_and_Ummrah.Controllers
             var data = db.billing_details_tbl.Where(x => x.id == emp.id).FirstOrDefault();
             emp.id = data.id;
             emp.total_amount = data.total_amount;
+            emp.amount_recieved = emp.amount_recieved + data.amount_recieved;
             emp.amount_pending = emp.total_amount - emp.amount_recieved;
             emp.client_id = data.client_id;
             emp.clientPaymentForOne = data.clientPaymentForOne;
             emp.dateRegistered = data.dateRegistered;
-            if(emp.amount_pending <= 1 && emp.amount_pending>-1)
+            
+            if(emp.amount_pending <= 1)
             {
                 emp.datePayment = DateTime.Now;
             }

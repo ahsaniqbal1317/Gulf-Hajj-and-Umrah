@@ -18,6 +18,12 @@
             <thead>
                 <tr>
                     <th>
+                        Client Reg No
+                    </th>
+                    <th>
+                        Voucher No
+                    </th>
+                    <th>
                         Airline Name
                     </th>
                     <th>
@@ -45,31 +51,37 @@
             <tbody>
                 @foreach (var item in Model)
                 {
-                    <tr>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.airline_tbl.airlineName)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.cities_tbl.cityname)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.cities_tbl.cityname)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.date)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.departure_time)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.arrival_time)
-                        </td>
-                        <td>
-                            <a href="@Url.Action("ClientDetails","Client")/#@item.client_details_tbl.id" class="nav-link">
-                                @Html.DisplayFor(modelItem => item.client_details_tbl.name)
-                            </a>
-                        </td>
-                    </tr>
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.client_details_tbl.id)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.client_details_tbl.hotelVoucherNo)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.airline_tbl.airlineName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.cities_tbl.cityname)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.cities_tbl.cityname)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.date)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.departure_time)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.arrival_time)
+                    </td>
+                    <td>
+                        <a href="@Url.Action("ClientDetails","Client")/#@item.client_details_tbl.id" class="nav-link">
+                            @Html.DisplayFor(modelItem => item.client_details_tbl.name)
+                        </a>
+                    </td>
+                </tr>
                 }
             </tbody>
 

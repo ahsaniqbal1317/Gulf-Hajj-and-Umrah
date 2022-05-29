@@ -14,7 +14,12 @@
         <table class="table table-bordered" id="myTable">
             <thead>
                 <tr>
-
+                    <th>
+                        Client Reg No
+                    </th>
+                    <th>
+                        Voucher No
+                    </th>
                     <th>
                         Hotel Name in Makkah
                     </th>
@@ -34,14 +39,20 @@
                         Client Info
                     </th>
                     @*<th>
-                        Action
-                    </th>*@
+            Action
+        </th>*@
                 </tr>
             </thead>
             <tbody>
                 @foreach (var item in Model)
                 {
                 <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.client_details_tbl.id)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.client_details_tbl.address)
+                    </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.hotel_name)
                     </td>
@@ -63,9 +74,9 @@
                         </a>
                     </td>
                     @*<td>
-                        <a class='btn btn-success btn-sm' onclick="PopupForm(@item.id)"><i class="fas fa-pen"></i>Edit </a>
-                        <a class='btn btn-danger btn-sm' onclick="Delete(@item.id)"><i class="fas fa-trash"></i>Delete </a>
-                    </td>*@
+            <a class='btn btn-success btn-sm' onclick="PopupForm(@item.id)"><i class="fas fa-pen"></i>Edit </a>
+            <a class='btn btn-danger btn-sm' onclick="Delete(@item.id)"><i class="fas fa-trash"></i>Delete </a>
+        </td>*@
                 </tr>
                 }
             </tbody>

@@ -18,7 +18,7 @@ namespace Gulf_Hajj_and_Ummrah.Controllers
         // GET: Client
         public ActionResult ClientDetails()
         {
-            var data = db.client_details_tbl.Where(x => x.isDeleted == false).ToList();
+            var data = db.client_details_tbl.Where(x => x.isDeleted != true).ToList();
             return View(data);
            
         }
@@ -90,6 +90,7 @@ namespace Gulf_Hajj_and_Ummrah.Controllers
 
               
                 model.Billing_Details_Tbl.id = data.billing_details_tbl.FirstOrDefault().id;
+                model.Billing_Details_Tbl.clientPaymentForOne = data.billing_details_tbl.FirstOrDefault().clientPaymentForOne;
             }
 
             return PartialView("AddOrEdit_PartialView_Client", model);
