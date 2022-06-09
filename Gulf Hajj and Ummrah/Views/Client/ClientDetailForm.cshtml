@@ -36,17 +36,30 @@
                     </div>
                 }
 
-                <div class="row">
-                    <h6 class="text-center" style="padding-top:30px; font-family:'Segoe UI';padding-left: 50px;">
-                        Reg No: 1076
+
+
+            </div>
+            <div class="row">
+                <div class="col-md-4">
+                    <h6 style="padding-top:30px; font-family:'Segoe UI';">
+                        Reg No: @Html.DisplayFor(model => model.id)
                     </h6>
-                    <h6 class="text-center" style="padding-top:30px; font-family:'Segoe UI';padding-left: 700px;">
+                </div>
+                <div class="col-md-4">
+                    <h6 class="text-center" style="padding-top:30px; font-family:'Segoe UI';">
                         Voucher No: 1213112
+                    </h6>
+                </div>
+                <div class="col-md-4">
+                    <h6 class="text-right" style="padding-top:30px; font-family:'Segoe UI';">
+                        Date: @Model.date.Value.ToString("d")
+
                     </h6>
                 </div>
 
             </div>
         </div>
+       
         <div class="card-body">
             <div class="row">
                 <div class="col-md-12">
@@ -68,10 +81,7 @@
                                         Name
                                     </th>
                                     <th>
-                                        Dispatched to
-                                    </th>
-                                    <th>
-                                        Passport Number
+                                        PP Number
                                     </th>
                                     <th>
                                         Phone Number
@@ -79,17 +89,17 @@
                                     <th>
                                         Address
                                     </th>
-                                    <th>
-                                        Shirka
-                                    </th>
-                                    <th>
-                                        Date
-                                    </th>
+
 
                                     <th>
                                         Reference By
                                     </th>
-
+                                    <th>
+                                        Ref. Contact
+                                    </th>
+                                    <th>
+                                        Dispatched to
+                                    </th>
                                 </tr>
                             </thead>
                             <tbody class="text-center">
@@ -102,9 +112,6 @@
 
                                     </td>
                                     <td>
-                                        @Html.DisplayFor(model => model.dispatched_to)
-                                    </td>
-                                    <td>
                                         @Html.DisplayFor(model => model.passportNumber)
                                     </td>
                                     <td>
@@ -114,13 +121,13 @@
                                         @Html.DisplayFor(model => model.address)
                                     </td>
                                     <td>
-                                        @Html.DisplayFor(model => model.shirka)
-                                    </td>
-                                    <td>
-                                        @Model.date.Value.ToString("d")
-                                    </td>
-                                    <td>
                                         @Html.DisplayFor(model => model.reference_by)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(model => model.reference_contact_number)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(model => model.dispatched_to)
                                     </td>
                                 </tr>
                             </tbody>
@@ -130,18 +137,21 @@
                 </div>
 
             </div>
-            @if(Model.group_of_people_details_tbl.Where(x=>x.isDeleted!=true).Count() >0)
+            @if (Model.group_of_people_details_tbl.Where(x => x.isDeleted != true).Count() > 0)
             {
                 <div class="row">
 
                     <div class="col-md-12">
                         <div class="card-header bg-gray">
-                            <p class="subHeading">Group Info</p>
+                            <p class="subHeading">Name of PAX and Passport Number</p>
                         </div>
                         <div class="row ">
                             <table class="table table-bordered">
                                 <thead class="text-center">
                                     <tr>
+                                        <th>
+                                            Sr No.
+                                        </th>
                                         <th>
                                             Name of Group Members
                                         </th>
@@ -151,9 +161,14 @@
                                     </tr>
                                 </thead>
                                 <tbody class="text-center">
-                                    @foreach (var item in Model.group_of_people_details_tbl.Where(x=>x.isDeleted != true))
+                                    @foreach (var item in Model.group_of_people_details_tbl.Where(x => x.isDeleted != true))
                                     {
                                         <tr>
+                                            <td>
+
+                                                @Html.DisplayFor(model => item.id)
+
+                                            </td>
                                             <td>
 
                                                 @Html.DisplayFor(model => item.name)
@@ -173,37 +188,37 @@
 
                 </div>
             }
-            
-            <div class="row">
 
-                <div class="col-md-12">
-                    <div class="card-header bg-gray">
-                        <p class="subHeading">Package Details</p>
-                    </div>
-                    <div class="row ">
-                        <table class="table table-bordered">
-                            <thead class="text-center">
-                                <tr>
-                                    <th>
-                                        Package Name
-                                    </th>
-                                    <th>
-                                        No. of Days
-                                    </th>
-                                    <th>
-                                        Date of Departure
-                                    </th>
-                                    <th>
-                                        Date of Arrival
-                                    </th>
-                                    <th>
-                                        PNR
-                                    </th>
-                                </tr>
-                            </thead>
-                            <tbody class="text-center">
-                                @foreach (var item in Model.package_details_tbl)
-                                {
+            @*<div class="row">
+
+            <div class="col-md-12">
+                <div class="card-header bg-gray">
+                    <p class="subHeading">Package Details</p>
+                </div>
+                <div class="row ">
+                    <table class="table table-bordered">
+                        <thead class="text-center">
+                            <tr>
+                                <th>
+                                    Package Name
+                                </th>
+                                <th>
+                                    No. of Days
+                                </th>
+                                <th>
+                                    Date of Departure
+                                </th>
+                                <th>
+                                    Date of Arrival
+                                </th>
+                                <th>
+                                    PNR
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody class="text-center">
+                            @foreach (var item in Model.package_details_tbl)
+                            {
                                 <tr>
                                     <td>
 
@@ -226,19 +241,19 @@
                                     </td>
 
                                 </tr>
-                                }
-                            </tbody>
-                        </table>
-                    </div>
-
+                            }
+                        </tbody>
+                    </table>
                 </div>
 
             </div>
+
+        </div>*@
             <div class="row">
 
                 <div class="col-md-12">
                     <div class="card-header bg-gray">
-                        <p class="subHeading">Hotel Information</p>
+                        <p class="subHeading">Package Details</p>
                     </div>
                     <div class="row ">
                         <table class="table table-bordered">
@@ -248,18 +263,21 @@
                                         Hotel Name (Makkah)
                                     </th>
                                     <th>
+                                        No.of Days 
+                                    </th>
+                                    <th>
                                         Hotel Name (Maddinah)
+                                    </th>
+                                    <th>
+                                        No.of Days
                                     </th>
                                     <th>
                                         Room Type
                                     </th>
+                                    <th>
+                                        Total Days
+                                    </th>
 
-                                    <th>
-                                        Check-In
-                                    </th>
-                                    <th>
-                                        Check-Out
-                                    </th>
                                 </tr>
                             </thead>
                             <tbody class="text-center">
@@ -268,17 +286,92 @@
                                         @Html.DisplayFor(model => model.hotel_details_tbl.FirstOrDefault().hotel_name)
                                     </td>
                                     <td>
+                                        @Html.DisplayFor(model => model.hotel_details_tbl.FirstOrDefault().daysMakkah)
+                                    </td>
+                                    <td>
                                         @Html.DisplayFor(model => model.hotel_details_tbl.FirstOrDefault().hotelNameMadina)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(model => model.hotel_details_tbl.FirstOrDefault().daysMadina)
                                     </td>
                                     <td>
                                         @Html.DisplayFor(model => model.hotel_details_tbl.FirstOrDefault().roomtype_tbl.type_of_room)
                                     </td>
                                     <td>
-                                        @Html.DisplayFor(model => model.hotel_details_tbl.FirstOrDefault().checkin_time)
+                                        @ViewBag.totaldays
+                                    </td>
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="row">
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>
+                                        Package P/H Cost
+                                    </th>
+                                    <th>
+                                        Airline Cost
+                                    </th>
+                                    <th>
+                                        Visa Cost
+                                    </th>
+                                    <th>
+                                        Transport Cost
+                                    </th>
+                                    <th>
+                                        P/H Cost with Ticket
+                                    </th>
+                                    <th>
+                                        No. of Pax
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(model => model.package_details_tbl.FirstOrDefault().packageCost)
                                     </td>
                                     <td>
-                                        @Html.DisplayFor(model => model.hotel_details_tbl.FirstOrDefault().checkout_time)
+                                        @Html.DisplayFor(model => model.package_details_tbl.FirstOrDefault().airlineCost)
                                     </td>
+                                    <td>
+                                        @Html.DisplayFor(model => model.package_details_tbl.FirstOrDefault().visaCost)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(model => model.package_details_tbl.FirstOrDefault().transportCost)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(model => model.package_details_tbl.FirstOrDefault().costWithTicket)
+                                    </td>
+                                    <td>12</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="row">
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>
+                                        Extra Services and Others
+                                    </th>
+                                    <th>
+                                        <b>Grand Total</b>
+                                    </th>
+
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(model => model.package_details_tbl.FirstOrDefault().other_details)
+                                    </td>
+                                    <td>12</td>
+
                                 </tr>
                             </tbody>
                         </table>
@@ -350,14 +443,11 @@
                 </div>
 
             </div>
-
-            @*PACKAGE DETAILS MISSING*@
-
             <div class="row">
 
                 <div class="col-md-12">
                     <div class="card-header bg-gray">
-                        <p class="subHeading">Car Rental/ Tranportion</p>
+                        <p class="subHeading">Details of Account</p>
                     </div>
                     <div class="row ">
                         <table class="table table-bordered">
@@ -367,31 +457,29 @@
                                         Date
                                     </th>
                                     <th>
-                                        Vechile Type
+                                        Cheque/ Draft No.
                                     </th>
                                     <th>
-                                        Route
+                                        Total Bill
                                     </th>
 
+                                    <th>
+                                        Recieved Amount
+                                    </th>
+                                    <th>
+                                        Balance
+                                    </th>
+                                    
 
                                 </tr>
                             </thead>
                             <tbody class="text-center">
                                 <tr>
-                                    <td>
-
-                                        @Model.transportation_details_tbl.FirstOrDefault().date.Value.ToString("d")
-
-
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(model => model.transportation_details_tbl.FirstOrDefault().vechile_type)
-                                    </td>
-                                    <td>
-
-                                        @Html.DisplayFor(model => model.transportation_details_tbl.FirstOrDefault().route)
-
-                                    </td>
+                                   <td>12</td>
+                                   <td>12</td>
+                                   <td>12</td>
+                                   <td>12</td>
+                                   <td>12</td>
 
                                 </tr>
                             </tbody>
@@ -404,79 +492,3 @@
         </div>
     </div>
 </div>
-
-
-
-
-@*<table border="0" cellpadding="5" cellspacing="0">
-            <tr>
-                <td style="width: 50%">
-                    <label for="First_Name"><b>First name *</b></label><br />
-                    <input name="First_Name" type="text" maxlength="50" style="width:100%;max-width: 260px" />
-                </td>
-                <td style="width: 50%">
-                    <label for="Last_Name"><b>Last name *</b></label><br />
-                    <input name="Last_Name" type="text" maxlength="50" style="width:100%;max-width: 260px" />
-                </td>
-            </tr>
-            <tr>
-                <td colspan="2">
-                    <label for="Email_Address"><b>Email *</b></label><br />
-                    <input name="Email_Address" type="text" maxlength="100" style="width:100%;max-width: 535px" />
-                </td>
-            </tr>
-            <tr>
-                <td colspan="2">
-                    <label for="Portfolio"><b>Portfolio website</b></label><br />
-                    <input name="Portfolio" type="text" maxlength="255" value="http://" style="width:100%;max-width: 535px" />
-                </td>
-            </tr>
-            <tr>
-                <td colspan="2">
-                    <label for="Position"><b>Position you are applying for *</b></label><br />
-                    <input name="Position" type="text" maxlength="100" style="width:100%;max-width: 535px" />
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <label for="Salary"><b>Salary requirements</b></label><br /> <input name="Salary" type="text" maxlength="50" style="width:100%;max-width: 260px" />
-                </td>
-                <td>
-                    <label for="StartDate"><b>When can you start?</b></label><br />
-                    <input name="StartDate" type="text" maxlength="50" style="width:100%;max-width: 260px" />
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <label for="Phone"><b>Phone *</b></label><br />
-                    <input name="Phone" type="text" maxlength="50" style="width:100%;max-width: 260px" />
-                </td>
-                <td>
-                    <label for="Fax"><b>Fax</b></label><br />
-                    <input name="Fax" type="text" maxlength="50" style="width:100%;max-width: 260px" />
-                </td>
-            </tr>
-            <tr>
-                <td colspan="2">
-                    <label for="Relocate"><b>Are you willing to relocate?</b></label><br />
-                    <input name="Relocate" type="radio" value="Yes" checked="checked" /> Yes
-                    <input name="Relocate" type="radio" value="No" /> No
-                    <input name="Relocate" type="radio" value="NotSure" /> Not sure
-                </td>
-            </tr>
-            <tr>
-                <td colspan="2">
-                    <label for="Organization"><b>Last company you worked for</b></label><br />
-                    <input name="Organization" type="text" maxlength="100" style="width:100%;max-width: 535px" />
-                </td>
-            </tr>
-            <tr>
-                <td colspan="2">
-                    <label for="Reference"><b>Reference / Comments / Questions</b></label><br />
-    <textarea name="Reference" rows="7" cols="40" style="width:100%;max-width: 535px"></textarea>
-                </td>
-            </tr>
-
-        </table>*@
-
-

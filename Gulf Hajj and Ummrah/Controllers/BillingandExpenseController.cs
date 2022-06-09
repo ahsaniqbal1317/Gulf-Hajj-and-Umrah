@@ -10,7 +10,7 @@ namespace Gulf_Hajj_and_Ummrah.Controllers
 {
     public class BillingandExpenseController : Controller
     {
-        Gulf_HUEntities db = new Gulf_HUEntities();
+        Gulf_HUEntities1 db = new Gulf_HUEntities1();
         // GET: BillingandExpense
         public ActionResult BillingList()
         {
@@ -42,7 +42,7 @@ namespace Gulf_Hajj_and_Ummrah.Controllers
                 emp.datePayment = DateTime.Now;
             }
             emp.profit_loss = emp.amount_recieved - emp.expense;
-            Gulf_HUEntities db2 = new Gulf_HUEntities();
+            Gulf_HUEntities1 db2 = new Gulf_HUEntities1();
             db2.Entry(emp).State = EntityState.Modified;
             
             db2.SaveChanges();

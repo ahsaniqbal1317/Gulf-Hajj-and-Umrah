@@ -17,8 +17,11 @@ namespace Gulf_Hajj_and_Ummrah.Models
         public int id { get; set; }
         public string package_name { get; set; }
         public string no_of_days { get; set; }
-        public Nullable<System.DateTime> date_of_departure { get; set; }
-        public Nullable<System.DateTime> date_of_arrival { get; set; }
+        public string packageCost { get; set; }
+        public string airlineCost { get; set; }
+        public string visaCost { get; set; }
+        public string transportCost { get; set; }
+        public string costWithTicket { get; set; }
         public string pnr { get; set; }
         public string other_details { get; set; }
         public Nullable<int> airline_id { get; set; }

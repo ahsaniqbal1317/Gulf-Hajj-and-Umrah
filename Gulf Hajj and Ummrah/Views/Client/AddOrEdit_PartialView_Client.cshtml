@@ -124,28 +124,29 @@
                     @Html.ValidationMessageFor(model => model.hotel_name, "", new { @class = "text-danger" })
                 </div>
                 <div class="col-md-6">
+                    <label>Days in Makkah </label>
+                    @Html.EditorFor(model => model.daysMakkah, new { htmlAttributes = new { @class = "form-control", @autocomplete = "off" } })
+                    @Html.ValidationMessageFor(model => model.daysMakkah, "", new { @class = "text-danger" })
+                </div>
+
+            </div>
+
+            <div class="row">
+                <div class="col-md-6">
                     <label>Hotel Name (Madina) </label>
                     @Html.EditorFor(model => model.hotelNameMadina, new { htmlAttributes = new { @class = "form-control", @autocomplete = "off", @placeholder = "Enter Hotel Name in Madina" } })
                     @Html.ValidationMessageFor(model => model.hotelNameMadina, "", new { @class = "text-danger" })
+                </div>
+                <div class="col-md-6">
+                    <label>Days in Madina </label>
+                    @Html.EditorFor(model => model.daysMadina, new { htmlAttributes = new { @class = "form-control", @autocomplete = "off" } })
+                    @Html.ValidationMessageFor(model => model.daysMadina, "", new { @class = "text-danger" })
                 </div>
             </div>
             <div class="col-md-12">
                 <label>Room Type </label>
                 @Html.DropDownListFor(model => model.roomtype_id, ViewBag.roomTypeList as SelectList, "-----Select Roomtype-----", new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.roomtype_id, "", new { @class = "text-danger" })
-            </div>
-
-            <div class="row">
-                <div class="col-md-6">
-                    <label>Check-In Time </label>
-                    @Html.EditorFor(model => model.checkin_time, new { htmlAttributes = new { @class = "form-control", @autocomplete = "off", @type = "time" } })
-                    @Html.ValidationMessageFor(model => model.checkin_time, "", new { @class = "text-danger" })
-                </div>
-                <div class="col-md-6">
-                    <label>Check-Out Time </label>
-                    @Html.EditorFor(model => model.checkout_time, new { htmlAttributes = new { @class = "form-control", @autocomplete = "off", @type = "time" } })
-                    @Html.ValidationMessageFor(model => model.checkout_time, "", new { @class = "text-danger" })
-                </div>
             </div>
         </div>
         <div class="card-body">
@@ -170,27 +171,45 @@
             </div>
             <div class="row">
                 <div class="col-md-6">
-                    <label>Date of Arrival </label>
-                    @Html.TextBox("date_of_arrival", Model.date_of_arrival, "{0:yyyy-MM-dd}", new { @class = "form-control", @autocomplete = "off", @type = "date" })
-                    @Html.ValidationMessageFor(model => model.date_of_arrival, "", new { @class = "text-danger" })
+                    <label>Package Cost </label>
+                    @Html.EditorFor(model => model.packageCost, new { htmlAttributes = new { @class = "form-control", @autocomplete = "off", @placeholder = "Enter Package Cost" } })
+                    @Html.ValidationMessageFor(model => model.packageCost, "", new { @class = "text-danger" })
                 </div>
                 <div class="col-md-6">
-                    <label>Date of Departure </label>
-                    @Html.TextBox("date_of_departure", Model.date_of_departure, "{0:yyyy-MM-dd}", new { @class = "form-control", @autocomplete = "off", @type = "date" })
-                    @Html.ValidationMessageFor(model => model.date_of_departure, "", new { @class = "text-danger" })
+                    <label>Airline Cost </label>
+                    @Html.EditorFor(model => model.airlineCost, new { htmlAttributes = new { @class = "form-control", @autocomplete = "off", @placeholder = "Enter Airline" } })
+                    @Html.ValidationMessageFor(model => model.airlineCost, "", new { @class = "text-danger" })
                 </div>
             </div>
             <div class="row">
+                <div class="col-md-6">
+                    <label>Visa Cost</label>
+                    @Html.EditorFor(model => model.visaCost, new { htmlAttributes = new { @class = "form-control", @autocomplete = "off", @placeholder = "Enter Visa Cost" } })
+                    @Html.ValidationMessageFor(model => model.visaCost, "", new { @class = "text-danger" })
+                </div>
+                <div class="col-md-6">
+                    <label>Transport Cost </label>
+                    @Html.EditorFor(model => model.transportCost, new { htmlAttributes = new { @class = "form-control", @autocomplete = "off", @placeholder = "Enter Transport Cost" } })
+                    @Html.ValidationMessageFor(model => model.transportCost, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="row">
+
+                <div class="col-md-6">
+                    <label>Cost with Ticket </label>
+                    @Html.EditorFor(model => model.costWithTicket, new { htmlAttributes = new { @class = "form-control", @autocomplete = "off", @placeholder = "Enter Ticket Cost" } })
+                    @Html.ValidationMessageFor(model => model.costWithTicket, "", new { @class = "text-danger" })
+                </div>
                 <div class="col-md-6">
                     <label>PNR </label>
                     @Html.EditorFor(model => model.pnr, new { htmlAttributes = new { @class = "form-control", @autocomplete = "off", @placeholder = "Enter PNR" } })
                     @Html.ValidationMessageFor(model => model.pnr, "", new { @class = "text-danger" })
                 </div>
-                <div class="col-md-6">
-                    <label>Other Details </label>
-                    @Html.EditorFor(model => model.other_details, new { htmlAttributes = new { @class = "form-control", @autocomplete = "off", @placeholder = "Enter Other Details" } })
-                    @Html.ValidationMessageFor(model => model.other_details, "", new { @class = "text-danger" })
-                </div>
+            </div>
+            <div class="col-md-12">
+                <label>Other Details </label>
+                @Html.EditorFor(model => model.other_details, new { htmlAttributes = new { @class = "form-control", @autocomplete = "off", @placeholder = "Enter Other Details" } })
+                @Html.ValidationMessageFor(model => model.other_details, "", new { @class = "text-danger" })
             </div>
         </div>
         <div class="card-body">

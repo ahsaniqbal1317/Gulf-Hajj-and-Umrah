@@ -9,7 +9,7 @@ namespace Gulf_Hajj_and_Ummrah.Controllers
 {
     public class TransportationController : Controller
     {
-        Gulf_HUEntities db = new Gulf_HUEntities();
+        Gulf_HUEntities1 db = new Gulf_HUEntities1();
         // GET: Transportation
         public ActionResult TranportationList()
         {

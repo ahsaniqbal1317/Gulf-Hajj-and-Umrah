@@ -10,7 +10,7 @@ namespace Gulf_Hajj_and_Ummrah.Controllers
 {
     public class AdministrationController : Controller
     {
-        Gulf_HUEntities db = new Gulf_HUEntities();
+        Gulf_HUEntities1 db = new Gulf_HUEntities1();
         // GET: Administration
 
         // Cities list

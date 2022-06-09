@@ -11,7 +11,7 @@ namespace Gulf_Hajj_and_Ummrah.Controllers
     public class GroupMembersController : Controller
     {
 
-        Gulf_HUEntities db = new Gulf_HUEntities();
+        Gulf_HUEntities1 db = new Gulf_HUEntities1();
         // GET: GroupMembers
         public ActionResult Index(int id)
         {
@@ -87,7 +87,7 @@ namespace Gulf_Hajj_and_Ummrah.Controllers
             billing.client_id = client.billing_details_tbl.FirstOrDefault().client_id;
             billing.dateRegistered = client.billing_details_tbl.FirstOrDefault().dateRegistered;
 
-            Gulf_HUEntities db2 = new Gulf_HUEntities();
+            Gulf_HUEntities1 db2 = new Gulf_HUEntities1();
             db2.Entry(billing).State = EntityState.Modified;
 
             db2.SaveChanges();
@@ -153,7 +153,7 @@ namespace Gulf_Hajj_and_Ummrah.Controllers
                 billing.client_id = client.billing_details_tbl.FirstOrDefault().client_id;
                 billing.dateRegistered = client.billing_details_tbl.FirstOrDefault().dateRegistered;
 
-                Gulf_HUEntities db2 = new Gulf_HUEntities();
+                Gulf_HUEntities1 db2 = new Gulf_HUEntities1();
                 db2.Entry(billing).State = EntityState.Modified;
 
                 db2.SaveChanges();

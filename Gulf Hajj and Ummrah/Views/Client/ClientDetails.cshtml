@@ -37,30 +37,33 @@
                     <th>
                         Name
                     </th>
-                    <th>
+                    @*<th>
                         Dispatched to
-                    </th>
+                    </th>*@
                     <th>
                         Passport Number
                     </th>
-                    <th>
+                    @*<th>
                         Hotel Voucher Number
-                    </th>
+                    </th>*@
                     <th>
                         Phone Number
                     </th>
-                    <th>
+                    @*<th>
                         Address
-                    </th>
+                    </th>*@
                     <th>
                         Date
                     </th>
                     <th>
-                        Passport PDF
+                        Shirka
                     </th>
                     <th>
-                        Picture
+                        Passport PDF
                     </th>
+                    @*<th>
+                        Picture
+                    </th>*@
                     <th>
                         Reference By
                     </th>
@@ -85,27 +88,29 @@
                             @Html.DisplayFor(modelItem => item.name)
                         </a>
                     </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.dispatched_to)
-                    </td>
+                    @*<td>
+            @Html.DisplayFor(modelItem => item.dispatched_to)
+        </td>*@
                     <td>
                         @Html.DisplayFor(modelItem => item.passportNumber)
                     </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.hotelVoucherNo)
-                    </td>
+                    @*<td>
+            @Html.DisplayFor(modelItem => item.hotelVoucherNo)
+        </td>*@
                     <td>
                         @Html.DisplayFor(modelItem => item.phone_number)
                     </td>
-                    <td>
+                    @*<td>
                         @Html.DisplayFor(modelItem => item.address)
-                    </td>
+                    </td>*@
 
                     <td>
                         @*@Convert.ToString(string.Format("{0:dd/MM/yyyy}", item.date))*@
                         @Html.DisplayFor(modelItem => item.date)
                     </td>
-
+                    <td>
+                        @Html.DisplayFor(modelItem => item.shirka)
+                    </td>
 
 
                     @if (item.passport_doc != null && item.passport_doc.Length > 0)
@@ -120,18 +125,18 @@
                             No File Uploaded
                         </td>
                     }
-                    @if (item.picture != null && item.picture.Length > 0)
-                    {
-                        <td>
-                            <a target="_blank" href="@Url.Content("~/uploadedDocs/"+item.picture)">View Picture</a>
-                        </td>
-                    }
-                    else
-                    {
-                        <td>
-                            No Picture Uploaded
-                        </td>
-                    }
+                    @*@if (item.picture != null && item.picture.Length > 0)
+        {
+            <td>
+                <a target="_blank" href="@Url.Content("~/uploadedDocs/"+item.picture)">View Picture</a>
+            </td>
+        }
+        else
+        {
+            <td>
+                No Picture Uploaded
+            </td>
+        }*@
 
 
                     <td>
@@ -141,9 +146,9 @@
                         @Html.DisplayFor(modelItem => item.reference_contact_number)
                     </td>
                     <td>
-                        <a class='btn btn-success btn-sm' onclick="PopupForm(@item.id)"><i class="fas fa-pen"></i> Edit </a>
-                        <a class='btn btn-danger btn-sm' onclick="Delete(@item.id)"><i class="fas fa-trash"></i> Delete </a>
-                        <a class='btn btn-primary btn-sm' href="@Url.Content("/GroupMembers/Index/" + item.id)"><i class="fas fa-plus"></i> Member </a>
+                        <a class='btn btn-success btn-sm' onclick="PopupForm(@item.id)"><i class="fas fa-pen"></i> </a>
+                        <a class='btn btn-danger btn-sm' onclick="Delete(@item.id)"><i class="fas fa-trash"></i> </a>
+                        <a class='btn btn-primary btn-sm' href="@Url.Content("/GroupMembers/Index/" + item.id)"><i class="fas fa-plus"></i> </a>
 
                     </td>
                 </tr>

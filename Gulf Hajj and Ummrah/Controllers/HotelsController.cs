@@ -9,7 +9,7 @@ namespace Gulf_Hajj_and_Ummrah.Controllers
 {
     public class HotelsController : Controller
     {
-        Gulf_HUEntities db = new Gulf_HUEntities();
+        Gulf_HUEntities1 db = new Gulf_HUEntities1();
             // GET: Hotels
         public ActionResult HotelList()
         {

@@ -14,7 +14,7 @@ namespace Gulf_Hajj_and_Ummrah.Controllers
 {
     public class ClientController : Controller
     {
-        Gulf_HUEntities db = new Gulf_HUEntities();
+        Gulf_HUEntities1 db = new Gulf_HUEntities1();
         // GET: Client
         public ActionResult ClientDetails()
         {
@@ -63,14 +63,17 @@ namespace Gulf_Hajj_and_Ummrah.Controllers
                 model.hotel_name = data.hotel_details_tbl.FirstOrDefault().hotel_name;
                 model.hotelNameMadina = data.hotel_details_tbl.FirstOrDefault().hotelNameMadina;
                 model.roomtype_id = data.hotel_details_tbl.FirstOrDefault().roomtype_id;
-                model.checkin_time = data.hotel_details_tbl.FirstOrDefault().checkin_time;
-                model.checkout_time = data.hotel_details_tbl.FirstOrDefault().checkout_time;
+                model.daysMakkah = data.hotel_details_tbl.FirstOrDefault().daysMakkah;
+                model.daysMadina = data.hotel_details_tbl.FirstOrDefault().daysMadina;
 
                 model.packageid = data.package_details_tbl.FirstOrDefault().id;
                 model.package_name = data.package_details_tbl.FirstOrDefault().package_name;
                 model.no_of_days = data.package_details_tbl.FirstOrDefault().no_of_days;
-                model.date_of_departure = data.package_details_tbl.FirstOrDefault().date_of_departure;
-                model.date_of_arrival = data.package_details_tbl.FirstOrDefault().date_of_arrival;
+                model.packageCost = data.package_details_tbl.FirstOrDefault().packageCost;
+                model.airlineCost = data.package_details_tbl.FirstOrDefault().airlineCost;
+                model.visaCost = data.package_details_tbl.FirstOrDefault().visaCost;
+                model.transportCost = data.package_details_tbl.FirstOrDefault().transportCost;
+                model.costWithTicket = data.package_details_tbl.FirstOrDefault().costWithTicket;
                 model.pnr = data.package_details_tbl.FirstOrDefault().pnr;
                 model.other_details = data.package_details_tbl.FirstOrDefault().other_details;
 
@@ -109,6 +112,8 @@ namespace Gulf_Hajj_and_Ummrah.Controllers
 
                 List<airline_tbl> airlinelist = db.airline_tbl.ToList();
                 ViewBag.AirlineList = new SelectList(airlinelist, "id", "airlineName");
+
+                
                 //client table detail save here
                 client_details_tbl client = new client_details_tbl();
                 client.id = model.clientid;
@@ -143,7 +148,7 @@ namespace Gulf_Hajj_and_Ummrah.Controllers
 
                 }
 
-                Gulf_HUEntities db2 = new Gulf_HUEntities();
+                Gulf_HUEntities1 db2 = new Gulf_HUEntities1();
                 if (model.clientid != 0)
                 {
                     
@@ -172,10 +177,13 @@ namespace Gulf_Hajj_and_Ummrah.Controllers
                 hotel.hotel_name = model.hotel_name;
                 hotel.hotelNameMadina = model.hotelNameMadina;
                 hotel.roomtype_id = model.roomtype_id;
-                hotel.checkin_time = model.checkin_time;
-                hotel.checkout_time = model.checkout_time;
+                hotel.daysMakkah = model.daysMakkah;
+                hotel.daysMadina = model.daysMadina;
                 hotel.isDeleted = false;
                 hotel.client_id = client.id;
+                var totaldays = hotel.daysMadina + hotel.daysMakkah;
+                ViewBag.totaldays = totaldays;
+
 
                 if (model.clientid != 0)
                 {
@@ -192,8 +200,12 @@ namespace Gulf_Hajj_and_Ummrah.Controllers
                 package.id = model.packageid;
                 package.package_name = model.package_name;
                 package.no_of_days = model.no_of_days;
-                package.date_of_departure = model.date_of_departure;
-                package.date_of_arrival = model.date_of_arrival;
+                package.packageCost = model.packageCost;
+                package.airlineCost = model.airlineCost;
+                package.visaCost = model.visaCost;
+                package.transportCost = model.transportCost;
+                package.costWithTicket = model.costWithTicket;
+                
                 package.pnr = model.pnr;
                 package.other_details = model.other_details;
                 package.isDeleted = false;
