@@ -30,6 +30,8 @@ namespace Gulf_Hajj_and_Ummrah.Models
         [Required]
         //[RegularExpression(@"^(\d\d\d\d\d\d\d\d\d\d\d)?$", ErrorMessage = "Please Enter Valid Phone NO")]
         public string phone_number { get; set; }
+
+        public string whatsAppNumber { get; set; }
         [Required]
         public string address { get; set; }
         public Nullable<System.DateTime> date { get; set; }

@@ -52,6 +52,7 @@ namespace Gulf_Hajj_and_Ummrah.Controllers
                 model.passportNumber = data.passportNumber;
                 model.hotelVoucherNo = data.hotelVoucherNo;
                 model.phone_number = data.phone_number;
+                model.whatsAppNumber = data.whatsAppNumber;
                 model.address = data.address;
                 model.reference_by = data.reference_by;
                 model.reference_contact_number = data.reference_contact_number;
@@ -80,11 +81,15 @@ namespace Gulf_Hajj_and_Ummrah.Controllers
                 model.Fid = data.flight_details_tbl.FirstOrDefault().id;
                 model.ticketNo = data.flight_details_tbl.FirstOrDefault().ticketNo;
                 model.airline_name = data.flight_details_tbl.FirstOrDefault().airline_name;
+                model.airlineNameReturn = data.flight_details_tbl.FirstOrDefault().airlineNameReturn;
                 model.departure_from = data.flight_details_tbl.FirstOrDefault().departure_from;
+                model.returnDeparture = data.flight_details_tbl.FirstOrDefault().returnDeparture;
                 model.arrirved_at = data.flight_details_tbl.FirstOrDefault().arrirved_at;
+                model.returnArrival = data.flight_details_tbl.FirstOrDefault().returnArrival;
                 model.departure_time = data.flight_details_tbl.FirstOrDefault().departure_time;
                 model.arrival_time = data.flight_details_tbl.FirstOrDefault().arrival_time;
-                model.date = data.flight_details_tbl.FirstOrDefault().date;
+                model.dateOfFlight = data.flight_details_tbl.FirstOrDefault().date;
+                model.dateOfReturn = data.flight_details_tbl.FirstOrDefault().dateOfReturn;
 
                 model.transportationid = data.transportation_details_tbl.FirstOrDefault().id;
                 model.vechile_type = data.transportation_details_tbl.FirstOrDefault().vechile_type;
@@ -122,6 +127,7 @@ namespace Gulf_Hajj_and_Ummrah.Controllers
                 client.passportNumber = model.passportNumber;
                 client.hotelVoucherNo = model.hotelVoucherNo;
                 client.phone_number = model.phone_number;
+                client.whatsAppNumber = model.whatsAppNumber;
                 client.address = model.address;
                 client.isDeleted = false;
                 client.date = DateTime.Now;
@@ -307,8 +313,19 @@ namespace Gulf_Hajj_and_Ummrah.Controllers
             int departure = data.flight_details_tbl.FirstOrDefault().departure_from.GetValueOrDefault();
             int arrival = data.flight_details_tbl.FirstOrDefault().arrirved_at.GetValueOrDefault();
 
+            int Returndeparture = data.flight_details_tbl.FirstOrDefault().returnDeparture.GetValueOrDefault();
+            int Returnarrival = data.flight_details_tbl.FirstOrDefault().returnArrival.GetValueOrDefault();
+
             ViewBag.DepartureFrom = db.cities_tbl.Where(x => x.id == departure).FirstOrDefault().cityname;
             ViewBag.ArrivalAt = db.cities_tbl.Where(x => x.id == arrival).FirstOrDefault().cityname;
+
+            ViewBag.ReturnDepartureFrom = db.cities_tbl.Where(x => x.id == Returndeparture).FirstOrDefault().cityname;
+            ViewBag.ReturnArrivalAt = db.cities_tbl.Where(x => x.id == Returnarrival).FirstOrDefault().cityname;
+
+            var returnName = data.flight_details_tbl.FirstOrDefault().airlineNameReturn;
+            ViewBag.ReturnAirlineName = db.airline_tbl.Where(x => x.id == returnName).FirstOrDefault().airlineName;
+
+            ViewBag.totaldays = data.hotel_details_tbl.FirstOrDefault().daysMadina + data.hotel_details_tbl.FirstOrDefault().daysMakkah;
             return View(data);
         }   
         

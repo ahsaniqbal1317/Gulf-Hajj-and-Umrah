@@ -17,6 +17,7 @@ namespace Gulf_Hajj_and_Ummrah.Models
         public int id { get; set; }
         public string name { get; set; }
         public string passport_number { get; set; }
+        public string phoneNumber { get; set; }
         public Nullable<bool> isDeleted { get; set; }
         public Nullable<int> client_id { get; set; }
     

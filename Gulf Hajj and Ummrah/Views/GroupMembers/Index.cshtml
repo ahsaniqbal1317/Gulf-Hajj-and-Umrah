@@ -36,6 +36,15 @@
                     </div>
                 </div>
                 <div class="col-md-6">
+                    <div class="form-group">
+                        <label>Phone Number</label>
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.addmember.phoneNumber, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.addmember.phoneNumber, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
                     @Html.HiddenFor(model => model.client_Details_Tbl.billing_details_tbl.FirstOrDefault().id)
                     <div class="form-group">
                         <label>Passport Number</label>
@@ -73,6 +82,9 @@
                         Name
                     </th>
                     <th>
+                        Phone Number
+                    </th>
+                    <th>
                         Passport Number
                     </th>
                     <th>
@@ -83,18 +95,21 @@
             <tbody>
                 @foreach (var item in Model.members)
                 {
-                    <tr>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.name)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.passport_number)
-                        </td>
-                        <td>
-                            <a class='btn btn-success btn-sm' onclick="PopupForm(@item.id)"><i class="fas fa-pen"></i>Edit </a>
-                            <a class='btn btn-danger btn-sm' onclick="Delete(@item.id)"><i class="fas fa-trash"></i>Delete </a>
-                        </td>
-                    </tr>
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.phoneNumber)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.passport_number)
+                    </td>
+                    <td>
+                        <a class='btn btn-success btn-sm' onclick="PopupForm(@item.id)"><i class="fas fa-pen"></i>Edit </a>
+                        <a class='btn btn-danger btn-sm' onclick="Delete(@item.id)"><i class="fas fa-trash"></i>Delete </a>
+                    </td>
+                </tr>
                 }
             </tbody>
         </table>

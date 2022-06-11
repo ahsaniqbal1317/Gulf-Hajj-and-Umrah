@@ -31,6 +31,7 @@ namespace Gulf_Hajj_and_Ummrah.Models
         public string passportNumber { get; set; }
         public string hotelVoucherNo { get; set; }
         public string phone_number { get; set; }
+        public string whatsAppNumber { get; set; }
         public string address { get; set; }
         public string shirka { get; set; }
         public Nullable<System.DateTime> date { get; set; }
