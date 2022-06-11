@@ -137,14 +137,26 @@
                 </div>
 
             </div>
+
             @if (Model.group_of_people_details_tbl.Where(x => x.isDeleted != true).Count() > 0)
             {
-                <div class="row">
 
+
+                var list = Model.group_of_people_details_tbl.Where(x => x.isDeleted != true).ToList();
+                int number = (int)Math.Ceiling((double)Model.group_of_people_details_tbl.Where(x => x.isDeleted != true).ToList().Count()/2);
+                var firstList = list.Skip(0).Take(number);
+                var secondList = list.Skip(number);
+
+               
+                <div class="row">
                     <div class="col-md-12">
                         <div class="card-header bg-gray">
                             <p class="subHeading">Name of PAX and Passport Number</p>
                         </div>
+                    </div>
+
+                    <div class="col-md-6">
+
                         <div class="row ">
                             <table class="table table-bordered">
                                 <thead class="text-center">
@@ -161,7 +173,50 @@
                                     </tr>
                                 </thead>
                                 <tbody class="text-center">
-                                    @foreach (var item in Model.group_of_people_details_tbl.Where(x => x.isDeleted != true))
+                                    @foreach (var item in firstList)
+                                    {
+                                        <tr>
+                                            <td>
+
+                                                @Html.DisplayFor(model => item.id)
+
+                                            </td>
+                                            <td>
+
+                                                @Html.DisplayFor(model => item.name)
+
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(model => item.passport_number)
+                                            </td>
+
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+
+                    </div>
+
+                    <div class="col-md-6">
+
+                        <div class="row ">
+                            <table class="table table-bordered">
+                                <thead class="text-center">
+                                    <tr>
+                                        <th>
+                                            Sr No.
+                                        </th>
+                                        <th>
+                                            Name of Group Members
+                                        </th>
+                                        <th>
+                                            Passport Number
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody class="text-center">
+                                    @foreach (var item in secondList)
                                     {
                                         <tr>
                                             <td>
@@ -263,7 +318,7 @@
                                         Hotel Name (Makkah)
                                     </th>
                                     <th>
-                                        No.of Days 
+                                        No.of Days
                                     </th>
                                     <th>
                                         Hotel Name (Maddinah)
@@ -330,7 +385,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                
+
                                 <tr>
                                     <td>
                                         @Html.DisplayFor(model => model.package_details_tbl.FirstOrDefault().packageCost)
@@ -469,17 +524,17 @@
                                     <th>
                                         Balance
                                     </th>
-                                    
+
 
                                 </tr>
                             </thead>
                             <tbody class="text-center">
                                 <tr>
-                                   <td>12</td>
-                                   <td>12</td>
-                                   <td>12</td>
-                                   <td>12</td>
-                                   <td>12</td>
+                                    <td>12</td>
+                                    <td>12</td>
+                                    <td>12</td>
+                                    <td>12</td>
+                                    <td>12</td>
 
                                 </tr>
                             </tbody>
