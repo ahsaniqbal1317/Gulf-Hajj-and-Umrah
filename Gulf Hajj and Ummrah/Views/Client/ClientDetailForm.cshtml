@@ -4,19 +4,17 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 <link href="~/Content/Style.css" rel="stylesheet" />
-<div class="container-fluid">
+<div class="container-fluid" style="padding:0px;">
     <div class="card">
         <div class="card-header" style="padding-bottom: 0px;">
             <div class="row">
                 <div class="col-md-2 logo">
-
                     <img src="~/img/form-logo.jpg" class="img-circle elevation-2" alt="User Image" style="width: 100px;">
-
                 </div>
                 <div class="col-md-7">
-                    <h1 class="text-center" style="padding-top:30px; padding-left: 47px; font-family:'Segoe UI'">
+                    <h2 class="text-center" style="padding-top:30px; padding-left: 47px; font-family:'Segoe UI'">
                         Gulf Hajj and Umrah Service (Pvt). Ltd
-                    </h1>
+                    </h2>
                 </div>
                 @if (@Model.picture != null)
                 {
@@ -47,7 +45,7 @@
                 </div>
                 <div class="col-md-4">
                     <h6 class="text-center" style="padding-top:30px; font-family:'Segoe UI';">
-                        Voucher No: 1213112
+                        Voucher No: @Html.DisplayFor(model=>model.hotelVoucherNo)
                     </h6>
                 </div>
                 <div class="col-md-4">
@@ -63,7 +61,7 @@
         <div class="card-body">
             <div class="row">
                 <div class="col-md-12">
-                    <h4 class="heading">Client Information Form</h4>
+                    <h5 class="heading">Client Information Form</h5>
                 </div>
             </div>
 
@@ -438,9 +436,7 @@
             <div class="row">
 
                 <div class="col-md-12">
-                    <div class="card-header bg-gray">
-                        <p class="subHeading">Flight Details</p>
-                    </div>
+                    
                     <div class="row ">
                         <table class="table table-bordered">
                             <thead class="text-center">

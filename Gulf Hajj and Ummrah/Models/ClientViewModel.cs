@@ -28,7 +28,7 @@ namespace Gulf_Hajj_and_Ummrah.Models
         [Required]
         public string hotelVoucherNo { get; set; }
         [Required]
-        [RegularExpression(@"^(\d\d\d\d\d\d\d\d\d\d\d)?$", ErrorMessage = "Please Enter Valid Phone NO")]
+        //[RegularExpression(@"^(\d\d\d\d\d\d\d\d\d\d\d)?$", ErrorMessage = "Please Enter Valid Phone NO")]
         public string phone_number { get; set; }
         [Required]
         public string address { get; set; }
@@ -95,7 +95,10 @@ namespace Gulf_Hajj_and_Ummrah.Models
         public Nullable<System.TimeSpan> arrival_time { get; set; }
         [Required]
         public Nullable<System.DateTime> dateOfFlight { get; set; }
-
+        public Nullable<int> airlineNameReturn { get; set; }
+        public Nullable<int> returnArrival { get; set; }
+        public Nullable<int> returnDeparture { get; set; }
+        public Nullable<System.DateTime> dateOfReturn { get; set; }
         public Nullable<bool> isDeletedFlight { get; set; }
 
         //Billing Details Table

@@ -18,33 +18,34 @@ namespace Gulf_Hajj_and_Ummrah.Controllers
         }
 
         [HttpPost]
-        public ActionResult Login(string username, string password)
+        public ActionResult Login(user_tbl emp)
         {
-            var userexist = db.user_tbl.Where(x => x.username == username && x.password == password && x.isDeleted == false).FirstOrDefault();
-            if (userexist != null)
+            using (var context = new Gulf_HUEntities1())
             {
-                FormsAuthentication.SetAuthCookie(Convert.ToString(userexist.id), false);
 
-                //userexist.IsActive = true;
-                //userexist.LastLogin = DateTime.Now;
-                db.SaveChanges();
+                bool isValid = context.user_tbl.Any(x => x.username == emp.username && x.password == emp.password);
+                if (isValid)
+                {
+                    FormsAuthentication.SetAuthCookie(emp.username, false);
 
-                //if (returnUrl == "")
-                //{
-                // var role = db.tbl_AppFunctions.Where(x => x.tbl_RoleFunction.Where(a => a.RoleId == userexist.Role).FirstOrDefault().RoleId == userexist.Role).FirstOrDefault();
+                    //var data = from user in context.User_tbl where user.Email == emp.Email select user;
 
-                return RedirectToAction("ClientDetails", "Client");
-                //}
-                //else
-                //{
-                //    return Redirect(Url.Content(returnUrl));
-                //}
+                    var personnelIds = context.user_tbl.Where(u => u.username == emp.username);
+                    
+                   
+
+                    return RedirectToAction("ClientDetails", "Client");
+                }
+                ViewBag.ErrorMessage = "Invalid Username and Password";
+                return View();
             }
-            else
-            {
-                ViewBag.msg = "Username or Password is InCorrect...Retry with correct Credential";
-            }
-            return View();
+        }
+
+       
+        public ActionResult Logout()
+        {
+            FormsAuthentication.SignOut();
+            return RedirectToAction("Login");
         }
     }
 }

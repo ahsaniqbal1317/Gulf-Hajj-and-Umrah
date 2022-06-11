@@ -16,7 +16,7 @@ namespace Gulf_Hajj_and_Ummrah
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
-                defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
+                defaults: new { controller = "Client", action = "ClientDetails", id = UrlParameter.Optional }
             );
         }
     }

@@ -24,17 +24,19 @@
                         Hotel Name in Makkah
                     </th>
                     <th>
+                        Days in Makkah
+                    </th>
+                    <th>
                         Hotel Name in Madina
+                    </th>
+                    <th>
+                        Days in Madina
                     </th>
                     <th>
                         Room Type
                     </th>
-                    <th>
-                        Check-In Time
-                    </th>
-                    <th>
-                        Check-Out Time
-                    </th>
+                    
+
                     <th>
                         Client Info
                     </th>
@@ -57,17 +59,19 @@
                         @Html.DisplayFor(modelItem => item.hotel_name)
                     </td>
                     <td>
+                        @Html.DisplayFor(modelItem => item.daysMakkah)
+                    </td>
+                    <td>
                         @Html.DisplayFor(modelItem => item.hotelNameMadina)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.daysMadina)
                     </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.roomtype_tbl.type_of_room)
                     </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.checkin_time)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.checkout_time)
-                    </td>
+
+
                     <td>
                         <a href="@Url.Action("ClientDetails","Client")/#@item.client_details_tbl.id" class="nav-link">
                             @Html.DisplayFor(modelItem => item.client_details_tbl.name)

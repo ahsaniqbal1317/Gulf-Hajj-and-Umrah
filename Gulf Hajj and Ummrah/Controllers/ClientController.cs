@@ -233,6 +233,10 @@ namespace Gulf_Hajj_and_Ummrah.Controllers
                 flight.departure_time = model.departure_time;
                 flight.arrival_time = model.arrival_time;
                 flight.date = model.dateOfFlight;
+                flight.airlineNameReturn = model.airlineNameReturn;
+                flight.returnDeparture = model.returnDeparture;
+                flight.returnArrival = model.returnArrival;
+                flight.dateOfReturn = model.dateOfReturn;
                 flight.isDeleted = false;
                 flight.client_id = client.id;
 
@@ -332,5 +336,7 @@ namespace Gulf_Hajj_and_Ummrah.Controllers
             //return RedirectToAction("ClientDetails", "Client");
             return View();
         }
+
+       
     }
 }

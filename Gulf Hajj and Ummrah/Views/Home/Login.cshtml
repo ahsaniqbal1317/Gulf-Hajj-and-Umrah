@@ -7,7 +7,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Login V1</title>
+    <title>GHU Login</title>
     
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -37,7 +37,7 @@
                     <img src="~/img/form-logo.jpg" alt="IMG">
                 </div>
 
-                <form class="login100-form validate-form">
+                <form method="post" class="login100-form validate-form">
                     <span class="login100-form-title">
                         Member Login
                     </span>
@@ -57,6 +57,7 @@
                             <i class="fa fa-lock" aria-hidden="true"></i>
                         </span>
                     </div>
+                    <h6 class="text-danger">@ViewBag.ErrorMessage</h6>
 
                     <div class="container-login100-form-btn">
                         <button class="login100-form-btn">
@@ -65,20 +66,20 @@
                     </div>
 
                     @*<div class="text-center p-t-12">
-                        <span class="txt1">
-                            Forgot
-                        </span>
-                        <a class="txt2" href="#">
-                            Username / Password?
-                        </a>
-                    </div>*@
+            <span class="txt1">
+                Forgot
+            </span>
+            <a class="txt2" href="#">
+                Username / Password?
+            </a>
+        </div>*@
 
                     @*<div class="text-center p-t-136">
-                        <a class="txt2" href="#">
-                            Create your Account
-                            <i class="fa fa-long-arrow-right m-l-5" aria-hidden="true"></i>
-                        </a>
-                    </div>*@
+            <a class="txt2" href="#">
+                Create your Account
+                <i class="fa fa-long-arrow-right m-l-5" aria-hidden="true"></i>
+            </a>
+        </div>*@
                 </form>
             </div>
         </div>
