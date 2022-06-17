@@ -1,0 +1,146 @@
+﻿@model Gulf_Hajj_and_Ummrah.Models.ClientViewModel
+@{
+    ViewBag.Title = "PackageCostDetail";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<link href="~/Content/Style.css" rel="stylesheet" />
+
+<div class="container-fluid">
+    <div class="card-header">
+        <div class="row">
+            <div class="col-md-2 logo">
+                <img src="~/img/form-logo.jpg" class="img-circle elevation-2" alt="User Image" style="width: 100px;">
+            </div>
+            <div class="col-md-7">
+                <h2 class="text-center" style="padding-top:30px; padding-left: 47px; font-family:'Segoe UI'">
+                    Gulf Hajj and Umrah Service (Pvt). Ltd
+                </h2>
+            </div>
+        </div>
+    </div>
+    <div class="card">
+        <div class="row">
+            <div class="col-md-6">
+                <h6>Group Leader Name: <strong>@Model.name</strong></h6>
+            </div>
+            <div class="col-md-6">
+                <h6>Reg: @Model.clientid</h6>
+            </div>
+        </div>
+        <div class="card-header bg-dark">
+            <div class="row">
+                <div class="col-md-6">
+                    <h4>Package Cost and Profit/Loss </h4>
+                </div>
+            </div>
+        </div>
+        <div class="card-body">
+
+            <div class="card-header bg-cyan">
+                <h5>Makkah Hotel Expense</h5>
+            </div>
+
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Per Day Fee(SAR)</th>
+                        <th>Days</th>
+                        <th>Current Price(SAR)</th>
+                        <th>Total(SAR)</th>
+                        <th>Total (PKR)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="card-header bg-cyan">
+                <h5>Madina Hotel Expense</h5>
+            </div>
+
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Per Day Fee(SAR)</th>
+                        <th>Days</th>
+                        <th>Current Price(SAR)</th>
+                        <th>Total(SAR)</th>
+                        <th>Total (PKR)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="card-header bg-cyan">
+                <h5>Other Expenses</h5>
+            </div>
+
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Transport Cost</th>
+                        <th>Ticket Cost</th>
+                        <th>Other Expense</th>
+                        <th>No.of Ticket</th>
+                        <th>Total</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="card-header bg-cyan">
+                <h5>Profit/Loss</h5>
+            </div>
+
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Recieved Amount</th>
+                        <th>Package Cost</th>
+                        <th>Profit/Loss</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+</div>
+
+
+
+
+
+
+
+

@@ -23,6 +23,11 @@ namespace Gulf_Hajj_and_Ummrah.Controllers
            
         }
 
+        public ActionResult Details()
+        {
+            return View();
+        }
+
         [HttpGet]
         public ActionResult AddOrEdit(int id)
         {
@@ -303,7 +308,6 @@ namespace Gulf_Hajj_and_Ummrah.Controllers
             return RedirectToAction("ClientDetails","Client");
         }
 
-
         [HttpGet]
         public ActionResult ClientDetailForm(int id)
         {
@@ -354,6 +358,10 @@ namespace Gulf_Hajj_and_Ummrah.Controllers
             return View();
         }
 
-       
+       public ActionResult PackageCostDetail()
+        {
+
+            return View();
+        }
     }
 }

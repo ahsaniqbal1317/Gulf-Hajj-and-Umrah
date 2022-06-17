@@ -12,6 +12,7 @@
             </div>
             <div class="col-md-6">
                 <button type="button" style="margin-bottom:10px;float:right;" class="btn btn-primary" onclick="PopupForm(0)"><i class="fas fa-plus"></i> Add New</button>
+
             </div>
         </div>
     </div>
@@ -32,7 +33,7 @@
             <thead>
                 <tr>
                     <th>
-                        Reg No
+                        Reg#
                     </th>
                     <th>
                         Name
@@ -41,13 +42,13 @@
                         Dispatched to
                     </th>*@
                     <th>
-                        Passport Number
+                        PP No.
                     </th>
                     @*<th>
                         Hotel Voucher Number
                     </th>*@
                     <th>
-                        Phone Number
+                        Contact
                     </th>
                     @*<th>
                         Address
@@ -59,7 +60,7 @@
                         Shirka
                     </th>
                     <th>
-                        Passport PDF
+                        Passport
                     </th>
                     @*<th>
                         Picture
@@ -68,7 +69,10 @@
                         Reference By
                     </th>
                     <th>
-                        Reference Contact Number
+                        Ref. Contact
+                    </th>
+                    <th>
+                        Tasks
                     </th>
                     <th>
                         Action
@@ -146,10 +150,13 @@
                         @Html.DisplayFor(modelItem => item.reference_contact_number)
                     </td>
                     <td>
+                        <a class='btn btn-primary btn-sm' href="@Url.Content("/GroupMembers/Index/" + item.id)"><i class="fas fa-user-check"></i> </a>
+                        <a class='btn btn-dark btn-sm' href="@Url.Content("/Client/PackageCostDetail/" + item.id)"><i class="fas fa-cash-register"></i> </a>
+                    </td>
+                    <td>
                         <a class='btn btn-success btn-sm' onclick="PopupForm(@item.id)"><i class="fas fa-pen"></i> </a>
                         <a class='btn btn-danger btn-sm' onclick="Delete(@item.id)"><i class="fas fa-trash"></i> </a>
-                        <a class='btn btn-primary btn-sm' href="@Url.Content("/GroupMembers/Index/" + item.id)"><i class="fas fa-plus"></i> </a>
-
+                        
                     </td>
                 </tr>
                 }
