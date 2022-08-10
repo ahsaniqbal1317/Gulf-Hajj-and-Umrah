@@ -1,5 +1,7 @@
 ﻿@model Gulf_Hajj_and_Ummrah.Models.ClientViewModel
 
+
+
 @using (Html.BeginForm("AddOrEdit", "Client", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
@@ -10,7 +12,6 @@
                     <i class="fa fa-info"></i>
                     <b>Personal Info</b>
                 </h6>
-
             </div>
             @Html.HiddenFor(model => model.clientid)
             <div class="row">
@@ -171,10 +172,10 @@
                     @Html.ValidationMessageFor(model => model.package_name, "", new { @class = "text-danger" })
                 </div>
                 @*<div class="col-md-6">
-                    <label>No. of Days </label>
-                    @Html.EditorFor(model => model.no_of_days, new { htmlAttributes = new { @class = "form-control", @autocomplete = "off", @placeholder = "Enter No. of Days" } })
-                    @Html.ValidationMessageFor(model => model.no_of_days, "", new { @class = "text-danger" })
-                </div>*@
+                        <label>No. of Days </label>
+                        @Html.EditorFor(model => model.no_of_days, new { htmlAttributes = new { @class = "form-control", @autocomplete = "off", @placeholder = "Enter No. of Days" } })
+                        @Html.ValidationMessageFor(model => model.no_of_days, "", new { @class = "text-danger" })
+                    </div>*@
             </div>
             <div class="row">
                 <div class="col-md-6">
@@ -235,7 +236,7 @@
                 </div>
                 <div class="col-md-6">
                     <label>Ticket Number </label>
-                    @Html.EditorFor(model => model.ticketNo, new { htmlAttributes = new { @class = "form-control", @autocomplete = "off", @placeholder = "Enter Hotel Name in Makkah" } })
+                    @Html.EditorFor(model => model.ticketNo, new { htmlAttributes = new { @class = "form-control", @autocomplete = "off", @placeholder = "Enter Ticket Number" } })
                     @Html.ValidationMessageFor(model => model.ticketNo, "", new { @class = "text-danger" })
                 </div>
             </div>
@@ -271,7 +272,15 @@
                     @Html.ValidationMessageFor(model => model.date, "", new { @class = "text-danger" })
                 </div>
             </div>
-            <p style="font-weight:700">Return Flight Info</p>
+        </div>
+
+        <div class="card-body">
+            <div class="card-header bg-blue text-white">
+                <h6>
+                    <i class="fa fa-plane"></i>
+                    <b>Return Flight Info</b>
+                </h6>
+            </div>
             <div class="row">
                 <div class="col-md-6">
                     <label>Airline Name </label>
@@ -279,13 +288,12 @@
                     @Html.ValidationMessageFor(model => model.airlineNameReturn, "", new { @class = "text-danger" })
                 </div>
                 <div class="col-md-6">
-                    <label>Flight Date </label>
-                    @Html.TextBox("dateOfReturn", Model.dateOfReturn, "{0:yyyy-MM-dd}", new { @class = "form-control", @autocomplete = "off", @type = "date" })
-                    @Html.ValidationMessageFor(model => model.dateOfReturn, "", new { @class = "text-danger" })
+                    <label>Ticket Number </label>
+                    @Html.EditorFor(model => model.returnTicketNumber, new { htmlAttributes = new { @class = "form-control", @autocomplete = "off", @placeholder = "Enter Ticket Number" } })
+                    @Html.ValidationMessageFor(model => model.returnTicketNumber, "", new { @class = "text-danger" })
+
                 </div>
             </div>
-                
-            
             <div class="row">
                 <div class="col-md-6">
                     <label>Departure From (Return) </label>
@@ -298,7 +306,16 @@
                     @Html.ValidationMessageFor(model => model.arrirved_at, "", new { @class = "text-danger" })
                 </div>
             </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <label>Flight Date </label>
+                    @Html.TextBox("dateOfReturn", Model.dateOfReturn, "{0:yyyy-MM-dd}", new { @class = "form-control", @autocomplete = "off", @type = "date" })
+                    @Html.ValidationMessageFor(model => model.dateOfReturn, "", new { @class = "text-danger" })
+                </div>
+            </div>
         </div>
+
+
         <div class="card-body">
             <div class="card-header bg-blue text-white">
                 <h6>
@@ -370,22 +387,14 @@
                 </div>*@
         </div>
     </div>
-
-
-
-
-
-
-
-
-
     <div class="form-group">
         <input type="submit" value="Submit" class="btn btn-primary" />
         <input type="reset" value="Reset" class="btn btn-warning" />
     </div>
 }
-<script src="~/Scripts/jquery.validate.min.js"></script>
 <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+
 
 @*<script>
         var depID = @Html.Raw(Json.Encode(Model.departure_from));

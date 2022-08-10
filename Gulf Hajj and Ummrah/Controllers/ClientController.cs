@@ -94,6 +94,7 @@ namespace Gulf_Hajj_and_Ummrah.Controllers
                 model.departure_time = data.flight_details_tbl.FirstOrDefault().departure_time;
                 model.arrival_time = data.flight_details_tbl.FirstOrDefault().arrival_time;
                 model.dateOfFlight = data.flight_details_tbl.FirstOrDefault().date;
+                model.returnTicketNumber = data.flight_details_tbl.FirstOrDefault().returnTicketNumber;
                 model.dateOfReturn = data.flight_details_tbl.FirstOrDefault().dateOfReturn;
 
                 model.transportationid = data.transportation_details_tbl.FirstOrDefault().id;
@@ -245,6 +246,7 @@ namespace Gulf_Hajj_and_Ummrah.Controllers
                 flight.arrival_time = model.arrival_time;
                 flight.date = model.dateOfFlight;
                 flight.airlineNameReturn = model.airlineNameReturn;
+                flight.returnTicketNumber = model.returnTicketNumber;
                 flight.returnDeparture = model.returnDeparture;
                 flight.returnArrival = model.returnArrival;
                 flight.dateOfReturn = model.dateOfReturn;
@@ -307,7 +309,7 @@ namespace Gulf_Hajj_and_Ummrah.Controllers
             }
             return RedirectToAction("ClientDetails","Client");
         }
-
+        
         [HttpGet]
         public ActionResult ClientDetailForm(int id)
         {
@@ -320,16 +322,25 @@ namespace Gulf_Hajj_and_Ummrah.Controllers
             int Returndeparture = data.flight_details_tbl.FirstOrDefault().returnDeparture.GetValueOrDefault();
             int Returnarrival = data.flight_details_tbl.FirstOrDefault().returnArrival.GetValueOrDefault();
 
+            //string returnTicketNumber = data.flight_details_tbl.FirstOrDefault().returnTicketNumber;
+
+            //ViewBag.ReturnTicketNumber=db.flight_details_tbl.Where(x=>x.returnTicketNumber==returnTicketNumber);
+
+            int returnAirLineName = data.flight_details_tbl.FirstOrDefault().airlineNameReturn.GetValueOrDefault();
+
+            ViewBag.ReturnAirLine = db.airline_tbl.Where(x => x.id == returnAirLineName).FirstOrDefault().airlineName;
             ViewBag.DepartureFrom = db.cities_tbl.Where(x => x.id == departure).FirstOrDefault().cityname;
             ViewBag.ArrivalAt = db.cities_tbl.Where(x => x.id == arrival).FirstOrDefault().cityname;
+
+            
 
             ViewBag.ReturnDepartureFrom = db.cities_tbl.Where(x => x.id == Returndeparture).FirstOrDefault().cityname;
             ViewBag.ReturnArrivalAt = db.cities_tbl.Where(x => x.id == Returnarrival).FirstOrDefault().cityname;
 
-            var returnName = data.flight_details_tbl.FirstOrDefault().airlineNameReturn;
-            ViewBag.ReturnAirlineName = db.airline_tbl.Where(x => x.id == returnName).FirstOrDefault().airlineName;
+            //var returnName = data.flight_details_tbl.FirstOrDefault().airlineNameReturn;
+            //ViewBag.ReturnAirlineName = db.airline_tbl.Where(x => x.id == returnName).FirstOrDefault().airlineName;
 
-            ViewBag.totaldays = data.hotel_details_tbl.FirstOrDefault().daysMadina + data.hotel_details_tbl.FirstOrDefault().daysMakkah;
+            //ViewBag.totaldays = data.hotel_details_tbl.FirstOrDefault().daysMadina + data.hotel_details_tbl.FirstOrDefault().daysMakkah;
             return View(data);
         }   
         

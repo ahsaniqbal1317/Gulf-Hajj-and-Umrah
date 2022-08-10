@@ -14,6 +14,12 @@ namespace Gulf_Hajj_and_Ummrah.Models
     
     public partial class user_tbl
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public user_tbl()
+        {
+            this.client_details_tbl = new HashSet<client_details_tbl>();
+        }
+    
         public int id { get; set; }
         public string name { get; set; }
         public string username { get; set; }
@@ -21,5 +27,8 @@ namespace Gulf_Hajj_and_Ummrah.Models
         public string password { get; set; }
         public string address { get; set; }
         public Nullable<bool> isDeleted { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<client_details_tbl> client_details_tbl { get; set; }
     }
 }

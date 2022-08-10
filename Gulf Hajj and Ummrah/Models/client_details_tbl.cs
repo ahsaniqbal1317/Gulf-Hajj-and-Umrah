@@ -40,6 +40,7 @@ namespace Gulf_Hajj_and_Ummrah.Models
         public string reference_by { get; set; }
         public string reference_contact_number { get; set; }
         public Nullable<bool> isDeleted { get; set; }
+        public Nullable<int> userID { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<billing_details_tbl> billing_details_tbl { get; set; }
@@ -53,5 +54,6 @@ namespace Gulf_Hajj_and_Ummrah.Models
         public virtual ICollection<package_details_tbl> package_details_tbl { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<transportation_details_tbl> transportation_details_tbl { get; set; }
+        public virtual user_tbl user_tbl { get; set; }
     }
 }

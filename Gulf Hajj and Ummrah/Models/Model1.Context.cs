@@ -36,7 +36,5 @@ namespace Gulf_Hajj_and_Ummrah.Models
         public virtual DbSet<roomtype_tbl> roomtype_tbl { get; set; }
         public virtual DbSet<transportation_details_tbl> transportation_details_tbl { get; set; }
         public virtual DbSet<user_tbl> user_tbl { get; set; }
-
-        public System.Data.Entity.DbSet<Gulf_Hajj_and_Ummrah.Models.ClientViewModel> ClientViewModels { get; set; }
     }
 }

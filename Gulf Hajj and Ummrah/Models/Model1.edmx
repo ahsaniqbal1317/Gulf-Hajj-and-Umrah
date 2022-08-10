@@ -58,6 +58,7 @@
           <Property Name="reference_by" Type="varchar" MaxLength="50" />
           <Property Name="reference_contact_number" Type="varchar" MaxLength="20" />
           <Property Name="isDeleted" Type="bit" />
+          <Property Name="userID" Type="int" />
         </EntityType>
         <EntityType Name="flight_details_tbl">
           <Key>
@@ -162,6 +163,18 @@
             </Principal>
             <Dependent Role="billing_details_tbl">
               <PropertyRef Name="client_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_client_details_tbl_user_tbl">
+          <End Role="user_tbl" Type="Self.user_tbl" Multiplicity="0..1" />
+          <End Role="client_details_tbl" Type="Self.client_details_tbl" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="user_tbl">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="client_details_tbl">
+              <PropertyRef Name="userID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -305,6 +318,10 @@
             <End Role="client_details_tbl" EntitySet="client_details_tbl" />
             <End Role="billing_details_tbl" EntitySet="billing_details_tbl" />
           </AssociationSet>
+          <AssociationSet Name="FK_client_details_tbl_user_tbl" Association="Self.FK_client_details_tbl_user_tbl">
+            <End Role="user_tbl" EntitySet="user_tbl" />
+            <End Role="client_details_tbl" EntitySet="client_details_tbl" />
+          </AssociationSet>
           <AssociationSet Name="FK_flight_details_tbl_airline_tbl" Association="Self.FK_flight_details_tbl_airline_tbl">
             <End Role="airline_tbl" EntitySet="airline_tbl" />
             <End Role="flight_details_tbl" EntitySet="flight_details_tbl" />
@@ -406,6 +423,10 @@
             <End Role="roomtype_tbl" EntitySet="roomtype_tbl" />
             <End Role="hotel_details_tbl" EntitySet="hotel_details_tbl" />
           </AssociationSet>
+          <AssociationSet Name="FK_client_details_tbl_user_tbl" Association="Gulf_HUModel.FK_client_details_tbl_user_tbl">
+            <End Role="user_tbl" EntitySet="user_tbl" />
+            <End Role="client_details_tbl" EntitySet="client_details_tbl" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="airline_tbl">
           <Key>
@@ -471,6 +492,8 @@
           <NavigationProperty Name="hotel_details_tbl" Relationship="Gulf_HUModel.FK_hotel_details_tbl_client_details_tbl" FromRole="client_details_tbl" ToRole="hotel_details_tbl" />
           <NavigationProperty Name="package_details_tbl" Relationship="Gulf_HUModel.FK_package_details_tbl_client_details_tbl" FromRole="client_details_tbl" ToRole="package_details_tbl" />
           <NavigationProperty Name="transportation_details_tbl" Relationship="Gulf_HUModel.FK_transportation_details_tbl_client_details_tbl" FromRole="client_details_tbl" ToRole="transportation_details_tbl" />
+          <Property Name="userID" Type="Int32" />
+          <NavigationProperty Name="user_tbl" Relationship="Gulf_HUModel.FK_client_details_tbl_user_tbl" FromRole="client_details_tbl" ToRole="user_tbl" />
         </EntityType>
         <EntityType Name="flight_details_tbl">
           <Key>
@@ -576,6 +599,7 @@
           <Property Name="password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="address" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
           <Property Name="isDeleted" Type="Boolean" />
+          <NavigationProperty Name="client_details_tbl" Relationship="Gulf_HUModel.FK_client_details_tbl_user_tbl" FromRole="user_tbl" ToRole="client_details_tbl" />
         </EntityType>
         <Association Name="FK_flight_details_tbl_airline_tbl">
           <End Type="Gulf_HUModel.airline_tbl" Role="airline_tbl" Multiplicity="0..1" />
@@ -713,6 +737,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_client_details_tbl_user_tbl">
+          <End Type="Gulf_HUModel.user_tbl" Role="user_tbl" Multiplicity="0..1" />
+          <End Type="Gulf_HUModel.client_details_tbl" Role="client_details_tbl" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="user_tbl">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="client_details_tbl">
+              <PropertyRef Name="userID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -759,6 +795,7 @@
           <EntitySetMapping Name="client_details_tbl">
             <EntityTypeMapping TypeName="Gulf_HUModel.client_details_tbl">
               <MappingFragment StoreEntitySet="client_details_tbl">
+                <ScalarProperty Name="userID" ColumnName="userID" />
                 <ScalarProperty Name="isDeleted" ColumnName="isDeleted" />
                 <ScalarProperty Name="reference_contact_number" ColumnName="reference_contact_number" />
                 <ScalarProperty Name="reference_by" ColumnName="reference_by" />

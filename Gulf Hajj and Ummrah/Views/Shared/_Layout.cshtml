@@ -89,14 +89,14 @@
                     <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                         <!-- Add icons to the links using the .nav-icon class
                         with font-awesome or any other icon font library -->
-                        <li class="nav-item">
+                        @*<li class="nav-item">
                             <a href="@Url.Action("GetData","Home")" class="nav-link">
                                 <i class="nav-icon fas fa-table"></i>
                                 <p>
                                     Dashboard
                                 </p>
                             </a>
-                        </li>
+                        </li>*@
                         <li class="nav-header">ACTIVITIES</li>
 
 
@@ -133,12 +133,12 @@
                         </li>
 
 
-                        <li class="nav-item">
-                            <a href="pages/gallery.html" class="nav-link">
-                                <i class="nav-icon far fa-chart-bar"></i>
-                                <p>Reports</p>
-                            </a>
-                        </li>
+                        @*<li class="nav-item">
+                                <a href="pages/gallery.html" class="nav-link">
+                                    <i class="nav-icon far fa-chart-bar"></i>
+                                    <p>Reports</p>
+                                </a>
+                            </li>*@
                         <li class="nav-header">ADMINISTRATIVE TASKS</li>
                         <li class="nav-item">
                             <a href="#" class="nav-link">
@@ -192,7 +192,7 @@
         <hr />
         <footer class="main-footer">
             <strong>Copyright &copy; 2022 <a href="https://http://www.sct-group.us/">Gulf Hajj And Umrah</a></strong>
-          
+
             <div class="float-right d-none d-sm-inline-block">
                 <b>Version</b> 1.1.0
             </div>
@@ -201,7 +201,7 @@
 
 
 
-    
+
 
     <!-- jQuery -->
     <script type="text/javascript" charset="utf8" src="//code.jquery.com/jquery-1.10.2.min.js"></script>
@@ -211,11 +211,15 @@
 
 
     <!-- Bootstrap-->
-            <script src="~/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="~/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
     <!-- overlayScrollbars -->
     <script src="~/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
     <!-- AdminLTE App -->
     <script src="~/Scripts/adminlte.js"></script>
+
     @RenderSection("scripts", false)
+
+
+
 </body>
 </html>

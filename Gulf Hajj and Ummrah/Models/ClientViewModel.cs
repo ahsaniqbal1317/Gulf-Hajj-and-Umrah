@@ -94,6 +94,8 @@ namespace Gulf_Hajj_and_Ummrah.Models
         [Required]
         public Nullable<System.TimeSpan> departure_time { get; set; }
         [Required]
+        public string returnTicketNumber { get; set; }
+        [Required]
         public Nullable<System.TimeSpan> arrival_time { get; set; }
         [Required]
         public Nullable<System.DateTime> dateOfFlight { get; set; }
@@ -110,6 +112,7 @@ namespace Gulf_Hajj_and_Ummrah.Models
 
         //Cities
         public int cityid { get; set; }
+        [Required]
         public string cityname { get; set; }
 
         //Roomtype

@@ -399,7 +399,7 @@
                                         Airline Cost:<span style="font-weight:lighter"> @Html.DisplayFor(model => model.package_details_tbl.FirstOrDefault().airlineCost)</span>
                                     </th>
                                     <th>
-                                        </span>
+                                        
                                         Visa Cost: <span style="font-weight:lighter">@Html.DisplayFor(model => model.package_details_tbl.FirstOrDefault().visaCost)</span>
                                     </th>
                                     <th>
@@ -455,7 +455,6 @@
                                         @Html.DisplayFor(model => model.package_details_tbl.FirstOrDefault().other_details)
                                     </td>
                                     <td>12</td>
-
                                 </tr>
                             </tbody>
                         </table>
@@ -488,12 +487,12 @@
                                     <th>
                                         Arrival at
                                     </th>
-                                    @*<th>
+                                    <th>
                                         Departure Time
                                     </th>
                                     <th>
                                         Arrival Time
-                                    </th>*@
+                                    </th>
 
                                     <th>
                                         Return Date
@@ -533,25 +532,25 @@
                                     <td>
                                         @ViewBag.ArrivalAt
                                     </td>
-                                    @*<td>
-            @Html.DisplayFor(model => model.flight_details_tbl.FirstOrDefault().departure_time)
-        </td>
-        <td>
-            @Html.DisplayFor(model => model.flight_details_tbl.FirstOrDefault().arrival_time)
-        </td>*@
-
                                     <td>
-
+                                        @Html.DisplayFor(model => model.flight_details_tbl.FirstOrDefault().departure_time)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(model => model.flight_details_tbl.FirstOrDefault().arrival_time)
+                                    </td>
+                                    <td>
                                         @Model.flight_details_tbl.FirstOrDefault().dateOfReturn.Value.ToString("d")
+                                    </td>
+                                    <td>
+
+                                        @ViewBag.ReturnAirLine
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(model => model.flight_details_tbl.FirstOrDefault().returnTicketNumber)
 
                                     </td>
                                     <td>
-                                        @ViewBag.ReturnAirlineName
-                                    </td>
-                                    <td>
-                                        return ticket number
-                                    </td>
-                                    <td>
+
                                         @ViewBag.ReturnDepartureFrom
                                     </td>
                                     <td>
