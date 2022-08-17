@@ -90,6 +90,11 @@
           <Property Name="phoneNumber" Type="varchar" MaxLength="20" />
           <Property Name="isDeleted" Type="bit" />
           <Property Name="client_id" Type="int" />
+          <Property Name="packageAmount" Type="float" />
+          <Property Name="airlineAmount" Type="float" />
+          <Property Name="visaAmount" Type="float" />
+          <Property Name="transportAmount" Type="float" />
+          <Property Name="ticketAmount" Type="float" />
         </EntityType>
         <EntityType Name="hotel_details_tbl">
           <Key>
@@ -153,6 +158,7 @@
           <Property Name="password" Type="varchar" MaxLength="50" />
           <Property Name="address" Type="varchar" MaxLength="300" />
           <Property Name="isDeleted" Type="bit" />
+          <Property Name="roles" Type="int" />
         </EntityType>
         <Association Name="FK_billing_details_tbl_client_details_tbl">
           <End Role="client_details_tbl" Type="Self.client_details_tbl" Multiplicity="0..1" />
@@ -399,6 +405,10 @@
             <End Role="cities_tbl" EntitySet="cities_tbl" />
             <End Role="hotel_details_tbl" EntitySet="hotel_details_tbl" />
           </AssociationSet>
+          <AssociationSet Name="FK_client_details_tbl_user_tbl" Association="Gulf_HUModel.FK_client_details_tbl_user_tbl">
+            <End Role="user_tbl" EntitySet="user_tbl" />
+            <End Role="client_details_tbl" EntitySet="client_details_tbl" />
+          </AssociationSet>
           <AssociationSet Name="FK_flight_details_tbl_client_details_tbl" Association="Gulf_HUModel.FK_flight_details_tbl_client_details_tbl">
             <End Role="client_details_tbl" EntitySet="client_details_tbl" />
             <End Role="flight_details_tbl" EntitySet="flight_details_tbl" />
@@ -422,10 +432,6 @@
           <AssociationSet Name="FK_hotel_details_tbl_roomtype_tbl" Association="Gulf_HUModel.FK_hotel_details_tbl_roomtype_tbl">
             <End Role="roomtype_tbl" EntitySet="roomtype_tbl" />
             <End Role="hotel_details_tbl" EntitySet="hotel_details_tbl" />
-          </AssociationSet>
-          <AssociationSet Name="FK_client_details_tbl_user_tbl" Association="Gulf_HUModel.FK_client_details_tbl_user_tbl">
-            <End Role="user_tbl" EntitySet="user_tbl" />
-            <End Role="client_details_tbl" EntitySet="client_details_tbl" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="airline_tbl">
@@ -486,14 +492,14 @@
           <Property Name="reference_by" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="reference_contact_number" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
           <Property Name="isDeleted" Type="Boolean" />
+          <Property Name="userID" Type="Int32" />
           <NavigationProperty Name="billing_details_tbl" Relationship="Gulf_HUModel.FK_billing_details_tbl_client_details_tbl" FromRole="client_details_tbl" ToRole="billing_details_tbl" />
+          <NavigationProperty Name="user_tbl" Relationship="Gulf_HUModel.FK_client_details_tbl_user_tbl" FromRole="client_details_tbl" ToRole="user_tbl" />
           <NavigationProperty Name="flight_details_tbl" Relationship="Gulf_HUModel.FK_flight_details_tbl_client_details_tbl" FromRole="client_details_tbl" ToRole="flight_details_tbl" />
           <NavigationProperty Name="group_of_people_details_tbl" Relationship="Gulf_HUModel.FK_group_of_people_details_tbl_client_details_tbl" FromRole="client_details_tbl" ToRole="group_of_people_details_tbl" />
           <NavigationProperty Name="hotel_details_tbl" Relationship="Gulf_HUModel.FK_hotel_details_tbl_client_details_tbl" FromRole="client_details_tbl" ToRole="hotel_details_tbl" />
           <NavigationProperty Name="package_details_tbl" Relationship="Gulf_HUModel.FK_package_details_tbl_client_details_tbl" FromRole="client_details_tbl" ToRole="package_details_tbl" />
           <NavigationProperty Name="transportation_details_tbl" Relationship="Gulf_HUModel.FK_transportation_details_tbl_client_details_tbl" FromRole="client_details_tbl" ToRole="transportation_details_tbl" />
-          <Property Name="userID" Type="Int32" />
-          <NavigationProperty Name="user_tbl" Relationship="Gulf_HUModel.FK_client_details_tbl_user_tbl" FromRole="client_details_tbl" ToRole="user_tbl" />
         </EntityType>
         <EntityType Name="flight_details_tbl">
           <Key>
@@ -529,6 +535,11 @@
           <Property Name="phoneNumber" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
           <Property Name="isDeleted" Type="Boolean" />
           <Property Name="client_id" Type="Int32" />
+          <Property Name="packageAmount" Type="Double" />
+          <Property Name="airlineAmount" Type="Double" />
+          <Property Name="visaAmount" Type="Double" />
+          <Property Name="transportAmount" Type="Double" />
+          <Property Name="ticketAmount" Type="Double" />
           <NavigationProperty Name="client_details_tbl" Relationship="Gulf_HUModel.FK_group_of_people_details_tbl_client_details_tbl" FromRole="group_of_people_details_tbl" ToRole="client_details_tbl" />
         </EntityType>
         <EntityType Name="hotel_details_tbl">
@@ -599,6 +610,7 @@
           <Property Name="password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="address" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
           <Property Name="isDeleted" Type="Boolean" />
+          <Property Name="roles" Type="Int32" />
           <NavigationProperty Name="client_details_tbl" Relationship="Gulf_HUModel.FK_client_details_tbl_user_tbl" FromRole="user_tbl" ToRole="client_details_tbl" />
         </EntityType>
         <Association Name="FK_flight_details_tbl_airline_tbl">
@@ -660,6 +672,18 @@
             </Principal>
             <Dependent Role="hotel_details_tbl">
               <PropertyRef Name="city_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_client_details_tbl_user_tbl">
+          <End Type="Gulf_HUModel.user_tbl" Role="user_tbl" Multiplicity="0..1" />
+          <End Type="Gulf_HUModel.client_details_tbl" Role="client_details_tbl" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="user_tbl">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="client_details_tbl">
+              <PropertyRef Name="userID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -734,18 +758,6 @@
             </Principal>
             <Dependent Role="hotel_details_tbl">
               <PropertyRef Name="roomtype_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_client_details_tbl_user_tbl">
-          <End Type="Gulf_HUModel.user_tbl" Role="user_tbl" Multiplicity="0..1" />
-          <End Type="Gulf_HUModel.client_details_tbl" Role="client_details_tbl" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="user_tbl">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="client_details_tbl">
-              <PropertyRef Name="userID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -838,6 +850,11 @@
           <EntitySetMapping Name="group_of_people_details_tbl">
             <EntityTypeMapping TypeName="Gulf_HUModel.group_of_people_details_tbl">
               <MappingFragment StoreEntitySet="group_of_people_details_tbl">
+                <ScalarProperty Name="ticketAmount" ColumnName="ticketAmount" />
+                <ScalarProperty Name="transportAmount" ColumnName="transportAmount" />
+                <ScalarProperty Name="visaAmount" ColumnName="visaAmount" />
+                <ScalarProperty Name="airlineAmount" ColumnName="airlineAmount" />
+                <ScalarProperty Name="packageAmount" ColumnName="packageAmount" />
                 <ScalarProperty Name="client_id" ColumnName="client_id" />
                 <ScalarProperty Name="isDeleted" ColumnName="isDeleted" />
                 <ScalarProperty Name="phoneNumber" ColumnName="phoneNumber" />
@@ -905,6 +922,7 @@
           <EntitySetMapping Name="user_tbl">
             <EntityTypeMapping TypeName="Gulf_HUModel.user_tbl">
               <MappingFragment StoreEntitySet="user_tbl">
+                <ScalarProperty Name="roles" ColumnName="roles" />
                 <ScalarProperty Name="isDeleted" ColumnName="isDeleted" />
                 <ScalarProperty Name="address" ColumnName="address" />
                 <ScalarProperty Name="password" ColumnName="password" />

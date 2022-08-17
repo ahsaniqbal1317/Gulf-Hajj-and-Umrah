@@ -1,4 +1,4 @@
-﻿
+﻿@using Gulf_Hajj_and_Ummrah.Controllers
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -118,6 +118,10 @@
                                 <i class="nav-icon fas fa-plane"></i>
                                 <p>Flight Timings</p>
                             </a>
+                        </li>
+
+                        <li>
+                            @Gulf_Hajj_and_Ummrah.Controllers.HomeController.role
                         </li>
                         <li class="nav-item">
                             <a href="@Url.Action("BillingList","BillingandExpense")" class="nav-link">

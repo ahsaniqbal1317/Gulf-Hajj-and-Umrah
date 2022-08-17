@@ -20,6 +20,11 @@ namespace Gulf_Hajj_and_Ummrah.Models
         public string phoneNumber { get; set; }
         public Nullable<bool> isDeleted { get; set; }
         public Nullable<int> client_id { get; set; }
+        public Nullable<double> packageAmount { get; set; }
+        public Nullable<double> airlineAmount { get; set; }
+        public Nullable<double> visaAmount { get; set; }
+        public Nullable<double> transportAmount { get; set; }
+        public Nullable<double> ticketAmount { get; set; }
     
         public virtual client_details_tbl client_details_tbl { get; set; }
     }

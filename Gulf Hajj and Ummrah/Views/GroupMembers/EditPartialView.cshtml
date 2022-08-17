@@ -39,7 +39,44 @@
                         @Html.ValidationMessageFor(model => model.passport_number, "", new { @class = "text-danger" })
                     </div>
                 </div>
+            </div>
 
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label>Visa Cost</label>
+                        @Html.EditorFor(model => model.visaAmount, new { htmlAttributes = new { @class = "form-control", @autocomplete = "off", @placeholder = "Enter Phone Number" } })
+                        @Html.ValidationMessageFor(model => model.visaAmount, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label>Airline Cost</label>
+                        @Html.EditorFor(model => model.airlineAmount, new { htmlAttributes = new { @class = "form-control", @autocomplete = "off", @placeholder = "Enter Phone Number" } })
+                        @Html.ValidationMessageFor(model => model.airlineAmount, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label>Transport Cost</label>
+                        @Html.EditorFor(model => model.transportAmount, new { htmlAttributes = new { @class = "form-control", @autocomplete = "off", @placeholder = "Enter Phone Number" } })
+                        @Html.ValidationMessageFor(model => model.transportAmount, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label>Package Cost</label>
+                        @Html.EditorFor(model => model.packageAmount, new { htmlAttributes = new { @class = "form-control", @autocomplete = "off", @placeholder = "Enter Phone Number" } })
+                        @Html.ValidationMessageFor(model => model.packageAmount, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div style="display:none" class="col-md-4">
+                    <div class="form-group">
+                        <label>client id</label>
+                        @Html.EditorFor(model => model.client_id, new { htmlAttributes = new { @class = "form-control", @autocomplete = "off", @placeholder = "Enter Phone Number" } })
+                        @Html.ValidationMessageFor(model => model.client_id, "", new { @class = "text-danger" })
+                    </div>
+                </div>
 
             </div>
 

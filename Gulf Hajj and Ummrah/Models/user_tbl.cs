@@ -27,6 +27,7 @@ namespace Gulf_Hajj_and_Ummrah.Models
         public string password { get; set; }
         public string address { get; set; }
         public Nullable<bool> isDeleted { get; set; }
+        public Nullable<int> roles { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<client_details_tbl> client_details_tbl { get; set; }

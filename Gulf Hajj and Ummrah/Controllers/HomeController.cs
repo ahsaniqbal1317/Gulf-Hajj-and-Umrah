@@ -10,7 +10,12 @@ namespace Gulf_Hajj_and_Ummrah.Controllers
 {
     public class HomeController : Controller
     {
+        //public static string role = "";
+
         Gulf_HUEntities1 db = new Gulf_HUEntities1();
+
+        public static int? role { get; set; }
+
         // GET: Home
         public ActionResult Login()
         {
@@ -30,9 +35,11 @@ namespace Gulf_Hajj_and_Ummrah.Controllers
 
                     //var data = from user in context.User_tbl where user.Email == emp.Email select user;
 
-                    var personnelIds = context.user_tbl.Where(u => u.username == emp.username);
-                    
-                   
+                    var personnelIds = db.user_tbl.Where(x => x.username == emp.username && x.password == emp.password).FirstOrDefault();
+
+
+
+                    role = personnelIds.roles;
 
                     return RedirectToAction("ClientDetails", "Client");
                 }
