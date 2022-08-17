@@ -20,6 +20,12 @@
 
     <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.5/css/jquery.dataTables.css">
     <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/datetime/1.1.2/css/dataTables.dateTime.min.css">
+
+    <style>
+        body {
+            zoom: 75%
+        }
+    </style>
 </head>
 <body class="hold-transition light-mode sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
     <div class="wrapper">
@@ -69,7 +75,7 @@
         </nav>
         <!-- /.navbar -->
         <!-- Main Sidebar Container -->
-        <aside class="main-sidebar sidebar-dark-primary elevation-4">
+        <aside class="main-sidebar sidebar-dark-primary elevation-4" style="height: 900px;">
             <!-- Brand Logo -->
             <a href="index3.html" class="brand-link">
                 <img src="/img/AdminLTELogo.png" alt="Gulf Hajh and Umrah Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
@@ -88,15 +94,15 @@
                 <nav class="mt-2">
                     <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                         <!-- Add icons to the links using the .nav-icon class
-                        with font-awesome or any other icon font library -->
+    with font-awesome or any other icon font library -->
                         @*<li class="nav-item">
-                                <a href="@Url.Action("GetData","Home")" class="nav-link">
-                                    <i class="nav-icon fas fa-table"></i>
-                                    <p>
-                                        Dashboard
-                                    </p>
-                                </a>
-                            </li>*@
+            <a href="@Url.Action("GetData","Home")" class="nav-link">
+                <i class="nav-icon fas fa-table"></i>
+                <p>
+                    Dashboard
+                </p>
+            </a>
+        </li>*@
                         <li class="nav-header">ACTIVITIES</li>
 
 
@@ -120,15 +126,18 @@
                             </a>
                         </li>
 
-                        <li>
-                            @Gulf_Hajj_and_Ummrah.Controllers.HomeController.role
-                        </li>
-                        <li class="nav-item">
-                            <a href="@Url.Action("BillingList","BillingandExpense")" class="nav-link">
-                                <i class="nav-icon fas fa-rupee-sign"></i>
-                                <p>Billing and Expense</p>
-                            </a>
-                        </li>
+
+                        @if (Gulf_Hajj_and_Ummrah.Controllers.HomeController.role.Equals(1))
+                        {
+                            <li class="nav-item">
+                                <a href="@Url.Action("BillingList","BillingandExpense")" class="nav-link">
+                                    <i class="nav-icon fas fa-rupee-sign"></i>
+                                    <p>Billing and Expense</p>
+                                </a>
+                            </li>
+                        }
+
+
                         <li class="nav-item">
                             <a href="@Url.Action("TranportationList","Transportation")" class="nav-link">
                                 <i class="nav-icon fas fa-car"></i>
@@ -138,57 +147,56 @@
 
 
                         @*<li class="nav-item">
-                                <a href="pages/gallery.html" class="nav-link">
-                                    <i class="nav-icon far fa-chart-bar"></i>
-                                    <p>Reports</p>
+            <a href="pages/gallery.html" class="nav-link">
+                <i class="nav-icon far fa-chart-bar"></i>
+                <p>Reports</p>
+            </a>
+        </li>*@
+                        @if (Gulf_Hajj_and_Ummrah.Controllers.HomeController.role.Equals(1))
+                        {
+                            <li class="nav-header">ADMINISTRATIVE TASKS</li>
+                            <li class="nav-item">
+                                <a href="#" class="nav-link">
+                                    <i class="nav-icon fas fa-bookmark"></i>
+                                    <p>
+                                        Administration
+                                        <i class="fas fa-angle-right right"></i>
+                                    </p>
                                 </a>
-                            </li>*@
-                        <li class="nav-header">ADMINISTRATIVE TASKS</li>
-                        <li class="nav-item">
-                            <a href="#" class="nav-link">
-                                <i class="nav-icon fas fa-bookmark"></i>
-                                <p>
-                                    Administration
-                                    <i class="fas fa-angle-right right"></i>
-                                </p>
-                            </a>
 
 
-                            <ul class="nav nav-treeview">
+                                <ul class="nav nav-treeview">
 
-                                <li class="nav-item">
-                                    <a href="@Url.Action("CitiesList","Administration")" class="nav-link">
-                                        <i class="fas fa-city nav-icon"></i>
-                                        <p>Add City</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="@Url.Action("RoomtypeList","Administration")" class="nav-link">
-                                        <i class="fa fa-address-book nav-icon"></i>
-                                        <p>Add Room Type</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="@Url.Action("AirlineList","Administration")" class="nav-link">
-                                        <i class="fa fa-plane nav-icon"></i>
-                                        <p>Add Airline</p>
-                                    </a>
-                                </li>
+                                    <li class="nav-item">
+                                        <a href="@Url.Action("CitiesList","Administration")" class="nav-link">
+                                            <i class="fas fa-city nav-icon"></i>
+                                            <p>Add City</p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="@Url.Action("RoomtypeList","Administration")" class="nav-link">
+                                            <i class="fa fa-address-book nav-icon"></i>
+                                            <p>Add Room Type</p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="@Url.Action("AirlineList","Administration")" class="nav-link">
+                                            <i class="fa fa-plane nav-icon"></i>
+                                            <p>Add Airline</p>
+                                        </a>
+                                    </li>
 
-                                <li class="nav-item">
-                                    <a href="#" class="nav-link">
-                                        <i class="fa fa-award nav-icon"></i>
-                                        <p>Roles</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="@Url.Action("UserList","Administration")" class="nav-link">
-                                        <i class="fa fa-user nav-icon"></i>
-                                        <p>Add User</p>
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
+                                    <li class="nav-item">
+                                        <a href="@Url.Action("UserList","Administration")" class="nav-link">
+                                            <i class="fa fa-user nav-icon"></i>
+                                            <p>Add User</p>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                        }
+
+
                     </ul>
                 </nav>
                 <!-- /.sidebar-menu -->
@@ -201,10 +209,10 @@
         </div>
         <hr />
         <footer class="main-footer">
-            <strong>Copyright &copy; 2022 <a href="https://http://www.sct-group.us/">Gulf Hajj And Umrah</a></strong>
+            <strong>Copyright &copy; 2022 <a href="https://http://www.sct-group.us/">Farhan Softwares</a></strong>
 
             <div class="float-right d-none d-sm-inline-block">
-                <b>Version</b> 1.1.0
+                <b>Email</b> ahmedfarhan651@gmail.com
             </div>
         </footer>
     </div>
