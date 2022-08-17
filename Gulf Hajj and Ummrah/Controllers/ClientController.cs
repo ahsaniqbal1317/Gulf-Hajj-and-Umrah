@@ -12,6 +12,7 @@ using System.Data.Entity;
 
 namespace Gulf_Hajj_and_Ummrah.Controllers
 {
+    [Authorize]
     public class ClientController : Controller
     {
         Gulf_HUEntities1 db = new Gulf_HUEntities1();

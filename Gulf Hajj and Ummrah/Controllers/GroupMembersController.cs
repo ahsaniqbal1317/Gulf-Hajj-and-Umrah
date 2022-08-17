@@ -8,6 +8,7 @@ using System.Web.Mvc;
 
 namespace Gulf_Hajj_and_Ummrah.Controllers
 {
+    [Authorize]
     public class GroupMembersController : Controller
     {
 

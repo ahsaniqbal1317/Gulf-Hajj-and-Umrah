@@ -1,4 +1,4 @@
-﻿@using Gulf_Hajj_and_Ummrah.Controllers
+﻿@using Gulf_Hajj_and_Ummrah.Models
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -48,14 +48,14 @@
                     </a>
                     <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
 
-                        <div class="dropdown-divider"></div>
-                        <a href="@Url.Action("EditProfile","User")" class="dropdown-item">
+                        @*<div class="dropdown-divider"></div>
+                        <a onclick="EditUser()" class="dropdown-item">
                             <i class="fas fa-wrench mr-2"></i> Account Settings
                         </a>
                         <div class="dropdown-divider"></div>
                         <a href="#" class="dropdown-item">
                             <i class="fas fa-key mr-2"></i> Change Password
-                        </a>
+                        </a>*@
                         <div class="dropdown-divider"></div>
                         <a href="@Url.Action("Logout","Home")" class="dropdown-item">
                             <i class="fas fa-sign-out-alt mr-2"></i> Logout
@@ -90,13 +90,13 @@
                         <!-- Add icons to the links using the .nav-icon class
                         with font-awesome or any other icon font library -->
                         @*<li class="nav-item">
-                            <a href="@Url.Action("GetData","Home")" class="nav-link">
-                                <i class="nav-icon fas fa-table"></i>
-                                <p>
-                                    Dashboard
-                                </p>
-                            </a>
-                        </li>*@
+                                <a href="@Url.Action("GetData","Home")" class="nav-link">
+                                    <i class="nav-icon fas fa-table"></i>
+                                    <p>
+                                        Dashboard
+                                    </p>
+                                </a>
+                            </li>*@
                         <li class="nav-header">ACTIVITIES</li>
 
 
@@ -181,6 +181,12 @@
                                         <p>Roles</p>
                                     </a>
                                 </li>
+                                <li class="nav-item">
+                                    <a href="@Url.Action("UserList","Administration")" class="nav-link">
+                                        <i class="fa fa-user nav-icon"></i>
+                                        <p>Add User</p>
+                                    </a>
+                                </li>
                             </ul>
                         </li>
                     </ul>
@@ -223,7 +229,23 @@
 
     @RenderSection("scripts", false)
 
+    @*@section scripts{
+            <script>
+                function EditUser(id) {
 
+                    var url = "/Administration/EditUser?id=" + id;
+                    var formDiv = $('#modalbody');
+                    $.get(url)
+                        .done(function (response) {
+                            formDiv.html(response);
+
+                        });
+
+                }
+            </script>
+        }*@
 
 </body>
 </html>
+
+

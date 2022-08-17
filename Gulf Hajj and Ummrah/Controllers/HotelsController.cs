@@ -7,6 +7,7 @@ using Gulf_Hajj_and_Ummrah.Models;
 
 namespace Gulf_Hajj_and_Ummrah.Controllers
 {
+    [Authorize]
     public class HotelsController : Controller
     {
         Gulf_HUEntities1 db = new Gulf_HUEntities1();

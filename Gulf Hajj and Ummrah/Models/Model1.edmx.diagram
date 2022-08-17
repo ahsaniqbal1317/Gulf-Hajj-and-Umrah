@@ -4,30 +4,30 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="07b9d29ce992400aa2e07c70c2c9e831" Name="Diagram1">
-        <EntityTypeShape EntityType="Gulf_HUModel.airline_tbl" Width="1.5" PointX="6" PointY="4.125" />
-        <EntityTypeShape EntityType="Gulf_HUModel.billing_details_tbl" Width="1.5" PointX="5.25" PointY="6.875" />
-        <EntityTypeShape EntityType="Gulf_HUModel.cities_tbl" Width="1.5" PointX="6" PointY="11.625" />
-        <EntityTypeShape EntityType="Gulf_HUModel.client_details_tbl" Width="1.5" PointX="3" PointY="11.75" />
-        <EntityTypeShape EntityType="Gulf_HUModel.flight_details_tbl" Width="1.5" PointX="8.25" PointY="7.125" />
-        <EntityTypeShape EntityType="Gulf_HUModel.group_of_people_details_tbl" Width="1.5" PointX="5.25" PointY="23.875" />
-        <EntityTypeShape EntityType="Gulf_HUModel.hotel_details_tbl" Width="1.5" PointX="8.25" PointY="12.875" />
-        <EntityTypeShape EntityType="Gulf_HUModel.package_details_tbl" Width="1.5" PointX="5.25" PointY="28" />
-        <EntityTypeShape EntityType="Gulf_HUModel.roomtype_tbl" Width="1.5" PointX="6" PointY="18.625" />
-        <EntityTypeShape EntityType="Gulf_HUModel.transportation_details_tbl" Width="1.5" PointX="5.25" PointY="15.375" />
-        <EntityTypeShape EntityType="Gulf_HUModel.user_tbl" Width="1.5" PointX="0.75" PointY="13.125" />
-        <AssociationConnector Association="Gulf_HUModel.FK_flight_details_tbl_airline_tbl" />
-        <AssociationConnector Association="Gulf_HUModel.FK_billing_details_tbl_client_details_tbl" />
-        <AssociationConnector Association="Gulf_HUModel.FK_flight_details_tbl_cities_tbl" />
-        <AssociationConnector Association="Gulf_HUModel.FK_flight_details_tbl_cities_tbl1" />
-        <AssociationConnector Association="Gulf_HUModel.FK_hotel_details_tbl_cities_tbl" />
-        <AssociationConnector Association="Gulf_HUModel.FK_client_details_tbl_user_tbl" />
-        <AssociationConnector Association="Gulf_HUModel.FK_flight_details_tbl_client_details_tbl" />
-        <AssociationConnector Association="Gulf_HUModel.FK_group_of_people_details_tbl_client_details_tbl" />
-        <AssociationConnector Association="Gulf_HUModel.FK_hotel_details_tbl_client_details_tbl" />
-        <AssociationConnector Association="Gulf_HUModel.FK_package_details_tbl_client_details_tbl" />
-        <AssociationConnector Association="Gulf_HUModel.FK_transportation_details_tbl_client_details_tbl" />
-        <AssociationConnector Association="Gulf_HUModel.FK_hotel_details_tbl_roomtype_tbl" />
+      <Diagram DiagramId="032982ebc205474b88da5bca3b7f87c3" Name="Diagram1">
+        <EntityTypeShape EntityType="GULF_HUModel.airline_tbl" Width="1.5" PointX="6" PointY="21.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="GULF_HUModel.billing_details_tbl" Width="1.5" PointX="5.25" PointY="6.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="GULF_HUModel.cities_tbl" Width="1.5" PointX="3" PointY="8.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="GULF_HUModel.client_details_tbl" Width="1.5" PointX="3" PointY="11.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="GULF_HUModel.flight_details_tbl" Width="1.5" PointX="8.25" PointY="12.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="GULF_HUModel.group_of_people_details_tbl" Width="1.5" PointX="5.25" PointY="16.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="GULF_HUModel.hotel_details_tbl" Width="1.5" PointX="5.25" PointY="11.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="GULF_HUModel.package_details_tbl" Width="1.5" PointX="5.25" PointY="24.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="GULF_HUModel.roomtype_tbl" Width="1.5" PointX="3" PointY="18.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="GULF_HUModel.transportation_details_tbl" Width="1.5" PointX="5.25" PointY="29.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="GULF_HUModel.user_tbl" Width="1.5" PointX="0.75" PointY="13.125" IsExpanded="true" />
+        <AssociationConnector Association="GULF_HUModel.FK_flight_details_tbl_airline_tbl" ManuallyRouted="false" />
+        <AssociationConnector Association="GULF_HUModel.FK_billing_details_tbl_client_details_tbl" ManuallyRouted="false" />
+        <AssociationConnector Association="GULF_HUModel.FK_flight_details_tbl_cities_tbl" ManuallyRouted="false" />
+        <AssociationConnector Association="GULF_HUModel.FK_flight_details_tbl_cities_tbl1" ManuallyRouted="false" />
+        <AssociationConnector Association="GULF_HUModel.FK_hotel_details_tbl_cities_tbl" ManuallyRouted="false" />
+        <AssociationConnector Association="GULF_HUModel.FK_client_details_tbl_user_tbl" ManuallyRouted="false" />
+        <AssociationConnector Association="GULF_HUModel.FK_flight_details_tbl_client_details_tbl" ManuallyRouted="false" />
+        <AssociationConnector Association="GULF_HUModel.FK_group_of_people_details_tbl_client_details_tbl" ManuallyRouted="false" />
+        <AssociationConnector Association="GULF_HUModel.FK_hotel_details_tbl_client_details_tbl" ManuallyRouted="false" />
+        <AssociationConnector Association="GULF_HUModel.FK_package_details_tbl_client_details_tbl" ManuallyRouted="false" />
+        <AssociationConnector Association="GULF_HUModel.FK_transportation_details_tbl_client_details_tbl" ManuallyRouted="false" />
+        <AssociationConnector Association="GULF_HUModel.FK_hotel_details_tbl_roomtype_tbl" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

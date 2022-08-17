@@ -8,10 +8,87 @@ using Gulf_Hajj_and_Ummrah.Models;
 
 namespace Gulf_Hajj_and_Ummrah.Controllers
 {
+    
     public class AdministrationController : Controller
     {
         Gulf_HUEntities1 db = new Gulf_HUEntities1();
         // GET: Administration
+        // User Profile
+        public ActionResult UserList()
+        {
+            var data = db.user_tbl.Where(x => x.isDeleted == false).ToList();
+            return View(data);
+        }
+        [HttpGet]
+        public ActionResult AddEditUser(int id)
+        {
+            user_tbl obj = new user_tbl();
+            if (id > 0)
+            {
+                obj = db.user_tbl.Find(id);
+                return PartialView("AddUser_PartialView",obj);
+            }
+            return PartialView("AddUser_PartialView");
+        }
+
+        [HttpGet]
+        public ActionResult EditUser(int id)
+        {
+            user_tbl obj = new user_tbl();
+            if(id>0)
+            {
+                obj = db.user_tbl.Find(id);
+                return View(obj);
+            }
+            return View();
+        }
+        [HttpPost]
+        public ActionResult AddEditUser(user_tbl obj)
+        {
+            
+                if (obj.id == 0)
+                {
+                    try
+                    {
+                        obj.isDeleted = false;
+                        db.user_tbl.Add(obj);
+                        db.SaveChanges();
+                        TempData["mesg"] = "User added successfully...";
+                    }
+                    catch (Exception)
+                    {
+                        TempData["mesg"] = "There is some problem adding new user...";
+                    }
+
+                }
+                else
+                {
+                    try
+                    {
+                        obj.isDeleted = false;
+                        db.Entry(obj).State = EntityState.Modified;
+                        db.SaveChanges();
+                        TempData["mesg"] = "User updated successfully...";
+                    }
+                    catch (Exception)
+                    {
+                        TempData["mesg"] = "There is some problem updating the user...";
+                    }
+                }
+                
+            
+            return RedirectToAction(nameof(UserList));
+        }
+
+        [HttpPost]
+        public ActionResult DeleteUser (int id)
+        {
+            var user = db.user_tbl.Find(id);
+            user.isDeleted = true;
+            db.SaveChanges();
+            return RedirectToAction(nameof(UserList));
+        }
+
 
         // Cities list
         public ActionResult CitiesList()

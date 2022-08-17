@@ -19,6 +19,7 @@ namespace Gulf_Hajj_and_Ummrah.Controllers
         // GET: Home
         public ActionResult Login()
         {
+            FormsAuthentication.SignOut();
             return View();
         }
 
@@ -46,12 +47,10 @@ namespace Gulf_Hajj_and_Ummrah.Controllers
                 ViewBag.ErrorMessage = "Invalid Username and Password";
                 return View();
             }
-        }
 
-       
+        }
         public ActionResult Logout()
         {
-            FormsAuthentication.SignOut();
             return RedirectToAction("Login");
         }
     }

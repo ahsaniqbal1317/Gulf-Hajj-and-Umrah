@@ -487,6 +487,9 @@
     <Content Include="Views\BillingandExpense\Edit_PartialView_Billing.cshtml" />
     <Content Include="Views\Home\Login.cshtml" />
     <Content Include="Views\Client\PackageCostDetail.cshtml" />
+    <Content Include="Views\Administration\UserList.cshtml" />
+    <Content Include="Views\Administration\AddUser_PartialView.cshtml" />
+    <Content Include="Views\Administration\EditUser.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
