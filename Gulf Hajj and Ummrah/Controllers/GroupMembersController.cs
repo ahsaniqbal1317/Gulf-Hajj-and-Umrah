@@ -20,7 +20,32 @@ namespace Gulf_Hajj_and_Ummrah.Controllers
             ViewBag.clientID = db.client_details_tbl.Where(x => x.id == id).FirstOrDefault().id;
             var client = db.client_details_tbl.Where(x => x.id == id).FirstOrDefault();
             var members = db.group_of_people_details_tbl.Where(x => x.client_id == id && x.isDeleted != true).ToList();
-            double? totalAmount = client.billing_details_tbl.LastOrDefault().total_amount;
+
+            double? groupMembersTotal = 0;
+
+            foreach (var item in client.group_of_people_details_tbl.Where(x => x.isDeleted != true))
+            {
+                if(item.visaAmount == null)
+                {
+                    item.visaAmount = 0;
+                }
+                if (item.transportAmount == null)
+                {
+                    item.transportAmount = 0;
+                }
+                if (item.airlineAmount == null)
+                {
+                    item.airlineAmount = 0;
+                }
+                if (item.packageAmount == null)
+                {
+                    item.packageAmount = 0;
+                }
+
+                groupMembersTotal = item.visaAmount + item.transportAmount + item.packageAmount + item.airlineAmount + groupMembersTotal;
+            }
+
+            double? totalAmount = client.billing_details_tbl.LastOrDefault().clientPaymentForOne + groupMembersTotal;
             GroupMembersViewModel groupMembers = new GroupMembersViewModel
             {
                 addmember = null,

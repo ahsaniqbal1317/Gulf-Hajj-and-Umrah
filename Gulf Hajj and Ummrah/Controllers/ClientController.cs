@@ -287,7 +287,35 @@ namespace Gulf_Hajj_and_Ummrah.Controllers
                 billing.clientPaymentForOne = model.Billing_Details_Tbl.clientPaymentForOne;
                 billing.client_id = client.id;
                 billing.amount_recieved = 0;
-                double? totalAmount = billing.clientPaymentForOne;
+                double? groupMembersTotal = 0;
+
+                if(db.group_of_people_details_tbl.Where(x => x.client_id==model.clientid && x.isDeleted != true).Count() > 0)
+                {
+                    foreach (var item in db.group_of_people_details_tbl.Where(x => x.client_id == model.clientid && x.isDeleted != true))
+                    {
+                        if (item.visaAmount == null)
+                        {
+                            item.visaAmount = 0;
+                        }
+                        if (item.transportAmount == null)
+                        {
+                            item.transportAmount = 0;
+                        }
+                        if (item.airlineAmount == null)
+                        {
+                            item.airlineAmount = 0;
+                        }
+                        if (item.packageAmount == null)
+                        {
+                            item.packageAmount = 0;
+                        }
+
+                        groupMembersTotal = item.visaAmount + item.transportAmount + item.packageAmount + item.airlineAmount + groupMembersTotal;
+                    }
+                }
+
+
+                double? totalAmount = billing.clientPaymentForOne + groupMembersTotal;
                 billing.total_amount = totalAmount;
                 billing.amount_pending = billing.total_amount - billing.amount_recieved;
 
@@ -342,6 +370,49 @@ namespace Gulf_Hajj_and_Ummrah.Controllers
             //ViewBag.ReturnAirlineName = db.airline_tbl.Where(x => x.id == returnName).FirstOrDefault().airlineName;
 
             //ViewBag.totaldays = data.hotel_details_tbl.FirstOrDefault().daysMadina + data.hotel_details_tbl.FirstOrDefault().daysMakkah;
+
+
+
+            double? forLeaderPackageCost = 0.0;
+            double? forLeaderAirlineCost = 0.0;
+            double? forLeaderVisaCost = 0.0;
+            double? forLeaderTransportCost = 0.0;
+
+            forLeaderAirlineCost = Convert.ToDouble(data.package_details_tbl.FirstOrDefault().airlineCost);
+            forLeaderPackageCost = Convert.ToDouble(data.package_details_tbl.FirstOrDefault().packageCost);
+            forLeaderVisaCost = Convert.ToDouble(data.package_details_tbl.FirstOrDefault().visaCost);
+            forLeaderTransportCost = Convert.ToDouble(data.package_details_tbl.FirstOrDefault().transportCost);
+
+
+            double? totalPackageCost = 0.0;
+            double? totalAirlineCost = 0.0;
+            double? totalVisaCost = 0.0;
+            double? totalTransportCost = 0.0;
+
+            totalAirlineCost = Convert.ToDouble(data.package_details_tbl.FirstOrDefault().airlineCost);
+            totalPackageCost = Convert.ToDouble(data.package_details_tbl.FirstOrDefault().packageCost);
+            totalVisaCost = Convert.ToDouble(data.package_details_tbl.FirstOrDefault().visaCost);
+            totalTransportCost = Convert.ToDouble(data.package_details_tbl.FirstOrDefault().transportCost);
+
+            foreach (var item in db.group_of_people_details_tbl.Where(x=>x.client_id==id && x.isDeleted != true))
+            {
+                totalAirlineCost = totalAirlineCost + item.airlineAmount;
+                totalPackageCost = totalPackageCost + item.packageAmount;
+                totalTransportCost = totalTransportCost + item.transportAmount;
+                totalVisaCost = totalVisaCost + item.visaAmount;
+            }
+
+            double? grandTotal = data.billing_details_tbl.LastOrDefault().clientPaymentForOne + totalVisaCost + totalTransportCost + totalPackageCost + totalAirlineCost;
+            grandTotal = grandTotal - forLeaderAirlineCost - forLeaderPackageCost - forLeaderTransportCost - forLeaderVisaCost;
+
+            ViewBag.totalAirlineCost = totalAirlineCost;
+            ViewBag.totalPackageCost = totalPackageCost;
+            ViewBag.totalTransportCost = totalTransportCost;
+            ViewBag.totalVisaCost = totalVisaCost;
+
+            ViewBag.grandTotal = grandTotal;
+
+
             return View(data);
         }   
         

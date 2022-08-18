@@ -390,7 +390,7 @@
                                         @Html.DisplayFor(model => model.hotel_details_tbl.FirstOrDefault().roomtype_tbl.type_of_room)
                                     </td>
                                     <td>
-                                        @ViewBag.totaldays
+                                        @(Model.hotel_details_tbl.FirstOrDefault().daysMakkah + Model.hotel_details_tbl.FirstOrDefault().daysMadina)
                                     </td>
 
                                 </tr>
@@ -403,17 +403,17 @@
                             <thead>
                                 <tr>
                                     <th>
-                                        Package P/H Cost: <span style="font-weight:lighter"> @Html.DisplayFor(model => model.package_details_tbl.FirstOrDefault().packageCost) </span> 
+                                        Package P/H Cost: <span style="font-weight:lighter"> @ViewBag.totalPackageCost </span> 
                                     </th>
                                     <th>
-                                        Airline Cost:<span style="font-weight:lighter"> @Html.DisplayFor(model => model.package_details_tbl.FirstOrDefault().airlineCost)</span>
+                                        Airline Cost:<span style="font-weight:lighter"> @ViewBag.totalAirlineCost</span>
                                     </th>
                                     <th>
                                         
-                                        Visa Cost: <span style="font-weight:lighter">@Html.DisplayFor(model => model.package_details_tbl.FirstOrDefault().visaCost)</span>
+                                        Visa Cost: <span style="font-weight:lighter">@ViewBag.totalVisaCost</span>
                                     </th>
                                     <th>
-                                        Transport Cost:<span style="font-weight:lighter"> @Html.DisplayFor(model => model.package_details_tbl.FirstOrDefault().transportCost)</span>
+                                        Transport Cost:<span style="font-weight:lighter"> @ViewBag.totalTransportCost</span>
                                     </th>
                                     <th>
                                         P/H Cost with Ticket:<span style="font-weight:lighter"> @Html.DisplayFor(model => model.package_details_tbl.FirstOrDefault().costWithTicket)</span>
@@ -427,16 +427,16 @@
 
                                 <tr>
                                     <td>
-                                        @Html.DisplayFor(model => model.package_details_tbl.FirstOrDefault().packageCost)
+                                        @ViewBag.totalPackageCost
                                     </td>
                                     <td>
-                                        @Html.DisplayFor(model => model.package_details_tbl.FirstOrDefault().airlineCost)
+                                        @ViewBag.totalAirlineCost
                                     </td>
                                     <td>
-                                        @Html.DisplayFor(model => model.package_details_tbl.FirstOrDefault().visaCost)
+                                        @ViewBag.totalVisaCost
                                     </td>
                                     <td>
-                                        @Html.DisplayFor(model => model.package_details_tbl.FirstOrDefault().transportCost)
+                                        @ViewBag.totalTransportCost
                                     </td>
                                     <td>
                                         @Html.DisplayFor(model => model.package_details_tbl.FirstOrDefault().costWithTicket)
@@ -464,7 +464,7 @@
                                     <td>
                                         @Html.DisplayFor(model => model.package_details_tbl.FirstOrDefault().other_details)
                                     </td>
-                                    <td>12</td>
+                                    <td>@ViewBag.grandTotal</td>
                                 </tr>
                             </tbody>
                         </table>
@@ -589,7 +589,7 @@
                                         Date
                                     </th>
                                     <th>
-                                        Cheque/ Draft No.
+                                        Payment Type
                                     </th>
                                     <th>
                                         Total Bill
@@ -607,12 +607,11 @@
                             </thead>
                             <tbody class="text-center">
                                 <tr>
-                                    <td>12</td>
-                                    <td>12</td>
-                                    <td>12</td>
-                                    <td>12</td>
-                                    <td>12</td>
-
+                                    <td>@Html.DisplayFor(model => model.billing_details_tbl.FirstOrDefault().datePayment)</td>
+                                    <td>@Html.DisplayFor(model => model.billing_details_tbl.FirstOrDefault().payment_type)</td>
+                                    <td>@ViewBag.grandTotal</td>
+                                    <td>@Html.DisplayFor(model => model.billing_details_tbl.FirstOrDefault().amount_recieved)</td>
+                                    <td>@Html.DisplayFor(model => model.billing_details_tbl.FirstOrDefault().amount_pending)</td>
                                 </tr>
                             </tbody>
                         </table>

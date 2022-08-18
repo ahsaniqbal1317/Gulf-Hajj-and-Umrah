@@ -265,6 +265,8 @@
                 $("#exampleModalLabel").removeClass("fa fa-pen");
                 $("#exampleModalLabel").addClass("fa fa-plus");
             }
+
+
             var url = "/Client/AddOrEdit?id=" + id;
             var formDiv = $('#modalbody');
             $.get(url)
@@ -273,6 +275,7 @@
 
                 });
             $("#exampleModal").modal("show");
+
         }
         //zoom();
         //function zoom() {

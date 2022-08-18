@@ -18,7 +18,7 @@
                 <div class="col-md-6">
                     <div class="form-group">
                         <label>Name</label>
-                        @Html.EditorFor(model => model.name, new { htmlAttributes = new {@required=true, @class = "form-control", @autocomplete = "off", @placeholder = "Enter Client Name" } })
+                        @Html.EditorFor(model => model.name, new { htmlAttributes = new { @required = true, @class = "form-control", @autocomplete = "off", @placeholder = "Enter Client Name" } })
                         @Html.ValidationMessageFor(model => model.name, "", new { @class = "text-danger" })
                     </div>
                 </div>
@@ -203,22 +203,23 @@
             </div>
             <div class="row">
 
-                <div class="col-md-6">
-                    <label>Cost with Ticket </label>
-                    @Html.EditorFor(model => model.costWithTicket, new { htmlAttributes = new { @required = true, @class = "form-control", @autocomplete = "off", @placeholder = "Enter Ticket Cost" } })
-                    @Html.ValidationMessageFor(model => model.costWithTicket, "", new { @class = "text-danger" })
-                </div>
+                @*<div class="col-md-6">
+                        <label>Cost with Ticket </label>
+                        @Html.EditorFor(model => model.costWithTicket, new { htmlAttributes = new { @required = true, @class = "form-control", @autocomplete = "off", @placeholder = "Enter Ticket Cost" } })
+                        @Html.ValidationMessageFor(model => model.costWithTicket, "", new { @class = "text-danger" })
+                    </div>*@
                 <div class="col-md-6">
                     <label>PNR </label>
                     @Html.EditorFor(model => model.pnr, new { htmlAttributes = new { @required = true, @class = "form-control", @autocomplete = "off", @placeholder = "Enter PNR" } })
                     @Html.ValidationMessageFor(model => model.pnr, "", new { @class = "text-danger" })
                 </div>
+                <div class="col-md-6">
+                    <label>Other Details </label>
+                    @Html.EditorFor(model => model.other_details, new { htmlAttributes = new { @required = true, @class = "form-control", @autocomplete = "off", @placeholder = "Enter Other Details" } })
+                    @Html.ValidationMessageFor(model => model.other_details, "", new { @class = "text-danger" })
+                </div>
             </div>
-            <div class="col-md-12">
-                <label>Other Details </label>
-                @Html.EditorFor(model => model.other_details, new { htmlAttributes = new { @required = true, @class = "form-control", @autocomplete = "off", @placeholder = "Enter Other Details" } })
-                @Html.ValidationMessageFor(model => model.other_details, "", new { @class = "text-danger" })
-            </div>
+
         </div>
         <div class="card-body">
             <div class="card-header bg-blue text-white">
@@ -367,7 +368,7 @@
                                     new SelectListItem(){ Text = "Others", Value = "4"}
                                     }, "Select Payment Type", new { @class = "form-control" })*@
                 </div>
-                <div class="col-md-6">
+                <div class="col-md-12">
                     <label>Amount in PKR (This will be for one Person)</label>
                     @Html.EditorFor(model => model.Billing_Details_Tbl.clientPaymentForOne, new { htmlAttributes = new { @required = true, @class = "form-control", @autocomplete = "off", @placeholder = "Enter amount in rupees" } })
                     @Html.ValidationMessageFor(model => model.Billing_Details_Tbl.clientPaymentForOne, "", new { @class = "text-danger" })
@@ -396,8 +397,8 @@
 <script src="~/Scripts/jquery.validate.min.js"></script>
 
 
-@*<script>
-        var depID = @Html.Raw(Json.Encode(Model.departure_from));
+<script>
+        @*var depID = @Html.Raw(Json.Encode(Model.departure_from));
         var arrID = var model = @Html.Raw(Json.Encode(Model.arrirved_at));
         if (depID != null)
         {
@@ -407,5 +408,65 @@
         {
             $("#arrirved_at").val(depID);
         }
-        var a = 1;
+        var a = 1;*@
+
+</script>
+
+    @*<script>
+
+        $(document).ready(function () {
+            var packageCost = $('#packageCost').val();
+            var airlineCost = $('#airlineCost').val();
+            var transportCost = $('#transportCost').val();
+            var visaCost = $('#visaCost').val();
+            var total = 0;
+
+            function getValues() {
+
+                packageCost = $('#packageCost').val();
+                airlineCost = $('#airlineCost').val();
+                transportCost = $('#transportCost').val();
+                visaCost = $('#visaCost').val();
+            }
+
+            function cal() {
+                if (packageCost) {
+                    total = total + packageCost;
+
+                }
+                if (airlineCost) {
+                    total = total + airlineCost;
+
+                }
+                if (visaCost) {
+                    total = total + visaCost;
+                }
+                if (transportCost) {
+                    total = total + transportCost;
+
+                }
+                console.log(total)
+                $('#Billing_Details_Tbl_clientPaymentForOne').val(total);
+
+            }
+
+            $("#packageCost").keyup(function () {
+                getValues();
+                cal();
+            });
+            $("#airlineCost").keyup(function () {
+                getValues();
+                cal();
+            });
+            $("#transportCost").keyup(function () {
+                getValues();
+                cal();
+            });
+            $("#visaCost").keyup(function () {
+                getValues();
+                cal();
+            });
+        });
+
     </script>*@
+    
