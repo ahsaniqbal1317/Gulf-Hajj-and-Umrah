@@ -177,6 +177,7 @@
     <Content Include="Global.asax" />
     <Content Include="img\AdminLTELogo.png" />
     <Content Include="img\form-logo.jpg" />
+    <Content Include="img\profile.png" />
     <Content Include="img\user2-160x160.jpg" />
     <Content Include="Models\Model1.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>

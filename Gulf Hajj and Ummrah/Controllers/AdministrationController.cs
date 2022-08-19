@@ -84,7 +84,7 @@ namespace Gulf_Hajj_and_Ummrah.Controllers
         public ActionResult DeleteUser (int id)
         {
             var user = db.user_tbl.Find(id);
-            user.isDeleted = true;
+            db.user_tbl.Remove(user);
             db.SaveChanges();
             return RedirectToAction(nameof(UserList));
         }

@@ -30,9 +30,10 @@
 <body class="hold-transition light-mode sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
     <div class="wrapper">
         <!-- Preloader -->
-        <!--<div class="preloader flex-column justify-content-center align-items-center">
-          <img class="animation__wobble" src="dist/img/AdminLTELogo.png" alt="AdminLTELogo" height="60" width="60">
-        </div>-->
+        @*<div class="preloader flex-column justify-content-center align-items-center">
+            <img class="animation__wobble" src="~/img/form-logo.jpg" alt="AdminLTELogo" height="200" width="200">
+        </div>*@
+        
         <!-- Navbar -->
         <nav class="main-header navbar navbar-expand navbar-dark">
             <!-- Left navbar links -->
@@ -49,8 +50,7 @@
                 <li class="nav-item dropdown">
                     <a class="nav-link" data-toggle="dropdown" href="#">
 
-                        <img src="~/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image" style="width: 30px;">
-
+                        <img src="~/img/profile.png" class="img-circle elevation-2" alt="User Image" style="width: 30px;">
                     </a>
                     <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
 
@@ -75,34 +75,32 @@
         </nav>
         <!-- /.navbar -->
         <!-- Main Sidebar Container -->
-        <aside class="main-sidebar sidebar-dark-primary elevation-4" @*style="height: 1200px;*@">
+        <aside class="main-sidebar sidebar-dark-primary elevation-4" @*style="height: 1200px;*@>
             <!-- Brand Logo -->
-            <a href="index3.html" class="brand-link">
-                <img src="/img/AdminLTELogo.png" alt="Gulf Hajh and Umrah Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
-                <span class="brand-text font-weight-light">Gulf HU</span>
+            <a href="@Url.Action("ClientDetails","Client")" class="brand-link">
+                <img src="/img/AdminLTELogo.png" alt="Gulf Hajh and Umrah Logo" class="brand-image img-circle elevation-3" style="opacity: .8"><br />
+                <span class="brand-text font-weight-bold">Gulf Hajj and Ummrah</span>
             </a>
+            <br />
             <!-- Sidebar -->
             <div class="sidebar">
                 <!--Sidebar user panel (optional)-->
-                <div class="user-panel mt-3 pb-3 mb-3 d-flex">
-
-                    <div class="info">
-                        <a href="#" class="d-block">Welcome</a>
-                    </div>
+                <div class="user-panel mt-3 pb-3 mb-3 d-flex info">
+                    <h5 class="d-block text-white" style="padding-left:20px;">Welcome ! @User.Identity.Name</h5>
                 </div>
                 <!-- Sidebar Menu -->
                 <nav class="mt-2">
                     <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                         <!-- Add icons to the links using the .nav-icon class
-    with font-awesome or any other icon font library -->
+                    with font-awesome or any other icon font library -->
                         @*<li class="nav-item">
-            <a href="@Url.Action("GetData","Home")" class="nav-link">
-                <i class="nav-icon fas fa-table"></i>
-                <p>
-                    Dashboard
-                </p>
-            </a>
-        </li>*@
+                            <a href="@Url.Action("GetData","Home")" class="nav-link">
+                                <i class="nav-icon fas fa-table"></i>
+                                <p>
+                                    Dashboard
+                                </p>
+                            </a>
+                        </li>*@
                         <li class="nav-header">ACTIVITIES</li>
 
 
@@ -147,11 +145,11 @@
 
 
                         @*<li class="nav-item">
-            <a href="pages/gallery.html" class="nav-link">
-                <i class="nav-icon far fa-chart-bar"></i>
-                <p>Reports</p>
-            </a>
-        </li>*@
+                            <a href="pages/gallery.html" class="nav-link">
+                                <i class="nav-icon far fa-chart-bar"></i>
+                                <p>Reports</p>
+                            </a>
+                        </li>*@
                         @if (Gulf_Hajj_and_Ummrah.Controllers.HomeController.role.Equals(1))
                         {
                             <li class="nav-header">ADMINISTRATIVE TASKS</li>
@@ -209,11 +207,9 @@
         </div>
         <hr />
         <footer class="main-footer">
-            <strong>Copyright &copy; 2022 <a href="https://http://www.sct-group.us/">Farhan Softwares</a></strong>
+            <strong>Copyright &copy; 2022 <a href="https://www.gulfhajjumrah.com/contents.php?pid=3172&lang=e">Gulf Hajj and Umrah</a></strong>
 
-            <div class="float-right d-none d-sm-inline-block">
-                <b>Email</b> ahmedfarhan651@gmail.com
-            </div>
+
         </footer>
     </div>
 
